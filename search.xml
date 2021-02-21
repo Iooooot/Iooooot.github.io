@@ -15,23 +15,66 @@
 ]]></content>
   </entry>
   <entry>
-    <title>updated</title>
-    <url>/2021/02/16/updated/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2021/02/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <title></title>
+    <url>/2021/02/15/Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
     <content><![CDATA[<hr>
-<h2 id="1-测试文章"><a href="#1-测试文章" class="headerlink" title="1.测试文章"></a>1.测试文章</h2><p>..</p>
-<hr>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="http://www.baidu.com/">www.baidu.com</a></p>
+<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
+<p>建议学习过程中多记笔记，写完后可以找项目练练手巩固复习一下所学技术(以免有所忘记)。</p>
+<h2 id="1-编程基础部分"><a href="#1-编程基础部分" class="headerlink" title="1.编程基础部分"></a>1.编程基础部分</h2><ul>
+<li>计算机组成原理</li>
+<li>操作系统</li>
+<li>计算机网络</li>
+<li>数据结构与算法(这个尤为的重要，但也需要很长时间的积累)</li>
+</ul>
+<h2 id="2-JavaSE部分"><a href="#2-JavaSE部分" class="headerlink" title="2.JavaSE部分"></a>2.JavaSE部分</h2><ul>
+<li>java语法基础</li>
+<li>面向对象 (一种思想 封装继承多态)</li>
+<li>接口</li>
+<li>集合</li>
+<li>多线程</li>
+<li>异常</li>
+<li>I/O</li>
+<li>注解</li>
+<li>反射</li>
+</ul>
+<p>推荐 <a href="https://www.bilibili.com/video/BV18b411t7Nc?p=1">b站宋红康</a></p>
+<h2 id="3-数据库基础"><a href="#3-数据库基础" class="headerlink" title="3.数据库基础"></a>3.数据库基础</h2><ul>
+<li>MySQL/Oracle (建议先学mysql)</li>
+<li>JDBC</li>
+</ul>
+<h2 id="4-web部分"><a href="#4-web部分" class="headerlink" title="4.web部分"></a>4.web部分</h2><ul>
+<li>前端三剑客<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JS</li>
+</ul>
+</li>
+<li>javaWeb<ul>
+<li>Servlet</li>
+<li>jsp(了解即可)</li>
+<li>Cookie/Session</li>
+<li>Filter/Listener</li>
+<li>AJAX</li>
+<li>JSON</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-学习框架前的准备"><a href="#4-学习框架前的准备" class="headerlink" title="4.学习框架前的准备"></a>4.学习框架前的准备</h2><ul>
+<li>设计模式</li>
+<li>项目管理工具：Maven</li>
+<li>版本控制工具：Git</li>
+</ul>
+<h2 id="5-SSM框架"><a href="#5-SSM框架" class="headerlink" title="5.SSM框架"></a>5.SSM框架</h2><ul>
+<li>Spring + SpringMVC + MyBatis(建议先学Mybatis再学Spring最后学SpringMVC)</li>
+</ul>
+<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh:grimacing:</p>
 ]]></content>
       <categories>
-        <category>Hexo</category>
+        <category>学习路线</category>
       </categories>
       <tags>
-        <tag>博客</tag>
+        <tag>java</tag>
+        <tag>后端</tag>
       </tags>
   </entry>
 </search>
