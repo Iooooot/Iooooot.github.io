@@ -152,10 +152,10 @@
 <h3 id="1-4-2返回命令行安装git插件"><a href="#1-4-2返回命令行安装git插件" class="headerlink" title="1.4.2返回命令行安装git插件"></a>1.4.2返回命令行安装git插件</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//输入该命令即可</span></span><br><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
 <h3 id="1-4-3设置-config-yml"><a href="#1-4-3设置-config-yml" class="headerlink" title="1.4.3设置_config.yml"></a>1.4.3设置_config.yml</h3><ul>
 <li><p>原生样子：</p>
-<p>  <img src= "/img/loading.gif" data-lazy-src="E:\myBlog\source_posts\image-20210215183314966.png" alt="image-20210215183314966"></p>
+<p>  <img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/image-20210215183314966.png" alt="image-20210215183314966"></p>
 </li>
 <li><p>修改后</p>
-<p>  <img src= "/img/loading.gif" data-lazy-src="E:\myBlog\source_posts\image-20210215183609944.png" alt="image-20210215183609944"></p>
+<p>  <img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/image-20210215183609944.png" alt="image-20210215183609944"></p>
 </li>
 </ul>
 <h3 id="1-4-4部署到远端"><a href="#1-4-4部署到远端" class="headerlink" title="1.4.4部署到远端"></a>1.4.4部署到远端</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//部署命令的简写</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
@@ -163,7 +163,7 @@
 <h2 id="自定义主题"><a href="#自定义主题" class="headerlink" title="自定义主题"></a>自定义主题</h2><h3 id="1-在github上找hexo主题"><a href="#1-在github上找hexo主题" class="headerlink" title="1.在github上找hexo主题"></a>1.在github上找hexo主题</h3><p>….此处自行查找觉得ok的:sunglasses:</p>
 <h3 id="2-下载主题"><a href="#2-下载主题" class="headerlink" title="2.下载主题"></a>2.下载主题</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.使用git 克隆到你的博客地址下的themes文件夹下</span></span><br></pre></td></tr></table></figure>
 <p>$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a>  themes/yilia</p>
-<h3 id="3-再次修改-config-yml文件"><a href="#3-再次修改-config-yml文件" class="headerlink" title="3.再次修改_config.yml文件"></a>3.再次修改_config.yml文件</h3><p><img src= "/img/loading.gif" data-lazy-src="E:\myBlog\source_posts\image-20210215190253523.png" alt="image-20210215190253523">    </p>
+<h3 id="3-再次修改-config-yml文件"><a href="#3-再次修改-config-yml文件" class="headerlink" title="3.再次修改_config.yml文件"></a>3.再次修改_config.yml文件</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/image-20210215190253523.png" alt="image-20210215190253523">    </p>
 <p>这样theme 改成你克隆的主题，可以参考相应博客说明文档进行个性美化。</p>
 <h3 id="4-重新清理缓存并生成一下"><a href="#4-重新清理缓存并生成一下" class="headerlink" title="4.重新清理缓存并生成一下"></a>4.重新清理缓存并生成一下</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
 <h3 id="5-开启博客"><a href="#5-开启博客" class="headerlink" title="5.开启博客"></a>5.开启博客</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
