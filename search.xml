@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git的介绍与简单使用</title>
+    <url>/2021/02/25/Git%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Git的介绍和简单使用"><a href="#Git的介绍和简单使用" class="headerlink" title="Git的介绍和简单使用"></a>Git的介绍和简单使用</h1><h2 id="Git的概述"><a href="#Git的概述" class="headerlink" title="Git的概述"></a>Git的概述</h2><ul>
+<li><p>Git的描述：Git是一个开源的分布式版本控制系统</p>
+</li>
+<li><p>作用：可以有效、高速地处理从很小到非常大的项目版本管理。</p>
+</li>
+<li><p>优点：</p>
+<ul>
+<li><p>适合分布式开发，强调个体。</p>
+</li>
+<li><p>公共服务器压力和数据量都不会太大。</p>
+</li>
+<li><p>速度快、灵活。</p>
+</li>
+<li><p>任意两个开发者之间可以很容易的解决冲突。</p>
+</li>
+<li><p>离线工作。</p>
+</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>代码保密性差，一旦开发者把整个库克隆下来就可以完全公开所有代码和版本信息。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h2><p>在<a href="https://git-scm.com/">官网</a>下载，然后一直next即可。</p>
+<h2 id="Git的本地结构"><a href="#Git的本地结构" class="headerlink" title="Git的本地结构"></a>Git的本地结构</h2><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161425125317.png" alt="image-20210225184154025">    </p>
+<h2 id="Git的基本命令"><a href="#Git的基本命令" class="headerlink" title="Git的基本命令"></a>Git的基本命令</h2><ul>
+<li><p>初始化本地仓库：git init</p>
+</li>
+<li><p>添加文件：git add</p>
+</li>
+<li><p>提交文件： git commit -m “备注” </p>
+</li>
+<li><p>查看本地仓库状态：git status</p>
+</li>
+<li><p>查看提交日志：</p>
+<ul>
+<li>git log</li>
+<li>git log –pretty=oneline</li>
+<li>git log –oneline</li>
+<li>git reflog (常用)</li>
+</ul>
+</li>
+<li><p>进入历史版本：git reset –hard 版本号 (hard 可以换成mixed 暂存区和本地库同步调整,soft 只有本地库调整)</p>
+</li>
+<li><p>比对工作区和暂存区：git diff </p>
+</li>
+<li><p>创建分支：git branch 分支名</p>
+</li>
+<li><p>查看分支：git branch -v</p>
+</li>
+<li><p>切换分支：git checkout 分支名</p>
+</li>
+<li><p>删除分支：git branch –D 分支名</p>
+</li>
+<li><p>合并分支：git merge 分支名</p>
+</li>
+<li><p>推送操作：git push 远程仓库地址 分支名</p>
+</li>
+<li><p>克隆操作：git clone 远程仓库地址</p>
+</li>
+<li><p>给远程仓库地址起别名：git remote add 别名 地址</p>
+</li>
+<li><p>查看别名：git remote -v</p>
+</li>
+</ul>
+<h2 id="SSH免密登录"><a href="#SSH免密登录" class="headerlink" title="SSH免密登录"></a>SSH免密登录</h2><ol>
+<li><p>进入用户主目录：cd ~</p>
+</li>
+<li><p>再创建ssh目录：ssh-keygen -t rsa -C (输入github邮箱)</p>
+</li>
+<li><p>打开id_rad.pub文件将内容复制</p>
+</li>
+<li><p>粘贴到github 的settings中添加</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>分布式</tag>
+        <tag>版本控制</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/02/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Java 学习路线</title>
     <url>/2021/02/21/Java%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
     <content><![CDATA[<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
@@ -67,7 +171,7 @@
 <li><p>ssm整合 <a href="https://www.bilibili.com/video/BV1BJ411t7p3">雷丰阳</a></p>
 </li>
 </ul>
-<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh:grimacing:</p>
+<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh</p>
 ]]></content>
       <categories>
         <category>学习路线</category>
@@ -76,20 +180,6 @@
         <tag>java</tag>
         <tag>后端</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/02/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>mysql命令大全</title>
@@ -181,6 +271,50 @@
       </tags>
   </entry>
   <entry>
+    <title>如何使用markdown</title>
+    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
+<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
+<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
+<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
+<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>引用1</p>
+<blockquote>
+<p>引用2</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>引用3</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
+<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
+<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无序目录1</li>
+</ul>
+<ol>
+<li>有序目录2</li>
+</ol>
+<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
+<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>typora</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博客的搭建</title>
     <url>/2021/02/22/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h1 id="博客的搭建"><a href="#博客的搭建" class="headerlink" title="博客的搭建"></a>博客的搭建</h1><h2 id="1-环境的准备"><a href="#1-环境的准备" class="headerlink" title="1.环境的准备"></a>1.环境的准备</h2><h3 id="1-1下载node-js"><a href="#1-1下载node-js" class="headerlink" title="1.1下载node.js"></a>1.1下载node.js</h3><p>官方地址：<a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
@@ -238,50 +372,6 @@
       <tags>
         <tag>hexo</tag>
         <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用markdown</title>
-    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
-<p>[TOC]</p>
-<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
-<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
-<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
-<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
-<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>引用1</p>
-<blockquote>
-<p>引用2</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>引用3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
-<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
-<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
-<ul>
-<li>无序目录1</li>
-</ul>
-<ol>
-<li>有序目录2</li>
-</ol>
-<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
-<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>typora</tag>
       </tags>
   </entry>
 </search>
