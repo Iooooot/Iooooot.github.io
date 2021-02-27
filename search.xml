@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Java 学习路线</title>
+    <url>/2021/02/21/Java%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
+<p>建议学习过程中多记笔记，写完后可以找项目练练手巩固复习一下所学技术(以免有所忘记)。</p>
+<h2 id="1-编程基础部分"><a href="#1-编程基础部分" class="headerlink" title="1.编程基础部分"></a>1.编程基础部分</h2><ul>
+<li>计算机组成原理</li>
+<li>操作系统</li>
+<li>计算机网络</li>
+<li>数据结构与算法(这个尤为的重要，但也需要很长时间的积累)</li>
+</ul>
+<h2 id="2-JavaSE部分"><a href="#2-JavaSE部分" class="headerlink" title="2.JavaSE部分"></a>2.JavaSE部分</h2><ul>
+<li>java语法基础</li>
+<li>面向对象 (一种思想 封装继承多态)</li>
+<li>接口</li>
+<li>集合</li>
+<li>多线程</li>
+<li>异常</li>
+<li>I/O</li>
+<li>注解</li>
+<li>反射</li>
+</ul>
+<p>推荐 <a href="https://www.bilibili.com/video/BV18b411t7Nc?p=1">b站宋红康</a></p>
+<h2 id="3-数据库基础"><a href="#3-数据库基础" class="headerlink" title="3.数据库基础"></a>3.数据库基础</h2><ul>
+<li>MySQL/Oracle (建议先学mysql)  <a href="https://www.bilibili.com/video/BV1Vy4y1z7EX">动力节点老杜mysql</a></li>
+<li>JDBC</li>
+</ul>
+<h2 id="4-web部分"><a href="#4-web部分" class="headerlink" title="4.web部分"></a>4.web部分</h2><ul>
+<li>前端三剑客<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JS</li>
+</ul>
+</li>
+<li>javaWeb<ul>
+<li><p>Servlet</p>
+</li>
+<li><p>jsp(了解即可)</p>
+</li>
+<li><p>Cookie/Session</p>
+</li>
+<li><p>Filter/Listener</p>
+</li>
+<li><p>AJAX</p>
+</li>
+<li><p>JSON</p>
+<p>推荐 <a href="https://www.bilibili.com/video/BV1Y7411K7zz?from=search&seid=1929395653889243288">尚硅谷javaweb</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-学习框架前的准备"><a href="#4-学习框架前的准备" class="headerlink" title="4.学习框架前的准备"></a>4.学习框架前的准备</h2><ul>
+<li>设计模式</li>
+<li>项目管理工具：Maven</li>
+<li>版本控制工具：Git</li>
+</ul>
+<h2 id="5-SSM框架"><a href="#5-SSM框架" class="headerlink" title="5.SSM框架"></a>5.SSM框架</h2><ul>
+<li><p>Spring  <a href="https://www.bilibili.com/video/BV1Sb411s7vP">黑马spring</a></p>
+</li>
+<li><p> SpringMVC  <a href="https://www.bilibili.com/video/BV1Sb411s7qa/?spm_id_from=333.788.recommend_more_video.4">黑马springMVC</a></p>
+</li>
+<li><p>MyBatis <a href="https://www.bilibili.com/video/BV1mW411M737">尚硅谷mybatis</a></p>
+<p>  (建议先学Mybatis再学Spring最后学SpringMVC)</p>
+</li>
+<li><p>ssm整合 <a href="https://www.bilibili.com/video/BV1BJ411t7p3">雷丰阳</a></p>
+</li>
+</ul>
+<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh</p>
+]]></content>
+      <categories>
+        <category>学习路线</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>后端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git的介绍与简单使用</title>
     <url>/2021/02/25/Git%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Git的介绍和简单使用"><a href="#Git的介绍和简单使用" class="headerlink" title="Git的介绍和简单使用"></a>Git的介绍和简单使用</h1><h2 id="Git的概述"><a href="#Git的概述" class="headerlink" title="Git的概述"></a>Git的概述</h2><ul>
@@ -88,97 +165,6 @@
         <tag>分布式</tag>
         <tag>版本控制</tag>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/02/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Java 学习路线</title>
-    <url>/2021/02/21/Java%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
-<p>建议学习过程中多记笔记，写完后可以找项目练练手巩固复习一下所学技术(以免有所忘记)。</p>
-<h2 id="1-编程基础部分"><a href="#1-编程基础部分" class="headerlink" title="1.编程基础部分"></a>1.编程基础部分</h2><ul>
-<li>计算机组成原理</li>
-<li>操作系统</li>
-<li>计算机网络</li>
-<li>数据结构与算法(这个尤为的重要，但也需要很长时间的积累)</li>
-</ul>
-<h2 id="2-JavaSE部分"><a href="#2-JavaSE部分" class="headerlink" title="2.JavaSE部分"></a>2.JavaSE部分</h2><ul>
-<li>java语法基础</li>
-<li>面向对象 (一种思想 封装继承多态)</li>
-<li>接口</li>
-<li>集合</li>
-<li>多线程</li>
-<li>异常</li>
-<li>I/O</li>
-<li>注解</li>
-<li>反射</li>
-</ul>
-<p>推荐 <a href="https://www.bilibili.com/video/BV18b411t7Nc?p=1">b站宋红康</a></p>
-<h2 id="3-数据库基础"><a href="#3-数据库基础" class="headerlink" title="3.数据库基础"></a>3.数据库基础</h2><ul>
-<li>MySQL/Oracle (建议先学mysql)  <a href="https://www.bilibili.com/video/BV1Vy4y1z7EX">动力节点老杜mysql</a></li>
-<li>JDBC</li>
-</ul>
-<h2 id="4-web部分"><a href="#4-web部分" class="headerlink" title="4.web部分"></a>4.web部分</h2><ul>
-<li>前端三剑客<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JS</li>
-</ul>
-</li>
-<li>javaWeb<ul>
-<li><p>Servlet</p>
-</li>
-<li><p>jsp(了解即可)</p>
-</li>
-<li><p>Cookie/Session</p>
-</li>
-<li><p>Filter/Listener</p>
-</li>
-<li><p>AJAX</p>
-</li>
-<li><p>JSON</p>
-<p>推荐 <a href="https://www.bilibili.com/video/BV1Y7411K7zz?from=search&seid=1929395653889243288">尚硅谷javaweb</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-学习框架前的准备"><a href="#4-学习框架前的准备" class="headerlink" title="4.学习框架前的准备"></a>4.学习框架前的准备</h2><ul>
-<li>设计模式</li>
-<li>项目管理工具：Maven</li>
-<li>版本控制工具：Git</li>
-</ul>
-<h2 id="5-SSM框架"><a href="#5-SSM框架" class="headerlink" title="5.SSM框架"></a>5.SSM框架</h2><ul>
-<li><p>Spring  <a href="https://www.bilibili.com/video/BV1Sb411s7vP">黑马spring</a></p>
-</li>
-<li><p> SpringMVC  <a href="https://www.bilibili.com/video/BV1Sb411s7qa/?spm_id_from=333.788.recommend_more_video.4">黑马springMVC</a></p>
-</li>
-<li><p>MyBatis <a href="https://www.bilibili.com/video/BV1mW411M737">尚硅谷mybatis</a></p>
-<p>  (建议先学Mybatis再学Spring最后学SpringMVC)</p>
-</li>
-<li><p>ssm整合 <a href="https://www.bilibili.com/video/BV1BJ411t7p3">雷丰阳</a></p>
-</li>
-</ul>
-<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh</p>
-]]></content>
-      <categories>
-        <category>学习路线</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>后端</tag>
       </tags>
   </entry>
   <entry>
@@ -271,48 +257,18 @@
       </tags>
   </entry>
   <entry>
-    <title>如何使用markdown</title>
-    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
-<p>[TOC]</p>
-<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
-<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
-<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
-<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
-<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>引用1</p>
-<blockquote>
-<p>引用2</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>引用3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
-<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
-<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
-<ul>
-<li>无序目录1</li>
-</ul>
-<ol>
-<li>有序目录2</li>
-</ol>
-<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
-<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
+    <title>Hello World</title>
+    <url>/2021/02/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>typora</tag>
-      </tags>
   </entry>
   <entry>
     <title>博客的搭建</title>
@@ -372,6 +328,77 @@
       <tags>
         <tag>hexo</tag>
         <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何使用markdown</title>
+    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
+<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
+<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
+<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
+<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>引用1</p>
+<blockquote>
+<p>引用2</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>引用3</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
+<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
+<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无序目录1</li>
+</ul>
+<ol>
+<li>有序目录2</li>
+</ol>
+<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
+<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单工厂模式</title>
+    <url>/2021/02/27/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式，简而言之就是提供一个==工厂==接收不同的==参数==来提供不同的==对象==。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161441395090.png" alt="image-20210214230702319"></p>
+<h3 id="2-2-代码"><a href="#2-2-代码" class="headerlink" title="2.2 代码"></a>2.2 代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactoryPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Shoes nike = SimpleFactory.getShoes(<span class="string">&quot;Nike&quot;</span>);</span><br><span class="line">        nike.createShoes();</span><br><span class="line">        Shoes adidas = SimpleFactory.getShoes(<span class="string">&quot;Adidas&quot;</span>);</span><br><span class="line">        adidas.createShoes();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象的产品类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span></span>;<span class="comment">//具体如何造鞋的业务逻辑，留给具体子类实现</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体的实现类1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NikeShoes</span> <span class="keyword">extends</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//具体逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我是nike厂家&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;先这样...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;再这样...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体的实现类2</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AdidasShoes</span> <span class="keyword">extends</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//具体逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我是Adidas厂家&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;先这样...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;再这样...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 简单工厂类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shoes <span class="title">getShoes</span><span class="params">(String arg)</span></span>&#123;</span><br><span class="line">        Shoes shoes = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(arg.equals(<span class="string">&quot;Nike&quot;</span>))&#123;</span><br><span class="line">            shoes = <span class="keyword">new</span> NikeShoes();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arg.equals(<span class="string">&quot;Adidas&quot;</span>))&#123;</span><br><span class="line">            shoes = <span class="keyword">new</span> AdidasShoes();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> shoes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><p>比较容易理解，操作简单,外界只需要提供指定参数就可以，无需究竟如何创建及如何组织的。明确了各自的职责和权利，有利于整个软件体系结构优化。</p>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>违背了设计模式的ocp(对扩展开放,对修改关闭)原则.</p>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li><p>工厂类负责创建的对象比较少；</p>
+</li>
+<li><p>并会大量的创建某种或某批对象时</p>
+</li>
+<li><p>客户只知道传入工厂类的参数，对于如何创建对象（逻辑）不关心；</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>简单工厂</tag>
       </tags>
   </entry>
 </search>
