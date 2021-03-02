@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/02/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Git的介绍与简单使用</title>
     <url>/2021/02/25/Git%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Git的介绍和简单使用"><a href="#Git的介绍和简单使用" class="headerlink" title="Git的介绍和简单使用"></a>Git的介绍和简单使用</h1><h2 id="Git的概述"><a href="#Git的概述" class="headerlink" title="Git的概述"></a>Git的概述</h2><ul>
@@ -103,6 +89,97 @@
         <tag>版本控制</tag>
         <tag>git</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Java 学习路线</title>
+    <url>/2021/02/21/Java%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
+<p>建议学习过程中多记笔记，写完后可以找项目练练手巩固复习一下所学技术(以免有所忘记)。</p>
+<h2 id="1-编程基础部分"><a href="#1-编程基础部分" class="headerlink" title="1.编程基础部分"></a>1.编程基础部分</h2><ul>
+<li>计算机组成原理</li>
+<li>操作系统</li>
+<li>计算机网络</li>
+<li>数据结构与算法(这个尤为的重要，但也需要很长时间的积累)</li>
+</ul>
+<h2 id="2-JavaSE部分"><a href="#2-JavaSE部分" class="headerlink" title="2.JavaSE部分"></a>2.JavaSE部分</h2><ul>
+<li>java语法基础</li>
+<li>面向对象 (一种思想 封装继承多态)</li>
+<li>接口</li>
+<li>集合</li>
+<li>多线程</li>
+<li>异常</li>
+<li>I/O</li>
+<li>注解</li>
+<li>反射</li>
+</ul>
+<p>推荐 <a href="https://www.bilibili.com/video/BV18b411t7Nc?p=1">b站宋红康</a></p>
+<h2 id="3-数据库基础"><a href="#3-数据库基础" class="headerlink" title="3.数据库基础"></a>3.数据库基础</h2><ul>
+<li>MySQL/Oracle (建议先学mysql)  <a href="https://www.bilibili.com/video/BV1Vy4y1z7EX">动力节点老杜mysql</a></li>
+<li>JDBC</li>
+</ul>
+<h2 id="4-web部分"><a href="#4-web部分" class="headerlink" title="4.web部分"></a>4.web部分</h2><ul>
+<li>前端三剑客<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JS</li>
+</ul>
+</li>
+<li>javaWeb<ul>
+<li><p>Servlet</p>
+</li>
+<li><p>jsp(了解即可)</p>
+</li>
+<li><p>Cookie/Session</p>
+</li>
+<li><p>Filter/Listener</p>
+</li>
+<li><p>AJAX</p>
+</li>
+<li><p>JSON</p>
+<p>推荐 <a href="https://www.bilibili.com/video/BV1Y7411K7zz?from=search&seid=1929395653889243288">尚硅谷javaweb</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-学习框架前的准备"><a href="#4-学习框架前的准备" class="headerlink" title="4.学习框架前的准备"></a>4.学习框架前的准备</h2><ul>
+<li>设计模式</li>
+<li>项目管理工具：Maven</li>
+<li>版本控制工具：Git</li>
+</ul>
+<h2 id="5-SSM框架"><a href="#5-SSM框架" class="headerlink" title="5.SSM框架"></a>5.SSM框架</h2><ul>
+<li><p>Spring  <a href="https://www.bilibili.com/video/BV1Sb411s7vP">黑马spring</a></p>
+</li>
+<li><p> SpringMVC  <a href="https://www.bilibili.com/video/BV1Sb411s7qa/?spm_id_from=333.788.recommend_more_video.4">黑马springMVC</a></p>
+</li>
+<li><p>MyBatis <a href="https://www.bilibili.com/video/BV1mW411M737">尚硅谷mybatis</a></p>
+<p>  (建议先学Mybatis再学Spring最后学SpringMVC)</p>
+</li>
+<li><p>ssm整合 <a href="https://www.bilibili.com/video/BV1BJ411t7p3">雷丰阳</a></p>
+</li>
+</ul>
+<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh</p>
+]]></content>
+      <categories>
+        <category>学习路线</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>后端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/02/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>mysql命令大全</title>
@@ -194,118 +271,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 学习路线</title>
-    <url>/2021/02/21/Java%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
-<p>建议学习过程中多记笔记，写完后可以找项目练练手巩固复习一下所学技术(以免有所忘记)。</p>
-<h2 id="1-编程基础部分"><a href="#1-编程基础部分" class="headerlink" title="1.编程基础部分"></a>1.编程基础部分</h2><ul>
-<li>计算机组成原理</li>
-<li>操作系统</li>
-<li>计算机网络</li>
-<li>数据结构与算法(这个尤为的重要，但也需要很长时间的积累)</li>
-</ul>
-<h2 id="2-JavaSE部分"><a href="#2-JavaSE部分" class="headerlink" title="2.JavaSE部分"></a>2.JavaSE部分</h2><ul>
-<li>java语法基础</li>
-<li>面向对象 (一种思想 封装继承多态)</li>
-<li>接口</li>
-<li>集合</li>
-<li>多线程</li>
-<li>异常</li>
-<li>I/O</li>
-<li>注解</li>
-<li>反射</li>
-</ul>
-<p>推荐 <a href="https://www.bilibili.com/video/BV18b411t7Nc?p=1">b站宋红康</a></p>
-<h2 id="3-数据库基础"><a href="#3-数据库基础" class="headerlink" title="3.数据库基础"></a>3.数据库基础</h2><ul>
-<li>MySQL/Oracle (建议先学mysql)  <a href="https://www.bilibili.com/video/BV1Vy4y1z7EX">动力节点老杜mysql</a></li>
-<li>JDBC</li>
-</ul>
-<h2 id="4-web部分"><a href="#4-web部分" class="headerlink" title="4.web部分"></a>4.web部分</h2><ul>
-<li>前端三剑客<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JS</li>
-</ul>
-</li>
-<li>javaWeb<ul>
-<li><p>Servlet</p>
-</li>
-<li><p>jsp(了解即可)</p>
-</li>
-<li><p>Cookie/Session</p>
-</li>
-<li><p>Filter/Listener</p>
-</li>
-<li><p>AJAX</p>
-</li>
-<li><p>JSON</p>
-<p>推荐 <a href="https://www.bilibili.com/video/BV1Y7411K7zz?from=search&seid=1929395653889243288">尚硅谷javaweb</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-学习框架前的准备"><a href="#4-学习框架前的准备" class="headerlink" title="4.学习框架前的准备"></a>4.学习框架前的准备</h2><ul>
-<li>设计模式</li>
-<li>项目管理工具：Maven</li>
-<li>版本控制工具：Git</li>
-</ul>
-<h2 id="5-SSM框架"><a href="#5-SSM框架" class="headerlink" title="5.SSM框架"></a>5.SSM框架</h2><ul>
-<li><p>Spring  <a href="https://www.bilibili.com/video/BV1Sb411s7vP">黑马spring</a></p>
-</li>
-<li><p> SpringMVC  <a href="https://www.bilibili.com/video/BV1Sb411s7qa/?spm_id_from=333.788.recommend_more_video.4">黑马springMVC</a></p>
-</li>
-<li><p>MyBatis <a href="https://www.bilibili.com/video/BV1mW411M737">尚硅谷mybatis</a></p>
-<p>  (建议先学Mybatis再学Spring最后学SpringMVC)</p>
-</li>
-<li><p>ssm整合 <a href="https://www.bilibili.com/video/BV1BJ411t7p3">雷丰阳</a></p>
-</li>
-</ul>
-<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh</p>
-]]></content>
-      <categories>
-        <category>学习路线</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>后端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>工厂方法模式</title>
-    <url>/2021/03/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>工厂方法模式（FACTORY METHOD）是一种常用的类==创建型==设计模式，意义是定义一个创建产品对象的工厂接口，将实际创建工作==推迟到子类当中==。“工厂方法模式”是对简单工厂模式的进一步抽象化，其好处是可以使系统在不修改原来代码的情况下引进新的产品，即满足开闭原则。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161457850443.png" alt="image-20210223185316918"></p>
-<h3 id="2-2代码"><a href="#2-2代码" class="headerlink" title="2.2代码"></a>2.2代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Water water = <span class="keyword">new</span> DrinksFactory().createWater();</span><br><span class="line">        Water water1 = <span class="keyword">new</span> SodaWaterFactory().createWater();</span><br><span class="line">        water.show();</span><br><span class="line">        water1.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象产品:提供产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span>  <span class="title">Water</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Drinks</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.printf(<span class="string">&quot;我是饮料&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWater</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是苏打水&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象工厂：提供生成产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="function">Water <span class="title">createWater</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrinksFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;饮料生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Drinks();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWaterFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;苏打水生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SodaWater();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。</li>
-<li>灵活性增强，对于新产品的创建，只需多写一个相应的工厂类。</li>
-<li>典型的解耦框架。高层模块只需要知道产品的抽象类，无须关心其他实现类，满足迪米特法则、依赖倒置原则和里氏替换原则。</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
-<li>类的个数容易过多，增加复杂度</li>
-<li>增加了系统的抽象性和理解难度</li>
-<li>抽象产品只能生产一种产品，此弊端可使用抽象工厂模式解决。</li>
-</ul>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li><p>客户只知道创建产品的工厂名，而不知道具体的产品名。如 TCL 电视工厂、海信电视工厂等。</p>
-</li>
-<li><p>创建对象的任务由多个具体子工厂中的某一个完成，而抽象工厂只提供创建产品的接口。</p>
-</li>
-<li><p>客户不关心创建产品的细节，只关心产品的品牌</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>工厂方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客的搭建</title>
     <url>/2021/02/22/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h1 id="博客的搭建"><a href="#博客的搭建" class="headerlink" title="博客的搭建"></a>博客的搭建</h1><h2 id="1-环境的准备"><a href="#1-环境的准备" class="headerlink" title="1.环境的准备"></a>1.环境的准备</h2><h3 id="1-1下载node-js"><a href="#1-1下载node-js" class="headerlink" title="1.1下载node.js"></a>1.1下载node.js</h3><p>官方地址：<a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
@@ -366,33 +331,6 @@
       </tags>
   </entry>
   <entry>
-    <title>简单工厂模式</title>
-    <url>/2021/02/27/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式，简而言之就是提供一个==工厂==接收不同的==参数==来提供不同的==对象==。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161441395090.png" alt="image-20210214230702319"></p>
-<h3 id="2-2-代码"><a href="#2-2-代码" class="headerlink" title="2.2 代码"></a>2.2 代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactoryPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Shoes nike = SimpleFactory.getShoes(<span class="string">&quot;Nike&quot;</span>);</span><br><span class="line">        nike.createShoes();</span><br><span class="line">        Shoes adidas = SimpleFactory.getShoes(<span class="string">&quot;Adidas&quot;</span>);</span><br><span class="line">        adidas.createShoes();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象的产品类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span></span>;<span class="comment">//具体如何造鞋的业务逻辑，留给具体子类实现</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体的实现类1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NikeShoes</span> <span class="keyword">extends</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//具体逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我是nike厂家&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;先这样...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;再这样...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体的实现类2</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AdidasShoes</span> <span class="keyword">extends</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//具体逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我是Adidas厂家&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;先这样...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;再这样...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 简单工厂类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shoes <span class="title">getShoes</span><span class="params">(String arg)</span></span>&#123;</span><br><span class="line">        Shoes shoes = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(arg.equals(<span class="string">&quot;Nike&quot;</span>))&#123;</span><br><span class="line">            shoes = <span class="keyword">new</span> NikeShoes();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arg.equals(<span class="string">&quot;Adidas&quot;</span>))&#123;</span><br><span class="line">            shoes = <span class="keyword">new</span> AdidasShoes();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> shoes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><p>比较容易理解，操作简单,外界只需要提供指定参数就可以，无需究竟如何创建及如何组织的。明确了各自的职责和权利，有利于整个软件体系结构优化。</p>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>违背了设计模式的ocp(对扩展开放,对修改关闭)原则.</p>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li><p>工厂类负责创建的对象比较少；</p>
-</li>
-<li><p>并会大量的创建某种或某批对象时</p>
-</li>
-<li><p>客户只知道传入工厂类的参数，对于如何创建对象（逻辑）不关心；</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>简单工厂</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何使用markdown</title>
     <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
     <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
@@ -434,6 +372,98 @@
       <tags>
         <tag>markdown</tag>
         <tag>typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工厂方法模式</title>
+    <url>/2021/03/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>工厂方法模式（FACTORY METHOD）是一种常用的类==创建型==设计模式，意义是定义一个创建产品对象的工厂接口，将实际创建工作==推迟到子类当中==。“工厂方法模式”是对简单工厂模式的进一步抽象化，其好处是可以使系统在不修改原来代码的情况下引进新的产品，即满足开闭原则。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161457850443.png" alt="image-20210223185316918"></p>
+<h3 id="2-2代码"><a href="#2-2代码" class="headerlink" title="2.2代码"></a>2.2代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Water water = <span class="keyword">new</span> DrinksFactory().createWater();</span><br><span class="line">        Water water1 = <span class="keyword">new</span> SodaWaterFactory().createWater();</span><br><span class="line">        water.show();</span><br><span class="line">        water1.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象产品:提供产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span>  <span class="title">Water</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Drinks</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.printf(<span class="string">&quot;我是饮料&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWater</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是苏打水&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象工厂：提供生成产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="function">Water <span class="title">createWater</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrinksFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;饮料生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Drinks();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWaterFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;苏打水生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SodaWater();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。</li>
+<li>灵活性增强，对于新产品的创建，只需多写一个相应的工厂类。</li>
+<li>典型的解耦框架。高层模块只需要知道产品的抽象类，无须关心其他实现类，满足迪米特法则、依赖倒置原则和里氏替换原则。</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>类的个数容易过多，增加复杂度</li>
+<li>增加了系统的抽象性和理解难度</li>
+<li>抽象产品只能生产一种产品，此弊端可使用抽象工厂模式解决。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li><p>客户只知道创建产品的工厂名，而不知道具体的产品名。如 TCL 电视工厂、海信电视工厂等。</p>
+</li>
+<li><p>创建对象的任务由多个具体子工厂中的某一个完成，而抽象工厂只提供创建产品的接口。</p>
+</li>
+<li><p>客户不关心创建产品的细节，只关心产品的品牌</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>工厂方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>抽象工厂模式</title>
+    <url>/2021/03/02/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>抽象工厂模式（Abstract Factory Pattern）隶属于设计模式中的==创建型==模式，用于产品族的构建。抽象工厂模式可以向客户端提供一个==接口==，使客户端在==不必指定产品的具体情况下，创建多个产品族中的产品对象。==可以看做是简单工厂的改进(或进一步抽象)。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161468748894.png" alt="image-20210225212201347"></p>
+<h3 id="2-2代码"><a href="#2-2代码" class="headerlink" title="2.2代码"></a>2.2代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象模式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> wht</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractFactoryPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CdFactory cdFactory = <span class="keyword">new</span> CdFactory();</span><br><span class="line">        ScFactory scFactory = <span class="keyword">new</span> ScFactory();</span><br><span class="line">        Pizza sausage = cdFactory.getPizza(<span class="string">&quot;Sausage&quot;</span>);</span><br><span class="line">        Pizza cheese = scFactory.getPizza(<span class="string">&quot;Cheese&quot;</span>);</span><br><span class="line">        System.out.println(sausage);</span><br><span class="line">        System.out.println(cheese);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象产品接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Pizza</span></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 准备材料</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ready</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 烹饪pizza</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 成都香肠披萨</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CdSausagePizza</span> <span class="keyword">implements</span> <span class="title">Pizza</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ready</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;准备香肠&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;准备面粉&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始加工香肠pizza&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 成都奶酪披萨</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CdCheesePizza</span> <span class="keyword">implements</span> <span class="title">Pizza</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ready</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;准备奶酪&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;准备面粉&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始加工奶酪pizza&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 四川香肠披萨</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScSausagePizza</span> <span class="keyword">implements</span> <span class="title">Pizza</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ready</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;准备香肠&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;准备面粉&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始加工香肠pizza&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 四川奶酪披萨</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScCheesePizza</span> <span class="keyword">implements</span> <span class="title">Pizza</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ready</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;准备奶酪&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;准备面粉&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始加工奶酪pizza&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象工厂类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AbsFactory</span></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得披萨</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">Pizza <span class="title">getPizza</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体工厂类1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CdFactory</span> <span class="keyword">implements</span> <span class="title">AbsFactory</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Pizza <span class="title">getPizza</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(name.equals(<span class="string">&quot;Sausage&quot;</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> CdSausagePizza();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(name.equals(<span class="string">&quot;Cheese&quot;</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> CdCheesePizza();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体工厂类2</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScFactory</span> <span class="keyword">implements</span> <span class="title">AbsFactory</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Pizza <span class="title">getPizza</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(name.equals(<span class="string">&quot;Sausage&quot;</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> ScSausagePizza();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(name.equals(<span class="string">&quot;Cheese&quot;</span>))&#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> ScCheesePizza();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>分离了具体的类。客户通过抽象接口操纵实例，产品的类名也在具体工厂的实现中被分离，它们不出现在客户代码中。</li>
+<li>易于交换产品系列。一个具体工厂类只在初始化时出现一次，这使得改变一个应用的具体工厂变得很容易，只需改变具体的工厂即可使用不同的产品配置。</li>
+<li>有利于产品的一致性。当一个系列的产品对象被设计成一起工作时，一个应用一次只能使用同一个系列中的对象，这一点很重要，而抽象工厂很容易实现这一点。</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>难以支持新种类的产品。因为抽象工厂接口确定了可以被创建的产品集合，所以难以扩展抽象工厂以生产新种类的产品。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li>当需要创建的对象是一系列相互关联或相互依赖的产品族时。</li>
+<li>系统中有多个产品族，但每次只使用其中的某一族产品。</li>
+<li>系统中提供了产品的类库，且所有产品的接口相同，客户端不依赖产品实例的创建细节和内部结构。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>抽象工厂</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单工厂模式</title>
+    <url>/2021/02/27/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式，简而言之就是提供一个==工厂==接收不同的==参数==来提供不同的==对象==。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161441395090.png" alt="image-20210214230702319"></p>
+<h3 id="2-2-代码"><a href="#2-2-代码" class="headerlink" title="2.2 代码"></a>2.2 代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactoryPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Shoes nike = SimpleFactory.getShoes(<span class="string">&quot;Nike&quot;</span>);</span><br><span class="line">        nike.createShoes();</span><br><span class="line">        Shoes adidas = SimpleFactory.getShoes(<span class="string">&quot;Adidas&quot;</span>);</span><br><span class="line">        adidas.createShoes();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象的产品类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span></span>;<span class="comment">//具体如何造鞋的业务逻辑，留给具体子类实现</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体的实现类1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NikeShoes</span> <span class="keyword">extends</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//具体逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我是nike厂家&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;先这样...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;再这样...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 具体的实现类2</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AdidasShoes</span> <span class="keyword">extends</span> <span class="title">Shoes</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createShoes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//具体逻辑</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我是Adidas厂家&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;先这样...&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;再这样...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 简单工厂类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shoes <span class="title">getShoes</span><span class="params">(String arg)</span></span>&#123;</span><br><span class="line">        Shoes shoes = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(arg.equals(<span class="string">&quot;Nike&quot;</span>))&#123;</span><br><span class="line">            shoes = <span class="keyword">new</span> NikeShoes();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arg.equals(<span class="string">&quot;Adidas&quot;</span>))&#123;</span><br><span class="line">            shoes = <span class="keyword">new</span> AdidasShoes();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> shoes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><p>比较容易理解，操作简单,外界只需要提供指定参数就可以，无需究竟如何创建及如何组织的。明确了各自的职责和权利，有利于整个软件体系结构优化。</p>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>违背了设计模式的ocp(对扩展开放,对修改关闭)原则.</p>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li><p>工厂类负责创建的对象比较少；</p>
+</li>
+<li><p>并会大量的创建某种或某批对象时</p>
+</li>
+<li><p>客户只知道传入工厂类的参数，对于如何创建对象（逻辑）不关心；</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>简单工厂</tag>
       </tags>
   </entry>
 </search>
