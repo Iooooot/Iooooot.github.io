@@ -299,6 +299,50 @@
       </categories>
   </entry>
   <entry>
+    <title>如何使用markdown</title>
+    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
+<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
+<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
+<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
+<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>引用1</p>
+<blockquote>
+<p>引用2</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>引用3</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
+<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
+<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无序目录1</li>
+</ul>
+<ol>
+<li>有序目录2</li>
+</ol>
+<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
+<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>typora</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博客的搭建</title>
     <url>/2021/02/22/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h1 id="博客的搭建"><a href="#博客的搭建" class="headerlink" title="博客的搭建"></a>博客的搭建</h1><h2 id="1-环境的准备"><a href="#1-环境的准备" class="headerlink" title="1.环境的准备"></a>1.环境的准备</h2><h3 id="1-1下载node-js"><a href="#1-1下载node-js" class="headerlink" title="1.1下载node.js"></a>1.1下载node.js</h3><p>官方地址：<a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
@@ -356,50 +400,6 @@
       <tags>
         <tag>hexo</tag>
         <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何使用markdown</title>
-    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
-<p>[TOC]</p>
-<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
-<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
-<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
-<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
-<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>引用1</p>
-<blockquote>
-<p>引用2</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>引用3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
-<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
-<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
-<ul>
-<li>无序目录1</li>
-</ul>
-<ol>
-<li>有序目录2</li>
-</ol>
-<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
-<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>typora</tag>
       </tags>
   </entry>
   <entry>
