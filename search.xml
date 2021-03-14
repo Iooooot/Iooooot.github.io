@@ -1,97 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java 学习路线</title>
-    <url>/2021/02/21/Java%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
-<p>建议学习过程中多记笔记，写完后可以找项目练练手巩固复习一下所学技术(以免有所忘记)。</p>
-<h2 id="1-编程基础部分"><a href="#1-编程基础部分" class="headerlink" title="1.编程基础部分"></a>1.编程基础部分</h2><ul>
-<li>计算机组成原理</li>
-<li>操作系统</li>
-<li>计算机网络</li>
-<li>数据结构与算法(这个尤为的重要，但也需要很长时间的积累)</li>
-</ul>
-<h2 id="2-JavaSE部分"><a href="#2-JavaSE部分" class="headerlink" title="2.JavaSE部分"></a>2.JavaSE部分</h2><ul>
-<li>java语法基础</li>
-<li>面向对象 (一种思想 封装继承多态)</li>
-<li>接口</li>
-<li>集合</li>
-<li>多线程</li>
-<li>异常</li>
-<li>I/O</li>
-<li>注解</li>
-<li>反射</li>
-</ul>
-<p>推荐 <a href="https://www.bilibili.com/video/BV18b411t7Nc?p=1">b站宋红康</a></p>
-<h2 id="3-数据库基础"><a href="#3-数据库基础" class="headerlink" title="3.数据库基础"></a>3.数据库基础</h2><ul>
-<li>MySQL/Oracle (建议先学mysql)  <a href="https://www.bilibili.com/video/BV1Vy4y1z7EX">动力节点老杜mysql</a></li>
-<li>JDBC</li>
-</ul>
-<h2 id="4-web部分"><a href="#4-web部分" class="headerlink" title="4.web部分"></a>4.web部分</h2><ul>
-<li>前端三剑客<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JS</li>
-</ul>
-</li>
-<li>javaWeb<ul>
-<li><p>Servlet</p>
-</li>
-<li><p>jsp(了解即可)</p>
-</li>
-<li><p>Cookie/Session</p>
-</li>
-<li><p>Filter/Listener</p>
-</li>
-<li><p>AJAX</p>
-</li>
-<li><p>JSON</p>
-<p>推荐 <a href="https://www.bilibili.com/video/BV1Y7411K7zz?from=search&seid=1929395653889243288">尚硅谷javaweb</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-学习框架前的准备"><a href="#4-学习框架前的准备" class="headerlink" title="4.学习框架前的准备"></a>4.学习框架前的准备</h2><ul>
-<li>设计模式</li>
-<li>项目管理工具：Maven</li>
-<li>版本控制工具：Git</li>
-</ul>
-<h2 id="5-SSM框架"><a href="#5-SSM框架" class="headerlink" title="5.SSM框架"></a>5.SSM框架</h2><ul>
-<li><p>Spring  <a href="https://www.bilibili.com/video/BV1Sb411s7vP">黑马spring</a></p>
-</li>
-<li><p> SpringMVC  <a href="https://www.bilibili.com/video/BV1Sb411s7qa/?spm_id_from=333.788.recommend_more_video.4">黑马springMVC</a></p>
-</li>
-<li><p>MyBatis <a href="https://www.bilibili.com/video/BV1mW411M737">尚硅谷mybatis</a></p>
-<p>  (建议先学Mybatis再学Spring最后学SpringMVC)</p>
-</li>
-<li><p>ssm整合 <a href="https://www.bilibili.com/video/BV1BJ411t7p3">雷丰阳</a></p>
-</li>
-</ul>
-<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh</p>
-]]></content>
-      <categories>
-        <category>学习路线</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>后端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/02/15/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Git的介绍与简单使用</title>
     <url>/2021/02/25/Git%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Git的介绍和简单使用"><a href="#Git的介绍和简单使用" class="headerlink" title="Git的介绍和简单使用"></a>Git的介绍和简单使用</h1><h2 id="Git的概述"><a href="#Git的概述" class="headerlink" title="Git的概述"></a>Git的概述</h2><ul>
@@ -179,6 +88,97 @@
         <tag>分布式</tag>
         <tag>版本控制</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/02/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Java 学习路线</title>
+    <url>/2021/02/21/Java%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<h1 id="个人-Java学习路线"><a href="#个人-Java学习路线" class="headerlink" title="个人 Java学习路线"></a>个人 Java学习路线</h1><p>很喜欢学完一个东西就去看看其他人的学习路线，所以也看了很多，总结出了这个学习路线。</p>
+<p>建议学习过程中多记笔记，写完后可以找项目练练手巩固复习一下所学技术(以免有所忘记)。</p>
+<h2 id="1-编程基础部分"><a href="#1-编程基础部分" class="headerlink" title="1.编程基础部分"></a>1.编程基础部分</h2><ul>
+<li>计算机组成原理</li>
+<li>操作系统</li>
+<li>计算机网络</li>
+<li>数据结构与算法(这个尤为的重要，但也需要很长时间的积累)</li>
+</ul>
+<h2 id="2-JavaSE部分"><a href="#2-JavaSE部分" class="headerlink" title="2.JavaSE部分"></a>2.JavaSE部分</h2><ul>
+<li>java语法基础</li>
+<li>面向对象 (一种思想 封装继承多态)</li>
+<li>接口</li>
+<li>集合</li>
+<li>多线程</li>
+<li>异常</li>
+<li>I/O</li>
+<li>注解</li>
+<li>反射</li>
+</ul>
+<p>推荐 <a href="https://www.bilibili.com/video/BV18b411t7Nc?p=1">b站宋红康</a></p>
+<h2 id="3-数据库基础"><a href="#3-数据库基础" class="headerlink" title="3.数据库基础"></a>3.数据库基础</h2><ul>
+<li>MySQL/Oracle (建议先学mysql)  <a href="https://www.bilibili.com/video/BV1Vy4y1z7EX">动力节点老杜mysql</a></li>
+<li>JDBC</li>
+</ul>
+<h2 id="4-web部分"><a href="#4-web部分" class="headerlink" title="4.web部分"></a>4.web部分</h2><ul>
+<li>前端三剑客<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JS</li>
+</ul>
+</li>
+<li>javaWeb<ul>
+<li><p>Servlet</p>
+</li>
+<li><p>jsp(了解即可)</p>
+</li>
+<li><p>Cookie/Session</p>
+</li>
+<li><p>Filter/Listener</p>
+</li>
+<li><p>AJAX</p>
+</li>
+<li><p>JSON</p>
+<p>推荐 <a href="https://www.bilibili.com/video/BV1Y7411K7zz?from=search&seid=1929395653889243288">尚硅谷javaweb</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-学习框架前的准备"><a href="#4-学习框架前的准备" class="headerlink" title="4.学习框架前的准备"></a>4.学习框架前的准备</h2><ul>
+<li>设计模式</li>
+<li>项目管理工具：Maven</li>
+<li>版本控制工具：Git</li>
+</ul>
+<h2 id="5-SSM框架"><a href="#5-SSM框架" class="headerlink" title="5.SSM框架"></a>5.SSM框架</h2><ul>
+<li><p>Spring  <a href="https://www.bilibili.com/video/BV1Sb411s7vP">黑马spring</a></p>
+</li>
+<li><p> SpringMVC  <a href="https://www.bilibili.com/video/BV1Sb411s7qa/?spm_id_from=333.788.recommend_more_video.4">黑马springMVC</a></p>
+</li>
+<li><p>MyBatis <a href="https://www.bilibili.com/video/BV1mW411M737">尚硅谷mybatis</a></p>
+<p>  (建议先学Mybatis再学Spring最后学SpringMVC)</p>
+</li>
+<li><p>ssm整合 <a href="https://www.bilibili.com/video/BV1BJ411t7p3">雷丰阳</a></p>
+</li>
+</ul>
+<h2 id="6-分布式学习"><a href="#6-分布式学习" class="headerlink" title="6.分布式学习"></a>6.分布式学习</h2><p>……待更新 hhhhh</p>
+]]></content>
+      <categories>
+        <category>学习路线</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>后端</tag>
       </tags>
   </entry>
   <entry>
@@ -335,6 +335,34 @@
       </tags>
   </entry>
   <entry>
+    <title>单例模式</title>
+    <url>/2021/03/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>单例模式，属于创建类型的一种常用的设计模式。通过单例模式的方法创建的类在当前进程中只有一个实例，保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1常用实现方式"><a href="#2-1常用实现方式" class="headerlink" title="2.1常用实现方式"></a>2.1常用实现方式</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </span><br><span class="line">        instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance=<span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Instace</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Instace.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">whateverMethod</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    一般情况下，建议使用饿汉方式。只有在要明确实现 lazy loading 效果时，才会使用静态内部类方式。如果涉及到反序列化创建对象时，可以尝试使用枚举方式。如果有其他特殊的需求，可以考虑使用双检锁方式。</p>
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。</li>
+<li>避免对资源的多重占用（比如写文件操作）。</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li><p>要求生产唯一序列号。</p>
+</li>
+<li><p>WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。</p>
+</li>
+<li><p>创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+  </entry>
+  <entry>
     <title>博客的搭建</title>
     <url>/2021/02/22/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h1 id="博客的搭建"><a href="#博客的搭建" class="headerlink" title="博客的搭建"></a>博客的搭建</h1><h2 id="1-环境的准备"><a href="#1-环境的准备" class="headerlink" title="1.环境的准备"></a>1.环境的准备</h2><h3 id="1-1下载node-js"><a href="#1-1下载node-js" class="headerlink" title="1.1下载node.js"></a>1.1下载node.js</h3><p>官方地址：<a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
@@ -393,34 +421,6 @@
         <tag>hexo</tag>
         <tag>butterfly</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>单例模式</title>
-    <url>/2021/03/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>单例模式，属于创建类型的一种常用的设计模式。通过单例模式的方法创建的类在当前进程中只有一个实例，保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1常用实现方式"><a href="#2-1常用实现方式" class="headerlink" title="2.1常用实现方式"></a>2.1常用实现方式</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </span><br><span class="line">        instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance=<span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Instace</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Instace.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">whateverMethod</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    一般情况下，建议使用饿汉方式。只有在要明确实现 lazy loading 效果时，才会使用静态内部类方式。如果涉及到反序列化创建对象时，可以尝试使用枚举方式。如果有其他特殊的需求，可以考虑使用双检锁方式。</p>
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。</li>
-<li>避免对资源的多重占用（比如写文件操作）。</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li><p>要求生产唯一序列号。</p>
-</li>
-<li><p>WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。</p>
-</li>
-<li><p>创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
   </entry>
   <entry>
     <title>外观模式</title>
@@ -530,6 +530,34 @@
       </tags>
   </entry>
   <entry>
+    <title>桥接模式</title>
+    <url>/2021/03/14/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>桥接模式是将抽象部分与它的实现部分分离，使它们都可以独立地变化。它是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(interface)模式。它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BridgePattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Implementor imple = <span class="keyword">new</span> ConcreteImplementorA();</span><br><span class="line">        Abstraction abs = <span class="keyword">new</span> RefinedAbstraction(imple);</span><br><span class="line">        abs.Operation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现化角色</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OperationImpl</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体实现化角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteImplementorA</span> <span class="keyword">implements</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OperationImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;具体实现化(Concrete Implementor)角色被访问&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象化角色</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Abstraction</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> Implementor imple;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Abstraction</span><span class="params">(Implementor imple)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.imple = imple;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">Operation</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//扩展抽象化角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RefinedAbstraction</span> <span class="keyword">extends</span> <span class="title">Abstraction</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">RefinedAbstraction</span><span class="params">(Implementor imple)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(imple);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;扩展抽象化(Refined Abstraction)角色被访问&quot;</span>);</span><br><span class="line">        imple.OperationImpl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>抽象与实现分离，扩展能力强</li>
+<li>符合开闭原则</li>
+<li>符合合成复用原则</li>
+<li>其实现细节对客户透明</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>由于聚合关系建立在抽象层，要求开发者针对抽象化进行设计与编程，能正确地识别出系统中两个独立变化的维度，这增加了系统的理解与设计难度。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。</li>
+<li>对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。</li>
+<li>一个类存在两个独立变化的维度，且这两个维度都需要进行扩展。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>桥接模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>抽象工厂模式</title>
     <url>/2021/03/02/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>抽象工厂模式（Abstract Factory Pattern）隶属于设计模式中的==创建型==模式，用于产品族的构建。抽象工厂模式可以向客户端提供一个==接口==，使客户端在==不必指定产品的具体情况下，创建多个产品族中的产品对象。==可以看做是简单工厂的改进(或进一步抽象)。</p>
@@ -557,6 +585,36 @@
       <tags>
         <tag>设计模式</tag>
         <tag>抽象工厂</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模板方法模式</title>
+    <url>/2021/03/06/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>在模板模式（Template Pattern）中，定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。它是一种类行为型模式。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AbstractClass abstractClass = <span class="keyword">new</span> ConcreteClass();</span><br><span class="line">        abstractClass.TemplateMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象模板类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">//模板方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TemplateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SpecificMethod();</span><br><span class="line">        abstractMethod1();</span><br><span class="line">        abstractMethod2();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//具体方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SpecificMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象类中的具体方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//抽象方法1</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//抽象方法2</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteClass</span> <span class="keyword">extends</span> <span class="title">AbstractClass</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法1的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法2的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>利用模板方法将相同处理逻辑的代码放到抽象父类中，可以提高代码的复用性。</li>
+<li>将不同的代码不同的子类中，通过对子类的扩展增加新的行为，提高代码的扩展性。</li>
+<li>把不变的行为写在父类上，去除子类的重复代码，提供了一个很好的代码复用平台，符合开闭原则。</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>类数目的增加，每一个抽象类都需要一个子类来实现，这样导致类的个数增加。</li>
+<li>类数量的增加，间接地增加了系统实现的复杂度。</li>
+<li>继承关系自身缺点，如果父类添加新的抽象方法，所有子类都要改一遍。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li> 有多个子类共有的方法，且逻辑相同。</li>
+<li> 重要的、复杂的方法，可以考虑作为模板方法。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>模板方法模式</tag>
       </tags>
   </entry>
   <entry>
@@ -619,25 +677,22 @@
       </tags>
   </entry>
   <entry>
-    <title>模板方法模式</title>
-    <url>/2021/03/06/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>在模板模式（Template Pattern）中，定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。它是一种类行为型模式。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AbstractClass abstractClass = <span class="keyword">new</span> ConcreteClass();</span><br><span class="line">        abstractClass.TemplateMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象模板类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">//模板方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TemplateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SpecificMethod();</span><br><span class="line">        abstractMethod1();</span><br><span class="line">        abstractMethod2();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//具体方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SpecificMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象类中的具体方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//抽象方法1</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//抽象方法2</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteClass</span> <span class="keyword">extends</span> <span class="title">AbstractClass</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法1的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法2的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>观察者模式</title>
+    <url>/2021/03/04/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>观察者模式（有时又被称为模型（Model）-视图（View）模式、源-收听者(Listener)模式或从属者模式),在此种模式中，一个目标物件管理所有相依于它的观察者物件，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实现事件处理系统。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/image-20210301184421521.png" alt="image-20210301184421521"></p>
+<h3 id="2-2-代码"><a href="#2-2-代码" class="headerlink" title="2.2 代码"></a>2.2 代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Ring ring = <span class="keyword">new</span> OverClassRing();</span><br><span class="line">        Student student1 = <span class="keyword">new</span> MiddleSchoolStudent();</span><br><span class="line">        Student student2 = <span class="keyword">new</span> collegeStudent();</span><br><span class="line">        ring.add(student1);</span><br><span class="line">        ring.add(student2);</span><br><span class="line">        ring.notice();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象目标:铃声</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Ring</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> List&lt;Student&gt; students = <span class="keyword">new</span> ArrayList&lt;Student&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加观察者</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Student student)</span></span>&#123;</span><br><span class="line">        students.add(student);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除观察者</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Student student)</span></span>&#123;</span><br><span class="line">        students.remove(student);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">notice</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体目标:下课铃声</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OverClassRing</span> <span class="keyword">extends</span> <span class="title">Ring</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">            student.response();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象观察者：学生</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">response</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体观察者1:大学生</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collegeStudent</span> <span class="keyword">implements</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">response</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;高数课下课了，我们会寝室学习吧(玩耍)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体观察者2:中学生</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MiddleSchoolStudent</span> <span class="keyword">implements</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">response</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;语文课下课了，我们开始预习下节数学课吧&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>利用模板方法将相同处理逻辑的代码放到抽象父类中，可以提高代码的复用性。</li>
-<li>将不同的代码不同的子类中，通过对子类的扩展增加新的行为，提高代码的扩展性。</li>
-<li>把不变的行为写在父类上，去除子类的重复代码，提供了一个很好的代码复用平台，符合开闭原则。</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
-<li>类数目的增加，每一个抽象类都需要一个子类来实现，这样导致类的个数增加。</li>
-<li>类数量的增加，间接地增加了系统实现的复杂度。</li>
-<li>继承关系自身缺点，如果父类添加新的抽象方法，所有子类都要改一遍。</li>
-</ul>
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><p>观察者模式解除了主题和具体观察者的耦合，让耦合的双方都依赖于抽象，而不是依赖具体。</p>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>在应用观察者模式时需要考虑一下开发小路问题，程序中包括一个被观察者和多个被观察者，开发和调试比较复杂，而且Java中的消息的通知默认是顺序执行的，一个观察者的卡顿会影响整体的执行效率。在这种情况下，一般考虑采用异步的方式。</p>
 <h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li> 有多个子类共有的方法，且逻辑相同。</li>
-<li> 重要的、复杂的方法，可以考虑作为模板方法。</li>
+<li><p>当一个抽象模型有两个方面，其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。</p>
+</li>
+<li><p>当对一个对象的改变需要同时改变其他对象，而不知道具体有多少对象需要被改变。</p>
+</li>
+<li><p>当一个对象必须通知其他对象，而它又不能假定其他对象是谁。换言之，不希望这些对象是紧密耦合的。</p>
+</li>
 </ul>
 ]]></content>
       <categories>
@@ -645,7 +700,7 @@
       </categories>
       <tags>
         <tag>设计模式</tag>
-        <tag>模板方法模式</tag>
+        <tag>观察者模式</tag>
       </tags>
   </entry>
   <entry>
@@ -678,33 +733,6 @@
       <tags>
         <tag>设计模式</tag>
         <tag>责任链模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>观察者模式</title>
-    <url>/2021/03/04/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>观察者模式（有时又被称为模型（Model）-视图（View）模式、源-收听者(Listener)模式或从属者模式),在此种模式中，一个目标物件管理所有相依于它的观察者物件，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实现事件处理系统。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/image-20210301184421521.png" alt="image-20210301184421521"></p>
-<h3 id="2-2-代码"><a href="#2-2-代码" class="headerlink" title="2.2 代码"></a>2.2 代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Ring ring = <span class="keyword">new</span> OverClassRing();</span><br><span class="line">        Student student1 = <span class="keyword">new</span> MiddleSchoolStudent();</span><br><span class="line">        Student student2 = <span class="keyword">new</span> collegeStudent();</span><br><span class="line">        ring.add(student1);</span><br><span class="line">        ring.add(student2);</span><br><span class="line">        ring.notice();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象目标:铃声</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Ring</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> List&lt;Student&gt; students = <span class="keyword">new</span> ArrayList&lt;Student&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加观察者</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Student student)</span></span>&#123;</span><br><span class="line">        students.add(student);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除观察者</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Student student)</span></span>&#123;</span><br><span class="line">        students.remove(student);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">notice</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体目标:下课铃声</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OverClassRing</span> <span class="keyword">extends</span> <span class="title">Ring</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">            student.response();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象观察者：学生</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">response</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体观察者1:大学生</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collegeStudent</span> <span class="keyword">implements</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">response</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;高数课下课了，我们会寝室学习吧(玩耍)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体观察者2:中学生</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MiddleSchoolStudent</span> <span class="keyword">implements</span> <span class="title">Student</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">response</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;语文课下课了，我们开始预习下节数学课吧&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><p>观察者模式解除了主题和具体观察者的耦合，让耦合的双方都依赖于抽象，而不是依赖具体。</p>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>在应用观察者模式时需要考虑一下开发小路问题，程序中包括一个被观察者和多个被观察者，开发和调试比较复杂，而且Java中的消息的通知默认是顺序执行的，一个观察者的卡顿会影响整体的执行效率。在这种情况下，一般考虑采用异步的方式。</p>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li><p>当一个抽象模型有两个方面，其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。</p>
-</li>
-<li><p>当对一个对象的改变需要同时改变其他对象，而不知道具体有多少对象需要被改变。</p>
-</li>
-<li><p>当一个对象必须通知其他对象，而它又不能假定其他对象是谁。换言之，不希望这些对象是紧密耦合的。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>观察者模式</tag>
       </tags>
   </entry>
   <entry>
