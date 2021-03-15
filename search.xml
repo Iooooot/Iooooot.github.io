@@ -168,6 +168,32 @@
       </tags>
   </entry>
   <entry>
+    <title>LeetCode_多数元素</title>
+    <url>/2021/03/15/LeetCode-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：[3,2,3]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：[2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+<h2 id="2-个人分析"><a href="#2-个人分析" class="headerlink" title="2.个人分析"></a>2.个人分析</h2><ul>
+<li>方法1：可以开map记录然后遍历map统计得出答案 </li>
+<li>方法2：先排序再遍历数组边遍历边统计</li>
+<li>官方方法：排序返回n/2 下标的值</li>
+<li>官方方法2：摩尔投票法</li>
+</ul>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> temp=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> ans=nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                temp++;</span><br><span class="line">                <span class="keyword">if</span>(temp&gt;(len/<span class="number">2</span>))&#123;</span><br><span class="line">                    ans=nums[i];</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="官方方法："><a href="#官方方法：" class="headerlink" title="官方方法："></a>官方方法：</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums[nums.length / <span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">moreThanHalfNum_Solution</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val, cnt = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (auto x : nums)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!cnt) val = x, cnt ++ ;     <span class="comment">//目标值与其他值刚好配对抵消时，重置计数</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (x == val) cnt ++ ;</span><br><span class="line">                <span class="keyword">else</span> cnt -- ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> val;                         <span class="comment">//最后剩下的一定是多于半数的目标值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2021/02/15/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -254,6 +280,23 @@
       </tags>
   </entry>
   <entry>
+    <title>mysql数据类型</title>
+    <url>/2021/02/24/mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="mysql数据类型"><a href="#mysql数据类型" class="headerlink" title="mysql数据类型"></a>mysql数据类型</h1><h2 id="1-整型"><a href="#1-整型" class="headerlink" title="1. 整型"></a>1. 整型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">※Tinyint &#x2F;*迷你整形最大数值0-255 1字节*&#x2F;</span><br><span class="line">Smallint &#x2F;*小整形最大数值0-65535 2字节*&#x2F;</span><br><span class="line">Mediumint &#x2F;*中整形 3字节*&#x2F;</span><br><span class="line">※int &#x2F;*整形 4字节*&#x2F;</span><br><span class="line">bigint&#x2F;*大整形 8字节*&#x2F;</span><br><span class="line"></span><br><span class="line">-- 若不想有负数</span><br><span class="line">类型后加 unsigned</span><br><span class="line">-- 若想输出时满足最大长度自动填充</span><br><span class="line">类型后加 Zerofill&#x2F;*负数不能用若使用zerofill自动取消负数unsigned*&#x2F;</span><br><span class="line">自定义长度类型后加(数字)&#x2F;*但不能超出类型范围*&#x2F;</span><br></pre></td></tr></table></figure>
+<h2 id="2-小数和浮点型"><a href="#2-小数和浮点型" class="headerlink" title="2.小数和浮点型"></a>2.小数和浮点型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 小数(浮点型，定点型)</span><br><span class="line">类型(M,D)&#x2F;*m个有效数字，小数占D位*&#x2F;</span><br><span class="line">-- 浮点型(可以用科学计数法插入 10e5通常用来存储不需要那么精确的数据)</span><br><span class="line">Float &#x2F;*4字节 范围10^38只能保证7位数以内*&#x2F;</span><br><span class="line"></span><br><span class="line">Double &#x2F;*8字节 范围10^308只能保证15位数以内*&#x2F;</span><br><span class="line">-- 定点数(保证精确的小数，小数部分超出长度会四舍五入)</span><br><span class="line">Decimal(M,D)&#x2F;*系统会自动分配空间M最大65 D最大不超过30*&#x2F;</span><br></pre></td></tr></table></figure>
+<h2 id="3-时间日期类型"><a href="#3-时间日期类型" class="headerlink" title="3.时间日期类型"></a>3.时间日期类型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 事件日期类型</span><br><span class="line">Date YYYY-mm-dd&#x2F;*3字节 范围1000-01-01到9999-12-12 初始值为0000-00-00*&#x2F; </span><br><span class="line">Time HH:li:ss &#x2F;*3字节 范围-838:59:59~838:59:59 一般用于表示时间间隔 可以这样插入&quot;数字 000:00:00&quot;等于数字(可为负)*24+后面时间*&#x2F;</span><br><span class="line">Datetime YYYY-mm-dd HH:li:ss &#x2F;*8字节 范围1000-01-01 00:00:00到9999-12-12 23:59:59*&#x2F;</span><br><span class="line">Timestamp YYYY-mm-dd HH:li:ss&#x2F;*从格林威治时间开始*&#x2F;</span><br><span class="line">Year &#x2F;*1字节两位数字插入时 69以下为2000+数字70以上为1900+数字四位插入不动*&#x2F;</span><br></pre></td></tr></table></figure>
+<h2 id="4-字符串类型"><a href="#4-字符串类型" class="headerlink" title="4.字符串类型"></a>4.字符串类型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 字符串型</span><br><span class="line"></span><br><span class="line">Char(L) &#x2F;*定长字符，系统一直会分配L大小的空间 L范围0~255*&#x2F;</span><br><span class="line">Varchar(L) &#x2F;*变长字符 系统会根据你输入的值来分配空间(前提未超出你设置的长度) L范围理论0~65535*&#x2F;</span><br><span class="line">Text&#x2F;*当数据长度超过255个字符使用*&#x2F;</span><br><span class="line">	Tinytext&#x2F;*一个字节保存 存储数据为2^8+1*&#x2F;</span><br><span class="line">-- 只使用Text&#x2F;*一个字节保存 存储数据为2^16+2*&#x2F;</span><br><span class="line">Mediumtext&#x2F;*一个字节保存 存储数据为2^24+3*&#x2F;</span><br><span class="line">Longtext&#x2F;*一个字节保存 存储数据为2^32+4*&#x2F;</span><br></pre></td></tr></table></figure>
+<h2 id="5-其他类型"><a href="#5-其他类型" class="headerlink" title="5.其他类型"></a>5.其他类型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Enum&#x2F;*确定字段的数据就几个值时使用如性别*&#x2F;</span><br><span class="line">enum(数据值1,.....)&#x2F;*单选*&#x2F;</span><br><span class="line">Set &#x2F;*集合类型 最大只能放64个选项*&#x2F;&#x2F;*多选复选框*&#x2F;</span><br><span class="line">Set(数据值1,.....)</span><br><span class="line">Enum和Set都是以数字存储</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mysql - 数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>享元模式</title>
     <url>/2021/03/11/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。主要用于减少创建对象的数量，以减少内存占用和提高性能。这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。（例如各种池技术就是使用的享元模式）</p>
@@ -277,23 +320,6 @@
       <tags>
         <tag>设计模式</tag>
         <tag>享元模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql数据类型</title>
-    <url>/2021/02/24/mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="mysql数据类型"><a href="#mysql数据类型" class="headerlink" title="mysql数据类型"></a>mysql数据类型</h1><h2 id="1-整型"><a href="#1-整型" class="headerlink" title="1. 整型"></a>1. 整型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">※Tinyint &#x2F;*迷你整形最大数值0-255 1字节*&#x2F;</span><br><span class="line">Smallint &#x2F;*小整形最大数值0-65535 2字节*&#x2F;</span><br><span class="line">Mediumint &#x2F;*中整形 3字节*&#x2F;</span><br><span class="line">※int &#x2F;*整形 4字节*&#x2F;</span><br><span class="line">bigint&#x2F;*大整形 8字节*&#x2F;</span><br><span class="line"></span><br><span class="line">-- 若不想有负数</span><br><span class="line">类型后加 unsigned</span><br><span class="line">-- 若想输出时满足最大长度自动填充</span><br><span class="line">类型后加 Zerofill&#x2F;*负数不能用若使用zerofill自动取消负数unsigned*&#x2F;</span><br><span class="line">自定义长度类型后加(数字)&#x2F;*但不能超出类型范围*&#x2F;</span><br></pre></td></tr></table></figure>
-<h2 id="2-小数和浮点型"><a href="#2-小数和浮点型" class="headerlink" title="2.小数和浮点型"></a>2.小数和浮点型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 小数(浮点型，定点型)</span><br><span class="line">类型(M,D)&#x2F;*m个有效数字，小数占D位*&#x2F;</span><br><span class="line">-- 浮点型(可以用科学计数法插入 10e5通常用来存储不需要那么精确的数据)</span><br><span class="line">Float &#x2F;*4字节 范围10^38只能保证7位数以内*&#x2F;</span><br><span class="line"></span><br><span class="line">Double &#x2F;*8字节 范围10^308只能保证15位数以内*&#x2F;</span><br><span class="line">-- 定点数(保证精确的小数，小数部分超出长度会四舍五入)</span><br><span class="line">Decimal(M,D)&#x2F;*系统会自动分配空间M最大65 D最大不超过30*&#x2F;</span><br></pre></td></tr></table></figure>
-<h2 id="3-时间日期类型"><a href="#3-时间日期类型" class="headerlink" title="3.时间日期类型"></a>3.时间日期类型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 事件日期类型</span><br><span class="line">Date YYYY-mm-dd&#x2F;*3字节 范围1000-01-01到9999-12-12 初始值为0000-00-00*&#x2F; </span><br><span class="line">Time HH:li:ss &#x2F;*3字节 范围-838:59:59~838:59:59 一般用于表示时间间隔 可以这样插入&quot;数字 000:00:00&quot;等于数字(可为负)*24+后面时间*&#x2F;</span><br><span class="line">Datetime YYYY-mm-dd HH:li:ss &#x2F;*8字节 范围1000-01-01 00:00:00到9999-12-12 23:59:59*&#x2F;</span><br><span class="line">Timestamp YYYY-mm-dd HH:li:ss&#x2F;*从格林威治时间开始*&#x2F;</span><br><span class="line">Year &#x2F;*1字节两位数字插入时 69以下为2000+数字70以上为1900+数字四位插入不动*&#x2F;</span><br></pre></td></tr></table></figure>
-<h2 id="4-字符串类型"><a href="#4-字符串类型" class="headerlink" title="4.字符串类型"></a>4.字符串类型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 字符串型</span><br><span class="line"></span><br><span class="line">Char(L) &#x2F;*定长字符，系统一直会分配L大小的空间 L范围0~255*&#x2F;</span><br><span class="line">Varchar(L) &#x2F;*变长字符 系统会根据你输入的值来分配空间(前提未超出你设置的长度) L范围理论0~65535*&#x2F;</span><br><span class="line">Text&#x2F;*当数据长度超过255个字符使用*&#x2F;</span><br><span class="line">	Tinytext&#x2F;*一个字节保存 存储数据为2^8+1*&#x2F;</span><br><span class="line">-- 只使用Text&#x2F;*一个字节保存 存储数据为2^16+2*&#x2F;</span><br><span class="line">Mediumtext&#x2F;*一个字节保存 存储数据为2^24+3*&#x2F;</span><br><span class="line">Longtext&#x2F;*一个字节保存 存储数据为2^32+4*&#x2F;</span><br></pre></td></tr></table></figure>
-<h2 id="5-其他类型"><a href="#5-其他类型" class="headerlink" title="5.其他类型"></a>5.其他类型</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Enum&#x2F;*确定字段的数据就几个值时使用如性别*&#x2F;</span><br><span class="line">enum(数据值1,.....)&#x2F;*单选*&#x2F;</span><br><span class="line">Set &#x2F;*集合类型 最大只能放64个选项*&#x2F;&#x2F;*多选复选框*&#x2F;</span><br><span class="line">Set(数据值1,.....)</span><br><span class="line">Enum和Set都是以数字存储</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-        <tag>mysql - 数据类型</tag>
       </tags>
   </entry>
   <entry>
@@ -335,48 +361,32 @@
       </tags>
   </entry>
   <entry>
-    <title>如何使用markdown</title>
-    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
-    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
-<p>[TOC]</p>
-<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
-<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
-<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
-<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
-<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>引用1</p>
-<blockquote>
-<p>引用2</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>引用3</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
-<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
-<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
-<ul>
-<li>无序目录1</li>
+    <title>单例模式</title>
+    <url>/2021/03/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>单例模式，属于创建类型的一种常用的设计模式。通过单例模式的方法创建的类在当前进程中只有一个实例，保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1常用实现方式"><a href="#2-1常用实现方式" class="headerlink" title="2.1常用实现方式"></a>2.1常用实现方式</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </span><br><span class="line">        instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance=<span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Instace</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Instace.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">whateverMethod</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    一般情况下，建议使用饿汉方式。只有在要明确实现 lazy loading 效果时，才会使用静态内部类方式。如果涉及到反序列化创建对象时，可以尝试使用枚举方式。如果有其他特殊的需求，可以考虑使用双检锁方式。</p>
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。</li>
+<li>避免对资源的多重占用（比如写文件操作）。</li>
 </ul>
-<ol>
-<li>有序目录2</li>
-</ol>
-<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
-<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li><p>要求生产唯一序列号。</p>
+</li>
+<li><p>WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。</p>
+</li>
+<li><p>创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>笔记</category>
+        <category>设计模式</category>
       </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>typora</tag>
-      </tags>
   </entry>
   <entry>
     <title>博客的搭建</title>
@@ -437,34 +447,6 @@
         <tag>hexo</tag>
         <tag>butterfly</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>单例模式</title>
-    <url>/2021/03/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>单例模式，属于创建类型的一种常用的设计模式。通过单例模式的方法创建的类在当前进程中只有一个实例，保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1常用实现方式"><a href="#2-1常用实现方式" class="headerlink" title="2.1常用实现方式"></a>2.1常用实现方式</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </span><br><span class="line">        instance = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance=<span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Instace</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Instace.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">whateverMethod</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    一般情况下，建议使用饿汉方式。只有在要明确实现 lazy loading 效果时，才会使用静态内部类方式。如果涉及到反序列化创建对象时，可以尝试使用枚举方式。如果有其他特殊的需求，可以考虑使用双检锁方式。</p>
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。</li>
-<li>避免对资源的多重占用（比如写文件操作）。</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><p>没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。</p>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li><p>要求生产唯一序列号。</p>
-</li>
-<li><p>WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。</p>
-</li>
-<li><p>创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
   </entry>
   <entry>
     <title>外观模式</title>
@@ -530,6 +512,50 @@
       </tags>
   </entry>
   <entry>
+    <title>如何使用markdown</title>
+    <url>/2021/02/23/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8markdown/</url>
+    <content><![CDATA[<h1 id="Markdown简单使用-typora"><a href="#Markdown简单使用-typora" class="headerlink" title="Markdown简单使用(typora)"></a>Markdown简单使用(typora)</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[TOC]如下</span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<h2 id="1-如何写代码块"><a href="#1-如何写代码块" class="headerlink" title="1.如何写代码块"></a>1.如何写代码块</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.代码块语法</span></span><br><span class="line">​```java (语言类型)</span><br></pre></td></tr></table></figure>
+<h2 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题  </span><br></pre></td></tr></table></figure>
+<h2 id="3-字体"><a href="#3-字体" class="headerlink" title="3.字体"></a>3.字体</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加粗</span></span><br><span class="line">**字**</span><br><span class="line"><span class="comment">//代码高亮显示</span></span><br><span class="line">==字==</span><br><span class="line"><span class="comment">//删除线</span></span><br><span class="line">~~字~~</span><br><span class="line"><span class="comment">//斜体</span></span><br><span class="line"> *字*</span><br></pre></td></tr></table></figure>
+<p>//加粗<br><strong>字</strong><br>//代码高亮显示<br>==字==<br>//删除线<br><del>字</del><br>//斜体<br> <em>字</em></p>
+<h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4.引用"></a>4.引用</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;引用<span class="number">1</span></span><br><span class="line">&gt;&gt;引用<span class="number">2</span></span><br><span class="line">&gt;&gt;&gt;引用<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>引用1</p>
+<blockquote>
+<p>引用2</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>引用3</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">分割线<span class="number">1</span>：---</span><br><span class="line">分割线<span class="number">2</span>：***</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<h2 id="6-图片插入"><a href="#6-图片插入" class="headerlink" title="6.图片插入"></a>6.图片插入</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线图片/本地图偏</span></span><br><span class="line">![我的照片](路径) --照片</span><br></pre></td></tr></table></figure>
+<h2 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7.超链接"></a>7.超链接</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[说明](超链接url地址)</span><br></pre></td></tr></table></figure>
+<h2 id="8-列表"><a href="#8-列表" class="headerlink" title="8.列表"></a>8.列表</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无序列表</span></span><br><span class="line">-目录<span class="number">1</span></span><br><span class="line">-目录<span class="number">2</span></span><br><span class="line"><span class="comment">//有序列表</span></span><br><span class="line">数字键+.标题</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无序目录1</li>
+</ul>
+<ol>
+<li>有序目录2</li>
+</ol>
+<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9.表格"></a>9.表格</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">一般使用右键插入列表！！</span><br></pre></td></tr></table></figure>
+<h2 id="10-补充"><a href="#10-补充" class="headerlink" title="10.补充"></a>10.补充</h2><p>markdown支持html语法，会对相应标签进行解析！所以html标签也适用哦:smiley:</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>typora</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>抽象工厂模式</title>
     <url>/2021/03/02/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>抽象工厂模式（Abstract Factory Pattern）隶属于设计模式中的==创建型==模式，用于产品族的构建。抽象工厂模式可以向客户端提供一个==接口==，使客户端在==不必指定产品的具体情况下，创建多个产品族中的产品对象。==可以看做是简单工厂的改进(或进一步抽象)。</p>
@@ -560,6 +586,34 @@
       </tags>
   </entry>
   <entry>
+    <title>桥接模式</title>
+    <url>/2021/03/14/%E6%A1%A5%E6%8E%A5/</url>
+    <content><![CDATA[<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>桥接模式是将抽象部分与它的实现部分分离，使它们都可以独立地变化。它是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(interface)模式。它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BridgePattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Implementor imple = <span class="keyword">new</span> ConcreteImplementorA();</span><br><span class="line">        Abstraction abs = <span class="keyword">new</span> RefinedAbstraction(imple);</span><br><span class="line">        abs.Operation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现化角色</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OperationImpl</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体实现化角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteImplementorA</span> <span class="keyword">implements</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OperationImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;具体实现化(Concrete Implementor)角色被访问&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象化角色</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Abstraction</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> Implementor imple;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Abstraction</span><span class="params">(Implementor imple)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.imple = imple;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">Operation</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//扩展抽象化角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RefinedAbstraction</span> <span class="keyword">extends</span> <span class="title">Abstraction</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">RefinedAbstraction</span><span class="params">(Implementor imple)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(imple);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;扩展抽象化(Refined Abstraction)角色被访问&quot;</span>);</span><br><span class="line">        imple.OperationImpl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>抽象与实现分离，扩展能力强</li>
+<li>符合开闭原则</li>
+<li>符合合成复用原则</li>
+<li>其实现细节对客户透明</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>由于聚合关系建立在抽象层，要求开发者针对抽象化进行设计与编程，能正确地识别出系统中两个独立变化的维度，这增加了系统的理解与设计难度。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。</li>
+<li>对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。</li>
+<li>一个类存在两个独立变化的维度，且这两个维度都需要进行扩展。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>桥接模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>模板方法模式</title>
     <url>/2021/03/06/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>在模板模式（Template Pattern）中，定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。它是一种类行为型模式。</p>
@@ -587,34 +641,6 @@
       <tags>
         <tag>设计模式</tag>
         <tag>模板方法模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>桥接模式</title>
-    <url>/2021/03/14/%E6%A1%A5%E6%8E%A5/</url>
-    <content><![CDATA[<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>桥接模式是将抽象部分与它的实现部分分离，使它们都可以独立地变化。它是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(interface)模式。它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BridgePattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Implementor imple = <span class="keyword">new</span> ConcreteImplementorA();</span><br><span class="line">        Abstraction abs = <span class="keyword">new</span> RefinedAbstraction(imple);</span><br><span class="line">        abs.Operation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现化角色</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OperationImpl</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体实现化角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteImplementorA</span> <span class="keyword">implements</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OperationImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;具体实现化(Concrete Implementor)角色被访问&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象化角色</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Abstraction</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> Implementor imple;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Abstraction</span><span class="params">(Implementor imple)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.imple = imple;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">Operation</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//扩展抽象化角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RefinedAbstraction</span> <span class="keyword">extends</span> <span class="title">Abstraction</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">RefinedAbstraction</span><span class="params">(Implementor imple)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(imple);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;扩展抽象化(Refined Abstraction)角色被访问&quot;</span>);</span><br><span class="line">        imple.OperationImpl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>抽象与实现分离，扩展能力强</li>
-<li>符合开闭原则</li>
-<li>符合合成复用原则</li>
-<li>其实现细节对客户透明</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
-<li>由于聚合关系建立在抽象层，要求开发者针对抽象化进行设计与编程，能正确地识别出系统中两个独立变化的维度，这增加了系统的理解与设计难度。</li>
-</ul>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。</li>
-<li>对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。</li>
-<li>一个类存在两个独立变化的维度，且这两个维度都需要进行扩展。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>桥接模式</tag>
       </tags>
   </entry>
   <entry>
@@ -677,38 +703,6 @@
       </tags>
   </entry>
   <entry>
-    <title>责任链模式</title>
-    <url>/2021/03/07/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>责任链模式是一种设计模式，意义是为了避免请求发送者与多个请求处理者耦合在一起，于是将所有请求的处理者通过前一对象记住其下一个对象的引用而连成一条链；当有请求发生时，可将请求沿着这条链传递，直到有对象处理它为止。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161510211442.png" alt="image-20210307152259270"></p>
-<h3 id="2-2代码"><a href="#2-2代码" class="headerlink" title="2.2代码"></a>2.2代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChainOfResponsibilityPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Handler handler1 = <span class="keyword">new</span> ConcreteHandler1();</span><br><span class="line">        Handler handler2 = <span class="keyword">new</span> ConcreteHandler2();</span><br><span class="line">        handler1.setNext(handler2);</span><br><span class="line">        <span class="comment">//提交请求</span></span><br><span class="line">        handler1.handleRequest(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象的处理类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Handler next;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Handler <span class="title">getNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNext</span><span class="params">(Handler next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//模拟一个处理请求的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(String request)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//责任链上的具体处理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteHandler1</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(String request)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.equals(<span class="string">&quot;1&quot;</span>))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这个请求由我handler1处理&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(getNext()!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                getNext().handleRequest(request);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这个请求没有handler能够处理&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//责任链上的具体处理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteHandler2</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(String request)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.equals(<span class="string">&quot;2&quot;</span>))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这个请求由我handler2处理&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(getNext()!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                getNext().handleRequest(request);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这个请求没有handler能够处理&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>降低耦合度。它将请求的发送者和接收者解耦 </li>
-<li>简化了对象，使得对象不需要知道链的结构 </li>
-<li>增强给对象指派职责的灵活性，允许动态地新增或者删除责任链 </li>
-<li>增加新的请求处理类方便</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
-<li>不能保证请求一定被接收</li>
-<li>系统性能将受到一定影响，调试时不方便，可能会造成循环调用</li>
-</ul>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li>多个对象可以处理一个请求，但具体由哪个对象处理该请求在运行时自动确定。</li>
-<li>可动态指定一组对象处理请求，或添加新的处理者。</li>
-<li>需要在不明确指定请求处理者的情况下，向多个处理者中的一个提交请求。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>责任链模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>观察者模式</title>
     <url>/2021/03/04/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>观察者模式（有时又被称为模型（Model）-视图（View）模式、源-收听者(Listener)模式或从属者模式),在此种模式中，一个目标物件管理所有相依于它的观察者物件，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实现事件处理系统。</p>
@@ -766,6 +760,38 @@
       <tags>
         <tag>设计模式</tag>
         <tag>适配器模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>责任链模式</title>
+    <url>/2021/03/07/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>责任链模式是一种设计模式，意义是为了避免请求发送者与多个请求处理者耦合在一起，于是将所有请求的处理者通过前一对象记住其下一个对象的引用而连成一条链；当有请求发生时，可将请求沿着这条链传递，直到有对象处理它为止。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161510211442.png" alt="image-20210307152259270"></p>
+<h3 id="2-2代码"><a href="#2-2代码" class="headerlink" title="2.2代码"></a>2.2代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChainOfResponsibilityPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Handler handler1 = <span class="keyword">new</span> ConcreteHandler1();</span><br><span class="line">        Handler handler2 = <span class="keyword">new</span> ConcreteHandler2();</span><br><span class="line">        handler1.setNext(handler2);</span><br><span class="line">        <span class="comment">//提交请求</span></span><br><span class="line">        handler1.handleRequest(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象的处理类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Handler next;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Handler <span class="title">getNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNext</span><span class="params">(Handler next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//模拟一个处理请求的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(String request)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//责任链上的具体处理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteHandler1</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(String request)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.equals(<span class="string">&quot;1&quot;</span>))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这个请求由我handler1处理&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(getNext()!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                getNext().handleRequest(request);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这个请求没有handler能够处理&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//责任链上的具体处理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteHandler2</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(String request)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.equals(<span class="string">&quot;2&quot;</span>))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这个请求由我handler2处理&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(getNext()!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                getNext().handleRequest(request);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这个请求没有handler能够处理&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>降低耦合度。它将请求的发送者和接收者解耦 </li>
+<li>简化了对象，使得对象不需要知道链的结构 </li>
+<li>增强给对象指派职责的灵活性，允许动态地新增或者删除责任链 </li>
+<li>增加新的请求处理类方便</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>不能保证请求一定被接收</li>
+<li>系统性能将受到一定影响，调试时不方便，可能会造成循环调用</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li>多个对象可以处理一个请求，但具体由哪个对象处理该请求在运行时自动确定。</li>
+<li>可动态指定一组对象处理请求，或添加新的处理者。</li>
+<li>需要在不明确指定请求处理者的情况下，向多个处理者中的一个提交请求。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>责任链模式</tag>
       </tags>
   </entry>
 </search>
