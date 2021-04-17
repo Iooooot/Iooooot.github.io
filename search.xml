@@ -285,32 +285,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode之全排列</title>
-    <url>/2021/04/08/LeetCode%E4%B9%8B%E5%85%A8%E6%8E%92%E5%88%97/</url>
-    <content><![CDATA[<h1 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个 <strong>没有重复</strong> 数字的序列，返回其所有可能的全排列。</p>
-<p><strong>示例：</strong></p>
-<pre><code>输入: [1,2,3]
-输出:
-[
-  [1,2,3],
-  [1,3,2],
-  [2,1,3],
-  [2,3,1],
-  [3,1,2],
-  [3,2,1]
-]
-</code></pre>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用dfs进行全排列，注意一定要回溯的时候移除之前的数！</p>
-<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        dfs(nums,temp);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] nums,List&lt;Integer&gt; temp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(temp.size()==nums.length)&#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> ArrayList&lt;&gt;(temp));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!temp.contains(num))&#123;</span><br><span class="line">                temp.add(num);</span><br><span class="line">                dfs(nums,temp);</span><br><span class="line">                temp.remove(temp.size()-<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode之二叉树的直径</title>
     <url>/2021/04/05/LeetCode%E4%B9%8B%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</url>
     <content><![CDATA[<h1 id="二叉树的直径"><a href="#二叉树的直径" class="headerlink" title="二叉树的直径"></a>二叉树的直径</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。</p>
@@ -334,29 +308,23 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode之只出现一次的数字</title>
-    <url>/2021/03/24/LeetCode%E4%B9%8B%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/</url>
-    <content><![CDATA[<h1 id="只出现一次的数字"><a href="#只出现一次的数字" class="headerlink" title="只出现一次的数字"></a>只出现一次的数字</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个<strong>非空</strong>整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [2,2,1]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [4,1,2,1,2]</span><br><span class="line">输出: 4</span><br></pre></td></tr></table></figure>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><ul>
-<li>我个人第一时间想到的是先排序再遍历看哪个是单出来的 (时间复杂度太高了) </li>
-<li>还有一种是使用hashmap计数然后判断 </li>
-<li>官方给出的解法 使用异或 (数组中各数异或 最后只会得到不相同的一个)</li>
-</ul>
-<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><ul>
-<li>解法1：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">1</span>)&#123;</span><br><span class="line">            ans = nums[<span class="number">0</span>];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Arrays.sort(nums);</span><br><span class="line">            <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len-<span class="number">1</span>; i+=<span class="number">2</span>) &#123;</span><br><span class="line">…        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>解法二(略)</p>
-</li>
-<li><p>解法三</p>
-  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            ans = ans ^ nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+    <title>LeetCode之全排列</title>
+    <url>/2021/04/08/LeetCode%E4%B9%8B%E5%85%A8%E6%8E%92%E5%88%97/</url>
+    <content><![CDATA[<h1 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个 <strong>没有重复</strong> 数字的序列，返回其所有可能的全排列。</p>
+<p><strong>示例：</strong></p>
+<pre><code>输入: [1,2,3]
+输出:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+</code></pre>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用dfs进行全排列，注意一定要回溯的时候移除之前的数！</p>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        dfs(nums,temp);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] nums,List&lt;Integer&gt; temp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(temp.size()==nums.length)&#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> ArrayList&lt;&gt;(temp));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!temp.contains(num))&#123;</span><br><span class="line">                temp.add(num);</span><br><span class="line">                dfs(nums,temp);</span><br><span class="line">                temp.remove(temp.size()-<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
@@ -412,6 +380,38 @@
       </tags>
   </entry>
   <entry>
+    <title>LeetCode之只出现一次的数字</title>
+    <url>/2021/03/24/LeetCode%E4%B9%8B%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h1 id="只出现一次的数字"><a href="#只出现一次的数字" class="headerlink" title="只出现一次的数字"></a>只出现一次的数字</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个<strong>非空</strong>整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [2,2,1]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [4,1,2,1,2]</span><br><span class="line">输出: 4</span><br></pre></td></tr></table></figure>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><ul>
+<li>我个人第一时间想到的是先排序再遍历看哪个是单出来的 (时间复杂度太高了) </li>
+<li>还有一种是使用hashmap计数然后判断 </li>
+<li>官方给出的解法 使用异或 (数组中各数异或 最后只会得到不相同的一个)</li>
+</ul>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><ul>
+<li>解法1：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">1</span>)&#123;</span><br><span class="line">            ans = nums[<span class="number">0</span>];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Arrays.sort(nums);</span><br><span class="line">            <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len-<span class="number">1</span>; i+=<span class="number">2</span>) &#123;</span><br><span class="line">…        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>解法二(略)</p>
+</li>
+<li><p>解法三</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            ans = ans ^ nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode之合并两个有序数组</title>
     <url>/2021/04/10/LeetCode%E4%B9%8B%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="合并两个有序数组"><a href="#合并两个有序数组" class="headerlink" title="合并两个有序数组"></a>合并两个有序数组</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，使 nums1 成为一个有序数组。</p>
@@ -431,38 +431,6 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span> m, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[m+n];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>,j = <span class="number">0</span>,index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;m||j&lt;n)&#123;</span><br><span class="line">            <span class="keyword">if</span> (i == m) &#123;</span><br><span class="line">                temp[index++] = nums2[j++];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j == n) &#123;</span><br><span class="line">                temp[index++] = nums1[i++];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums1[i] &lt; nums2[j]) &#123;</span><br><span class="line">                temp[index++] = nums1[i++];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                temp[index++] = nums2[j++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n+m; k++) &#123;</span><br><span class="line">            nums1[k] = temp[k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode之合并两个有序链表</title>
-    <url>/2021/03/17/LeetCode%E4%B9%8B%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="合并两个有序链表"><a href="#合并两个有序链表" class="headerlink" title="合并两个有序链表"></a>合并两个有序链表</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>将两个升序链表合并为一个新的 <strong>升序</strong> 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p>
-<p><strong>示例 1：</strong></p>
-<p><img src= "/img/loading.gif" data-lazy-src="https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg" alt="img"></p>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用递归算法，一直判断把问题交给下个子问题，直到链表到最后递归结束。</p>
-<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l1==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l2==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l1.val&lt;l2.val)&#123;</span><br><span class="line">            l1.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l2.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode之合并二叉树</title>
-    <url>/2021/03/28/LeetCode%E4%B9%8B%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="合并二叉树"><a href="#合并二叉树" class="headerlink" title="合并二叉树"></a>合并二叉树</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。</p>
-<p>你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。</p>
-<p>示例 1:</p>
-<p>输入:<br>    Tree 1                     Tree 2<br>          1                         2<br>         / \                       / \<br>        3   2                  1   3<br>       /                           \   \<br>      5                             4   7<br>输出:<br>合并后的树:<br>         3<br>        / <br>       4   5<br>      / \   \<br>     5   4   7</p>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用深度遍历即可,可以new一个根节点也可以直接使用t1返回.显然直接使用t1效率更高和内存消耗更低</p>
-<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">mergeTrees</span><span class="params">(TreeNode t1, TreeNode t2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t1==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> t2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(t2==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> t1;</span><br><span class="line">        &#125;</span><br><span class="line">        t1.val = t1.val + t2.val;</span><br><span class="line">        t1.left = mergeTrees(t1.left,t2.left);</span><br><span class="line">        t1.right = mergeTrees(t1.right,t2.right);</span><br><span class="line">        <span class="keyword">return</span> t1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
@@ -492,6 +460,21 @@
       </tags>
   </entry>
   <entry>
+    <title>LeetCode之合并两个有序链表</title>
+    <url>/2021/03/17/LeetCode%E4%B9%8B%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="合并两个有序链表"><a href="#合并两个有序链表" class="headerlink" title="合并两个有序链表"></a>合并两个有序链表</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>将两个升序链表合并为一个新的 <strong>升序</strong> 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p>
+<p><strong>示例 1：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg" alt="img"></p>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用递归算法，一直判断把问题交给下个子问题，直到链表到最后递归结束。</p>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l1==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l2==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(l1.val&lt;l2.val)&#123;</span><br><span class="line">            l1.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l2.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode之子集</title>
     <url>/2021/03/27/LeetCode%E4%B9%8B%E5%AD%90%E9%9B%86/</url>
     <content><![CDATA[<h1 id="子集"><a href="#子集" class="headerlink" title="子集"></a>子集</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给你一个整数数组 <code>nums</code> ，数组中的元素 <strong>互不相同</strong> 。返回该数组所有可能的子集（幂集）。</p>
@@ -504,6 +487,23 @@
 <li>使用回溯法，进行子集枚举。(排列组合子集都可以用到)</li>
 </ul>
 <h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    List&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        dfs(<span class="number">0</span>,nums);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> cur, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cur == nums.length) &#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(temp));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        temp.add(nums[cur]);</span><br><span class="line">        dfs(cur + <span class="number">1</span>, nums);</span><br><span class="line">        temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">        dfs(cur + <span class="number">1</span>, nums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode之合并二叉树</title>
+    <url>/2021/03/28/LeetCode%E4%B9%8B%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="合并二叉树"><a href="#合并二叉树" class="headerlink" title="合并二叉树"></a>合并二叉树</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。</p>
+<p>你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。</p>
+<p>示例 1:</p>
+<p>输入:<br>    Tree 1                     Tree 2<br>          1                         2<br>         / \                       / \<br>        3   2                  1   3<br>       /                           \   \<br>      5                             4   7<br>输出:<br>合并后的树:<br>         3<br>        / <br>       4   5<br>      / \   \<br>     5   4   7</p>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用深度遍历即可,可以new一个根节点也可以直接使用t1返回.显然直接使用t1效率更高和内存消耗更低</p>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">mergeTrees</span><span class="params">(TreeNode t1, TreeNode t2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t1==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> t2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(t2==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> t1;</span><br><span class="line">        &#125;</span><br><span class="line">        t1.val = t1.val + t2.val;</span><br><span class="line">        t1.left = mergeTrees(t1.left,t2.left);</span><br><span class="line">        t1.right = mergeTrees(t1.right,t2.right);</span><br><span class="line">        <span class="keyword">return</span> t1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
@@ -529,22 +529,6 @@
 
 <h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用递归，先将完整的二叉树分成两个小的左右单独的树进行递归对比，如果左右子树都为空说明对称返回true，若一边为空一边不为空则返回false说明不对称，若节点的值不相同也返回false，最重要的是<strong>注意：因为要求镜像对称所以左子树的左节点要和右子树的右节点进行对比，左子树的右节点要和右子树的左节点进行对比！</strong></p>
 <h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> check(root.left,root.right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(TreeNode left,TreeNode right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="keyword">null</span>&amp;&amp;right==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="keyword">null</span>||right==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left.val!=right.val)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> check(left.left,right.right)&amp;&amp;check(left.right,right.left);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode之找到所有数组中消失的数字</title>
-    <url>/2021/03/20/LeetCode%E4%B9%8B%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/</url>
-    <content><![CDATA[<h1 id="找到所有数组中消失的数字"><a href="#找到所有数组中消失的数字" class="headerlink" title="找到所有数组中消失的数字"></a>找到所有数组中消失的数字</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个范围在 1 ≤ a[i] ≤ <em>n</em> ( <em>n</em> = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。</p>
-<p>找到所有在 [1, <em>n</em>] 范围之间没有出现在数组中的数字。</p>
-<p>您能在不使用额外空间且时间复杂度为*O(n)*的情况下完成这个任务吗? 你可以假定返回的数组不算在额外空间内。</p>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>这题要求找出1到n数租缺少了哪一个，就开一个大小为n的数组，然后遍历nums把每个元素以坐标存在新开的数组中，最后统计看那个坐标的元素为0则就少哪个数。</p>
-<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findDisappearedNumbers</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            count[num]+=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;=len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(count[i]==<span class="number">0</span>)&#123;</span><br><span class="line">                ans.add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
@@ -727,22 +711,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode之移动零</title>
-    <url>/2021/03/22/LeetCode%E4%B9%8B%E7%A7%BB%E5%8A%A8%E9%9B%B6/</url>
-    <content><![CDATA[<h1 id="移动零"><a href="#移动零" class="headerlink" title="移动零"></a>移动零</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [0,1,0,3,12]</span><br><span class="line">输出: [1,3,12,0,0]</span><br></pre></td></tr></table></figure>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>先遍历数组，再遍历的过程中，若该数为0则用count记录次数，若不为0，则将该数放在 i - count 位上并该位变为0，直到遍历完成。</p>
-<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = nums.length,count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==<span class="number">0</span>)&#123;</span><br><span class="line">                count++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">0</span>||count==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                nums[i-count]=nums[i];</span><br><span class="line">                nums[i]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(nums));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode之环形链表</title>
     <url>/2021/04/04/LeetCode%E4%B9%8B%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个链表，判断链表中是否有环。</p>
@@ -756,6 +724,43 @@
 </code></pre>
 <h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用快慢双指针，先判断是否为空链表和只有一个节点若是直接返回false，再用快指针去追慢指针，如果有环一定会相遇，反之不会</p>
 <h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode fir = head;</span><br><span class="line">        ListNode sec = head.next;</span><br><span class="line">        <span class="keyword">while</span>(fir!=sec)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sec==<span class="keyword">null</span>||sec.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            fir = fir.next;</span><br><span class="line">            sec = sec.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode之相交链表</title>
+    <url>/2021/04/01/LeetCode%E4%B9%8B%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>编写一个程序，找到两个单链表相交的起始节点。</p>
+<p>如下面的两个链表<strong>：</strong></p>
+<p><strong>示例：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/image-20210326133334338.png" alt="image-20210326133334338"></p>
+<pre><code>输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+输出：Reference of the node with value = 8
+输入解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+</code></pre>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用双指针，分别以一样的速度走一样长度的路径(A链+B链)，看是否会相遇在一个点若没有相交就只会都指向最后的null节点。</p>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode pA = headA, pB = headB;</span><br><span class="line">    <span class="keyword">while</span> (pA != pB) &#123;</span><br><span class="line">        pA = pA == <span class="keyword">null</span> ? headB : pA.next;</span><br><span class="line">        pB = pB == <span class="keyword">null</span> ? headA : pB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode之移动零</title>
+    <url>/2021/03/22/LeetCode%E4%B9%8B%E7%A7%BB%E5%8A%A8%E9%9B%B6/</url>
+    <content><![CDATA[<h1 id="移动零"><a href="#移动零" class="headerlink" title="移动零"></a>移动零</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [0,1,0,3,12]</span><br><span class="line">输出: [1,3,12,0,0]</span><br></pre></td></tr></table></figure>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>先遍历数组，再遍历的过程中，若该数为0则用count记录次数，若不为0，则将该数放在 i - count 位上并该位变为0，直到遍历完成。</p>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = nums.length,count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==<span class="number">0</span>)&#123;</span><br><span class="line">                count++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">0</span>||count==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                nums[i-count]=nums[i];</span><br><span class="line">                nums[i]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Arrays.toString(nums));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
@@ -799,27 +804,6 @@
 <h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>这题的目的就是把两节点之间的指向反转</p>
 <p>所以可以用双指针一个pre 一个cur ，让cur.next指向pre，再把双指针依次往后挪最后返回即可。</p>
 <h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        ListNode cur = head;</span><br><span class="line">        <span class="keyword">while</span>(cur!=<span class="keyword">null</span>)&#123;</span><br><span class="line">          <span class="comment">//这个temp用于指向下一个不然后面cur.next=pre之后就找不到了</span></span><br><span class="line">            ListNode temp = cur.next;</span><br><span class="line">            cur.next = pre;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pre;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode之相交链表</title>
-    <url>/2021/04/01/LeetCode%E4%B9%8B%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>编写一个程序，找到两个单链表相交的起始节点。</p>
-<p>如下面的两个链表<strong>：</strong></p>
-<p><strong>示例：</strong></p>
-<p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/image-20210326133334338.png" alt="image-20210326133334338"></p>
-<pre><code>输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
-输出：Reference of the node with value = 8
-输入解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
-</code></pre>
-<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>使用双指针，分别以一样的速度走一样长度的路径(A链+B链)，看是否会相遇在一个点若没有相交就只会都指向最后的null节点。</p>
-<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode pA = headA, pB = headB;</span><br><span class="line">    <span class="keyword">while</span> (pA != pB) &#123;</span><br><span class="line">        pA = pA == <span class="keyword">null</span> ? headB : pA.next;</span><br><span class="line">        pB = pB == <span class="keyword">null</span> ? headA : pB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
@@ -1156,41 +1140,6 @@
       </tags>
   </entry>
   <entry>
-    <title>工厂方法模式</title>
-    <url>/2021/03/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>工厂方法模式（FACTORY METHOD）是一种常用的类==创建型==设计模式，意义是定义一个创建产品对象的工厂接口，将实际创建工作==推迟到子类当中==。“工厂方法模式”是对简单工厂模式的进一步抽象化，其好处是可以使系统在不修改原来代码的情况下引进新的产品，即满足开闭原则。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161457850443.png" alt="image-20210223185316918"></p>
-<h3 id="2-2代码"><a href="#2-2代码" class="headerlink" title="2.2代码"></a>2.2代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Water water = <span class="keyword">new</span> DrinksFactory().createWater();</span><br><span class="line">        Water water1 = <span class="keyword">new</span> SodaWaterFactory().createWater();</span><br><span class="line">        water.show();</span><br><span class="line">        water1.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象产品:提供产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span>  <span class="title">Water</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Drinks</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.printf(<span class="string">&quot;我是饮料&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWater</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是苏打水&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象工厂：提供生成产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="function">Water <span class="title">createWater</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrinksFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;饮料生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Drinks();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWaterFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;苏打水生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SodaWater();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。</li>
-<li>灵活性增强，对于新产品的创建，只需多写一个相应的工厂类。</li>
-<li>典型的解耦框架。高层模块只需要知道产品的抽象类，无须关心其他实现类，满足迪米特法则、依赖倒置原则和里氏替换原则。</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
-<li>类的个数容易过多，增加复杂度</li>
-<li>增加了系统的抽象性和理解难度</li>
-<li>抽象产品只能生产一种产品，此弊端可使用抽象工厂模式解决。</li>
-</ul>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li><p>客户只知道创建产品的工厂名，而不知道具体的产品名。如 TCL 电视工厂、海信电视工厂等。</p>
-</li>
-<li><p>创建对象的任务由多个具体子工厂中的某一个完成，而抽象工厂只提供创建产品的接口。</p>
-</li>
-<li><p>客户不关心创建产品的细节，只关心产品的品牌</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>工厂方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>抽象工厂模式</title>
     <url>/2021/03/02/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>抽象工厂模式（Abstract Factory Pattern）隶属于设计模式中的==创建型==模式，用于产品族的构建。抽象工厂模式可以向客户端提供一个==接口==，使客户端在==不必指定产品的具体情况下，创建多个产品族中的产品对象。==可以看做是简单工厂的改进(或进一步抽象)。</p>
@@ -1249,6 +1198,71 @@
       </tags>
   </entry>
   <entry>
+    <title>模板方法模式</title>
+    <url>/2021/03/06/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>在模板模式（Template Pattern）中，定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。它是一种类行为型模式。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AbstractClass abstractClass = <span class="keyword">new</span> ConcreteClass();</span><br><span class="line">        abstractClass.TemplateMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象模板类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">//模板方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TemplateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SpecificMethod();</span><br><span class="line">        abstractMethod1();</span><br><span class="line">        abstractMethod2();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//具体方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SpecificMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象类中的具体方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//抽象方法1</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//抽象方法2</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteClass</span> <span class="keyword">extends</span> <span class="title">AbstractClass</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法1的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法2的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>利用模板方法将相同处理逻辑的代码放到抽象父类中，可以提高代码的复用性。</li>
+<li>将不同的代码不同的子类中，通过对子类的扩展增加新的行为，提高代码的扩展性。</li>
+<li>把不变的行为写在父类上，去除子类的重复代码，提供了一个很好的代码复用平台，符合开闭原则。</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>类数目的增加，每一个抽象类都需要一个子类来实现，这样导致类的个数增加。</li>
+<li>类数量的增加，间接地增加了系统实现的复杂度。</li>
+<li>继承关系自身缺点，如果父类添加新的抽象方法，所有子类都要改一遍。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li> 有多个子类共有的方法，且逻辑相同。</li>
+<li> 重要的、复杂的方法，可以考虑作为模板方法。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>模板方法模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工厂方法模式</title>
+    <url>/2021/03/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>工厂方法模式（FACTORY METHOD）是一种常用的类==创建型==设计模式，意义是定义一个创建产品对象的工厂接口，将实际创建工作==推迟到子类当中==。“工厂方法模式”是对简单工厂模式的进一步抽象化，其好处是可以使系统在不修改原来代码的情况下引进新的产品，即满足开闭原则。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1类图"><a href="#2-1类图" class="headerlink" title="2.1类图"></a>2.1类图</h3><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Iooooot/photos@master/blogAboutPic/161457850443.png" alt="image-20210223185316918"></p>
+<h3 id="2-2代码"><a href="#2-2代码" class="headerlink" title="2.2代码"></a>2.2代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Water water = <span class="keyword">new</span> DrinksFactory().createWater();</span><br><span class="line">        Water water1 = <span class="keyword">new</span> SodaWaterFactory().createWater();</span><br><span class="line">        water.show();</span><br><span class="line">        water1.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象产品:提供产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span>  <span class="title">Water</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Drinks</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.printf(<span class="string">&quot;我是饮料&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWater</span> <span class="keyword">implements</span> <span class="title">Water</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是苏打水&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象工厂：提供生成产品接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="function">Water <span class="title">createWater</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrinksFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;饮料生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Drinks();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//具体的子工厂B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SodaWaterFactory</span> <span class="keyword">implements</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Water <span class="title">createWater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;苏打水生产中.......&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SodaWater();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。</li>
+<li>灵活性增强，对于新产品的创建，只需多写一个相应的工厂类。</li>
+<li>典型的解耦框架。高层模块只需要知道产品的抽象类，无须关心其他实现类，满足迪米特法则、依赖倒置原则和里氏替换原则。</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>类的个数容易过多，增加复杂度</li>
+<li>增加了系统的抽象性和理解难度</li>
+<li>抽象产品只能生产一种产品，此弊端可使用抽象工厂模式解决。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li><p>客户只知道创建产品的工厂名，而不知道具体的产品名。如 TCL 电视工厂、海信电视工厂等。</p>
+</li>
+<li><p>创建对象的任务由多个具体子工厂中的某一个完成，而抽象工厂只提供创建产品的接口。</p>
+</li>
+<li><p>客户不关心创建产品的细节，只关心产品的品牌</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>工厂方法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>策略模式</title>
     <url>/2021/03/13/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。</p>
@@ -1278,36 +1292,6 @@
       <tags>
         <tag>设计模式</tag>
         <tag>策略模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模板方法模式</title>
-    <url>/2021/03/06/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>在模板模式（Template Pattern）中，定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。它是一种类行为型模式。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateMethodPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AbstractClass abstractClass = <span class="keyword">new</span> ConcreteClass();</span><br><span class="line">        abstractClass.TemplateMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象模板类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractClass</span></span>&#123;</span><br><span class="line">    <span class="comment">//模板方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TemplateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SpecificMethod();</span><br><span class="line">        abstractMethod1();</span><br><span class="line">        abstractMethod2();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//具体方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SpecificMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象类中的具体方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//抽象方法1</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//抽象方法2</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteClass</span> <span class="keyword">extends</span> <span class="title">AbstractClass</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法1的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abstractMethod2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;抽象方法2的实现被调用...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>利用模板方法将相同处理逻辑的代码放到抽象父类中，可以提高代码的复用性。</li>
-<li>将不同的代码不同的子类中，通过对子类的扩展增加新的行为，提高代码的扩展性。</li>
-<li>把不变的行为写在父类上，去除子类的重复代码，提供了一个很好的代码复用平台，符合开闭原则。</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
-<li>类数目的增加，每一个抽象类都需要一个子类来实现，这样导致类的个数增加。</li>
-<li>类数量的增加，间接地增加了系统实现的复杂度。</li>
-<li>继承关系自身缺点，如果父类添加新的抽象方法，所有子类都要改一遍。</li>
-</ul>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li> 有多个子类共有的方法，且逻辑相同。</li>
-<li> 重要的、复杂的方法，可以考虑作为模板方法。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-        <tag>模板方法模式</tag>
       </tags>
   </entry>
   <entry>
@@ -1365,6 +1349,39 @@
       </tags>
   </entry>
   <entry>
+    <title>适配器模式</title>
+    <url>/2021/03/05/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>适配器模式（有时候也称包装样式或者包装）将一个类的接口适配成用户所期待的。一个适配允许通常因为接口不兼容而不能在一起工作的类工作在一起，做法是将类自己的接口包裹在一个已存在的类中。</p>
+<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><ol>
+<li>类适配器模式的代码如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassAdapterPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Target target = <span class="keyword">new</span> ClassAdapter();</span><br><span class="line">        target.request();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//目标接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">request</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//适配者接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">specificRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在适配中.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//类适配器类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassAdapter</span> <span class="keyword">extends</span> <span class="title">Adaptee</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        specificRequest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>对象适配器模式的代码如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectAdapterPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Adaptee adaptee = <span class="keyword">new</span> Adaptee();</span><br><span class="line">        Target target = <span class="keyword">new</span> ObjectAdapter(adaptee);</span><br><span class="line">        target.request();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//目标接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">request</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//适配者接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">specificRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在适配中.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//对象适配器类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObjectAdapter</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Adaptee adaptee;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ObjectAdapter</span><span class="params">(Adaptee adaptee)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adaptee=adaptee;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        adaptee.specificRequest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
+<li>将目标类和适配者类解耦</li>
+<li>增加了类的透明性和复用性，将具体的实现封装在适配者类中，对于客户端类来说是透明的，而且提高了适配者的复用性</li>
+<li>灵活性和扩展性都非常好，符合开闭原则</li>
+</ul>
+<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
+<li>类适配器，对于Java不支持多重继承的语言，一次最多只能适配一个适配者类，而且目标抽象类只能为接口，不能为类，其使用有一定的局限性，不能将一个适配者类和他的子类同时适配到目标接口。所以多用对象适配器。</li>
+</ul>
+<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
+<li>接口中规定了所有要实现的方法</li>
+<li>但一个要实现此接口的具体类，只用到了其中的几个方法，而其它的方法都是没有用的。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>适配器模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>责任链模式</title>
     <url>/2021/03/07/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>责任链模式是一种设计模式，意义是为了避免请求发送者与多个请求处理者耦合在一起，于是将所有请求的处理者通过前一对象记住其下一个对象的引用而连成一条链；当有请求发生时，可将请求沿着这条链传递，直到有对象处理它为止。</p>
@@ -1397,36 +1414,19 @@
       </tags>
   </entry>
   <entry>
-    <title>适配器模式</title>
-    <url>/2021/03/05/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>适配器模式（有时候也称包装样式或者包装）将一个类的接口适配成用户所期待的。一个适配允许通常因为接口不兼容而不能在一起工作的类工作在一起，做法是将类自己的接口包裹在一个已存在的类中。</p>
-<h2 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h2><h3 id="2-1代码"><a href="#2-1代码" class="headerlink" title="2.1代码"></a>2.1代码</h3><ol>
-<li>类适配器模式的代码如下：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> 设计模式;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassAdapterPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Target target = <span class="keyword">new</span> ClassAdapter();</span><br><span class="line">        target.request();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//目标接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">request</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//适配者接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">specificRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在适配中.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//类适配器类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassAdapter</span> <span class="keyword">extends</span> <span class="title">Adaptee</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        specificRequest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>对象适配器模式的代码如下：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectAdapterPattern</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Adaptee adaptee = <span class="keyword">new</span> Adaptee();</span><br><span class="line">        Target target = <span class="keyword">new</span> ObjectAdapter(adaptee);</span><br><span class="line">        target.request();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//目标接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">request</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//适配者接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">specificRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;正在适配中.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//对象适配器类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObjectAdapter</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Adaptee adaptee;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ObjectAdapter</span><span class="params">(Adaptee adaptee)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adaptee=adaptee;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        adaptee.specificRequest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-优点"><a href="#3-优点" class="headerlink" title="3.优点"></a>3.优点</h2><ul>
-<li>将目标类和适配者类解耦</li>
-<li>增加了类的透明性和复用性，将具体的实现封装在适配者类中，对于客户端类来说是透明的，而且提高了适配者的复用性</li>
-<li>灵活性和扩展性都非常好，符合开闭原则</li>
-</ul>
-<h2 id="4-缺点"><a href="#4-缺点" class="headerlink" title="4.缺点"></a>4.缺点</h2><ul>
-<li>类适配器，对于Java不支持多重继承的语言，一次最多只能适配一个适配者类，而且目标抽象类只能为接口，不能为类，其使用有一定的局限性，不能将一个适配者类和他的子类同时适配到目标接口。所以多用对象适配器。</li>
-</ul>
-<h2 id="5-使用场景"><a href="#5-使用场景" class="headerlink" title="5.使用场景"></a>5.使用场景</h2><ul>
-<li>接口中规定了所有要实现的方法</li>
-<li>但一个要实现此接口的具体类，只用到了其中的几个方法，而其它的方法都是没有用的。</li>
-</ul>
+    <title>LeetCode之找到所有数组中消失的数字</title>
+    <url>/2021/03/20/LeetCode%E4%B9%8B%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h1 id="找到所有数组中消失的数字"><a href="#找到所有数组中消失的数字" class="headerlink" title="找到所有数组中消失的数字"></a>找到所有数组中消失的数字</h1><h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p>给定一个范围在 1 ≤ a[i] ≤ <em>n</em> ( <em>n</em> = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。</p>
+<p>找到所有在 [1, <em>n</em>] 范围之间没有出现在数组中的数字。</p>
+<p>您能在不使用额外空间且时间复杂度为*O(n)*的情况下完成这个任务吗? 你可以假定返回的数组不算在额外空间内。</p>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h2><p>这题要求找出1到n数租缺少了哪一个，就开一个大小为n的数组，然后遍历nums把每个元素以坐标存在新开的数组中，最后统计看那个坐标的元素为0则就少哪个数。</p>
+<h2 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findDisappearedNumbers</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            count[num]+=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;=len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(count[i]==<span class="number">0</span>)&#123;</span><br><span class="line">                ans.add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>设计模式</category>
+        <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>设计模式</tag>
-        <tag>适配器模式</tag>
+        <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
