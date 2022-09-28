@@ -1,0 +1,1216 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux | goMars的学习随记</title><meta name="keywords" content="Linux"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LinuxLinux 是一款操作系统，免费，开源， 安全，高效，稳定， 处理高并发非常强悍，现在很多的企业级的项目都部署到 Linux&#x2F;unix 服务器运行。 安装 CentOS下载地址： 官方：https:&#x2F;&#x2F;www.centos.org&#x2F;download&#x2F; 网易镜像:http:&#x2F;&#x2F;mirrors.163.comlcentos&#x2F;6&#x2F;isos&#x2F; 搜狐镜像:http:&#x2F;&#x2F;mirrors.sohu.c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="http://example.com/2022/09/28/Linux/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="LinuxLinux 是一款操作系统，免费，开源， 安全，高效，稳定， 处理高并发非常强悍，现在很多的企业级的项目都部署到 Linux&#x2F;unix 服务器运行。 安装 CentOS下载地址： 官方：https:&#x2F;&#x2F;www.centos.org&#x2F;download&#x2F; 网易镜像:http:&#x2F;&#x2F;mirrors.163.comlcentos&#x2F;6&#x2F;isos&#x2F; 搜狐镜像:http:&#x2F;&#x2F;mirrors.sohu.c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg">
+<meta property="article:published_time" content="2022-09-28T01:30:40.000Z">
+<meta property="article:modified_time" content="2022-09-28T01:32:31.933Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="http://example.com/2022/09/28/Linux/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-28 09:32:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">88</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-28T01:30:40.000Z" title="发表于 2022-09-28 09:30:40">2022-09-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-28T01:32:31.933Z" title="更新于 2022-09-28 09:32:31">2022-09-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>Linux 是一款操作系统，免费，开源， 安全，高效，稳定， 处理高并发非常强悍，现在很多的企业级的项目都部署到 Linux/unix 服务器运行。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>CentOS下载地址：<ul>
+<li>官方：<a target="_blank" rel="noopener" href="https://www.centos.org/download/">https://www.centos.org/download/</a></li>
+<li>网易镜像:<a target="_blank" rel="noopener" href="http://mirrors.163.comlcentos/6/isos/">http://mirrors.163.comlcentos/6/isos/</a></li>
+<li>搜狐镜像:<a target="_blank" rel="noopener" href="http://mirrors.sohu.comlcentos/6/isos">http://mirrors.sohu.comlcentos/6/isos</a></li>
+</ul>
+</li>
+<li>安装VMware</li>
+<li>创建虚拟机</li>
+<li>安装Centos<ul>
+<li>进行处理器配置（虚拟机总核心数不能超过主机核心数。若超出则会警告提醒。）</li>
+<li>配置虚拟机内存</li>
+<li>设置centos镜像文件</li>
+<li>配置网络类型（一般选择NAT模式，桥接模式容易ip冲突）</li>
+<li>选择语言、网络配置、安装相关环境等….（注意有需要可以选择安装<strong>GNOME Desktop</strong>图形界面）</li>
+<li>进行磁盘分区（/boot区(大概1G)、swap交换分区(大概2G)、根分区/(剩余都是)）</li>
+<li>等待开机即可</li>
+</ul>
+</li>
+</ul>
+<h2 id="Linux目录结果"><a href="#Linux目录结果" class="headerlink" title="Linux目录结果"></a>Linux目录结果</h2><p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220719094340797.png" alt="image-20220719094340797"></p>
+<p>以下是对这些目录的解释：</p>
+<ul>
+<li><p><strong>/bin</strong>：<br>bin 是 Binaries (二进制文件) 的缩写, 这个目录存放着最经常使用的命令。</p>
+</li>
+<li><p><strong>/boot：</strong><br>这里存放的是启动 Linux 时使用的一些核心文件，包括一些连接文件以及镜像文件。</p>
+</li>
+<li><p><strong>/dev ：</strong><br>dev 是 Device(设备) 的缩写, 该目录下存放的是 Linux 的外部设备，在 Linux 中访问设备的方式和访问文件的方式是相同的。</p>
+</li>
+<li><p><strong>/etc：</strong><br>etc 是 Etcetera(等等) 的缩写,这个目录用来存放所有的系统管理所需要的配置文件和子目录。</p>
+</li>
+<li><p><strong>/home</strong>：<br>用户的主目录，在 Linux 中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的，如上图中的 alice、bob 和 eve。</p>
+</li>
+<li><p><strong>/lib</strong>：<br>lib 是 Library(库) 的缩写这个目录里存放着系统最基本的动态连接共享库，其作用类似于 Windows 里的 DLL 文件。几乎所有的应用程序都需要用到这些共享库。</p>
+</li>
+<li><p><strong>/lost+found</strong>：<br>这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</p>
+</li>
+<li><p><strong>/media</strong>：<br>linux 系统会自动识别一些设备，例如U盘、光驱等等，当识别后，Linux 会把识别的设备挂载到这个目录下。</p>
+</li>
+<li><p><strong>/mnt</strong>：<br>系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在 /mnt/ 上，然后进入该目录就可以查看光驱里的内容了。</p>
+</li>
+<li><p><strong>/opt</strong>：<br>opt 是 optional(可选) 的缩写，这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。</p>
+</li>
+<li><p><strong>/proc</strong>：<br>proc 是 Processes(进程) 的缩写，/proc 是一种伪文件系统（也即虚拟文件系统），存储的是当前内核运行状态的一系列特殊文件，这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。</p>
+</li>
+<li><p><strong>/root</strong>：<br>该目录为系统管理员，也称作超级权限者的用户主目录。</p>
+</li>
+<li><p><strong>/sbin</strong>：<br>s 就是 Super User 的意思，是 Superuser Binaries (超级用户的二进制文件) 的缩写，这里存放的是系统管理员使用的系统管理程序。</p>
+</li>
+<li><p><strong>/selinux</strong>：<br>这个目录是 Redhat/CentOS 所特有的目录，Selinux 是一个安全机制，类似于 windows 的防火墙，但是这套机制比较复杂，这个目录就是存放selinux相关的文件的。</p>
+</li>
+<li><p><strong>/srv</strong>：<br>该目录存放一些服务启动之后需要提取的数据。</p>
+</li>
+<li><p><strong>/sys</strong>：</p>
+<p>这是 Linux2.6 内核的一个很大的变化。该目录下安装了 2.6 内核中新出现的一个文件系统 sysfs 。</p>
+<p>sysfs 文件系统集成了下面3种文件系统的信息：针对进程信息的 proc 文件系统、针对设备的 devfs 文件系统以及针对伪终端的 devpts 文件系统。</p>
+<p>该文件系统是内核设备树的一个直观反映。</p>
+<p>当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中被创建。</p>
+</li>
+<li><p><strong>/tmp</strong>：<br>tmp 是 temporary(临时) 的缩写这个目录是用来存放一些临时文件的。</p>
+</li>
+<li><p><strong>/usr</strong>：<br>usr 是 unix shared resources(共享资源) 的缩写，这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于 windows 下的 program files 目录。</p>
+</li>
+<li><p><strong>/usr/bin：</strong><br>系统用户使用的应用程序。</p>
+</li>
+<li><p><strong>/usr/sbin：</strong><br>超级用户使用的比较高级的管理程序和系统守护程序。</p>
+</li>
+<li><p><strong>/usr/src：</strong><br>内核源代码默认的放置目录。</p>
+</li>
+<li><p><strong>/var</strong>：<br>var 是 variable(变量) 的缩写，这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</p>
+</li>
+<li><p><strong>/run</strong>：<br>是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有 /var/run 目录，应该让它指向 run。</p>
+</li>
+</ul>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><h3 id="关机-重启"><a href="#关机-重启" class="headerlink" title="关机/重启"></a>关机/重启</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> sync 将数据由内存同步到硬盘中。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown 关机指令，你可以man shutdown 来看一下帮助文档。例如你可以运行如下命令关机：</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown –h 10 ‘This server will shutdown after 10 mins’ 这个命令告诉大家，计算机将在10分钟后关机，并且会显示在登陆用户的当前屏幕中。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown –h now 立马关机</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown –h 20:25 系统会在今天20:25关机</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown –h +10 十分钟后关机</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown –r now 系统立马重启</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown –r +10 系统十分钟后重启</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> reboot 就是重启，等同于 shutdown –r now</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> halt 关闭系统，等同于shutdown –h now 和 poweroff</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown -c <span class="comment">###要取消即将进行的关机</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="运行级别相关"><a href="#运行级别相关" class="headerlink" title="运行级别相关"></a>运行级别相关</h3><p>运行级别说明：</p>
+<p>0 ：关机、1  ：单用户【找回丢失密码】、2：多用户状态没有网络服务、3：多用户状态有网络服务、4：系统未使用保留给用户、5：图形界面、6：系统重启（常用运行级别是 3 和 5）</p>
+<ul>
+<li>修改运行级别：<code>init 级别</code></li>
+</ul>
+<h3 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h3><ul>
+<li>man：<code>man [命令或配置文件]</code></li>
+<li>help：<code>help 命令 </code></li>
+</ul>
+<h3 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h3><ul>
+<li><p>显示当前目录：<code>pwd</code></p>
+</li>
+<li><p>列出目录文件：<code>ls [ 选 项] [目录或是文件]</code></p>
+<ul>
+<li>选项：<ul>
+<li>-a ：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用)</li>
+<li>-d ：仅列出目录本身，而不是列出目录内的文件数据(常用)</li>
+<li>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>切换目录：<code>cd 目录</code></p>
+</li>
+<li><p>创建目录：<code>mkdir [-p] 目录名称</code></p>
+<ul>
+<li>-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来</li>
+</ul>
+</li>
+<li><p>删除目录：<code> rmdir [-p] 目录名称</code>(文件必须为空)</p>
+<ul>
+<li>-p ：从该目录起，一次删除多级空目录</li>
+</ul>
+</li>
+<li><p>复制文件或目录：<code>cp [选项] 即拷贝文件和目录。</code></p>
+<ul>
+<li>选项：<ul>
+<li>-d：若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li>-f：为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li>-i：若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li>-l：进行硬式连结(hard link)的连结档创建，而非复制文件本身；</li>
+<li>-p：连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li>-r：递归持续复制，用於目录的复制行为；(常用)</li>
+<li>-s：复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>移除文件或目录：<code>rm [选项] 文件或目录</code></p>
+<ul>
+<li>选项：<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>移动文件与目录，或修改名称：<code>mv [-fiu] source destination</code>(-fiu同rm)</p>
+</li>
+<li><p>创建空文件：<code>touch 文件名</code></p>
+</li>
+<li><p>查看文件：<code>cat [-AbEnTv] 文件名</code>或者倒着显示<code>tac 文件名 </code> 或者一页页显示<code>more/less 文件名</code>或者取出文件前/后面几行<code>head/tail [-n 10] 文件名 </code></p>
+<ul>
+<li>选项：<ul>
+<li>-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；</li>
+<li>-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！</li>
+<li>-E ：将结尾的断行字节 $ 显示出来；</li>
+<li>-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；</li>
+<li>-T ：将 [tab] 按键以 ^I 显示出来；</li>
+<li>-v ：列出一些看不出来的特殊字符</li>
+</ul>
+</li>
+<li>more/less的指令<ul>
+<li>空白键  ：向下翻动一页；</li>
+<li>[pagedown]：向下翻动一页；</li>
+<li>[pageup] ：向上翻动一页；</li>
+<li>/字串   ：向下搜寻『字串』的功能；</li>
+<li>?字串   ：向上搜寻『字串』的功能；</li>
+<li>n     ：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N     ：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q     ：离开 less 这个程序；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输出指令：<code>&gt;  和 &gt;&gt;</code></p>
+<ul>
+<li>&gt; 输出重定向 : 会将原来的文件的内容覆盖</li>
+</ul>
+</li>
+<li><p>&gt;&gt; 追加： 不会覆盖原来文件的内容，而是追加到文件的尾部</p>
+</li>
+<li><p>输出内容到控制台：<code>echo 指令</code></p>
+</li>
+<li><p>创建软链接：<code>ln -s [原文件或目录] [软链接名]</code></p>
+</li>
+<li><p>查看历史指令：<code>history</code></p>
+</li>
+<li><p>统计该目录的文件数：<code>ls -l[R(递归包括子文件)] 目录 | grep &quot;^以什么开头&quot; | wc -l</code></p>
+</li>
+<li><p>以树形展示该目录的文件：<code>tree</code></p>
+</li>
+</ul>
+<h3 id="时间日期"><a href="#时间日期" class="headerlink" title="时间日期"></a>时间日期</h3><ul>
+<li>展示当前时间<ul>
+<li><code>date </code>（显示当前时间）</li>
+<li><code>date +%Y</code>（显示当前年份）</li>
+<li><code>date +%m</code>（显示当前月份）</li>
+<li><code>date +%d</code>（显示当前是哪一天）</li>
+<li><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code>（显示年月日时分秒）</li>
+</ul>
+</li>
+<li>设置日期：<code>date  -s  字符串时间</code></li>
+<li>显示日历：<code>cal</code></li>
+</ul>
+<h3 id="搜索查找"><a href="#搜索查找" class="headerlink" title="搜索查找"></a>搜索查找</h3><ul>
+<li>查找文件：<code>find [搜索目录范围]  [选项]</code><ul>
+<li>选项：<ul>
+<li>-name ：按照指定文件名查找</li>
+<li>-user：查找指定用户名所有的文件</li>
+<li>-size：按照指定文件大小查找</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>定位文件：<code>locate 搜索文件</code>(第一次运行前，必须使用 updatedb 指令创建 locate 数据库)</li>
+<li>查找文件内内容：<code>cat 文件名 | grep [选项] 查询内容</code><ul>
+<li>选项：<ul>
+<li>-n：显示行号</li>
+<li>-i：忽略大小写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="压缩解压"><a href="#压缩解压" class="headerlink" title="压缩解压"></a>压缩解压</h3><ul>
+<li>gzip/gunzip 指令：<ul>
+<li>压缩：<code>gzip 文件</code></li>
+<li>解压：<code>gunzip 文件.gz</code></li>
+</ul>
+</li>
+<li>zip/unzip指令：<ul>
+<li>压缩：<code>zip [选项] XXX.zip</code></li>
+<li>解压：<code>unzip   [选项] XXX.zip</code></li>
+<li>选项：<ul>
+<li>-r：递归压缩，即压缩目录</li>
+<li>-d&lt;目录&gt; ：指定解压后文件的存放目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tar指令：<ul>
+<li><code>tar  [选项]  XXX.tar.gz</code></li>
+<li>选项：<ul>
+<li>-c：产生.tar打包文件</li>
+<li>-v：显示详细住息</li>
+<li>-f：指定压缩后的文件名</li>
+<li>-z：打包同时压缩</li>
+<li>-x：解包.tar文件</li>
+</ul>
+</li>
+<li>实例：<ul>
+<li>压缩多个文件或者目录：<code>tar -zcvf a.tar.gz a1.txt a2.txt 或者/home/</code> </li>
+<li>解压：<code>tar -zxvf a.tar.gz -C 指定目录</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="用户登录注销"><a href="#用户登录注销" class="headerlink" title="用户登录注销"></a>用户登录注销</h3><ul>
+<li>登录：<code>su 用户名</code>（从权限高的用户切换到权限低的用户，不需要输入密码，反之需要）</li>
+<li>切换到原来的用户：<code>exit</code></li>
+<li>注销：<code>logout</code>(如果当前为root用户使用注销回返回普通用户，如果是普通用户则直接退出系统)</li>
+</ul>
+<blockquote>
+<p>logout 注销指令在图形运行级别无效，在 运行级别 3 下有效</p>
+</blockquote>
+<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><p>Linux 系统是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。并且Linux 的用户需要至少要属于一个组。</p>
+<ul>
+<li>添加用户：<code>useradd [选项] 用户名</code><ul>
+<li>选项：<ul>
+<li>-c comment ：指定一段注释性描述。</li>
+<li>-d 目录 ：指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。（默认会在home下创建与用户同名的目录）</li>
+<li>-g 用户组 指定用户所属的用户组。</li>
+<li>-G 用户组，用户组 指定用户所属的附加组。</li>
+<li>-s Shell文件 指定用户的登录Shell。</li>
+<li>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>删除用户：<code>userdel [选项] 用户名</code><ul>
+<li>选项：<ul>
+<li>-r ：它的作用是把用户的主目录一起删除。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>查询用户信息：<code>id 用户名</code></li>
+<li>修改用户信息：<code>usermod 选项 用户名</code>（选项与useradd一样）</li>
+<li>管理密码：<code>passwd 选项 用户</code><ul>
+<li>选项：<ul>
+<li>-l 锁定密码，即禁用账号。</li>
+<li>-u 密码解锁。</li>
+<li>-d 使账号无密码。</li>
+<li>-f 强迫用户下次登录时修改密码。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h3><p>类似于角色，系统可以对有共性的多个用户进行统一的管理。</p>
+<ul>
+<li>添加用户组：<code>groupadd 选项 用户组</code><ul>
+<li>选项：<ul>
+<li>-g GID 指定新用户组的组标识号（GID）。</li>
+<li>-o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>删除用户组：<code>groupdel 用户组</code></li>
+<li>修改用户组：<code>groupmod 选项 用户组</code><ul>
+<li>选项：<ul>
+<li>-g GID 为用户组指定新的组标识号。</li>
+<li>-o 与-g选项同时使用，用户组的新GID可以与系统已有用户组的GID相同。</li>
+<li>-n新用户组 将用户组的名字改为新名字</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>切换用户组：<code>newgrp 组名</code>（前提是用户同时属于多个用户组，并且用户组确实是该用户的主组或附加组）</li>
+</ul>
+<h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p>在 linux 中每个文件有所有者、所在组、其它组的概念。</p>
+<ul>
+<li>相关概念<ul>
+<li>所有者：一般为文件的创建者,谁创建了该文件，就自然的成为该文件的所有者。</li>
+<li>所在组：所有者所在的用户组</li>
+<li>其他组：所有者不在的用户组</li>
+</ul>
+</li>
+<li>修改文件所有者：<code>chown [-R] 用户名 文件名</code>(-R递归)</li>
+<li>修改文件所在组：<code>chgrp [-R] 组名 文件名</code>(-R 递归)</li>
+<li>文件权限的查看：<code>ls -l</code>如：<code>dr-xr-xr-x   2 root root 4096 Dec 14  2012 bin</code><ul>
+<li>Linux 中第一个字符代表这个文件是目录、文件或链接文件等等<ul>
+<li>当为 <strong>d</strong> 则是目录</li>
+<li>当为 <strong>-</strong> 则是文件；</li>
+<li>若是 <strong>l</strong> 则表示为链接文档(link file)；</li>
+<li>若是 <strong>b</strong> 则表示为装置文件里面的可供储存的接口设备(可随机存取装置)；</li>
+<li>若是 <strong>c</strong> 则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。</li>
+</ul>
+</li>
+<li>接下来的字符中，以三个为一组(所有者、所在组、其他组)，且均为 <strong>rwx</strong> 的三个参数的组合。其中， <strong>r</strong> 代表可读(read)、 <strong>w</strong> 代表可写(write)、 <strong>x</strong> 代表可执行(execute)。如果没有权限，就会出现减号 <strong>-</strong> </li>
+</ul>
+</li>
+<li>修改文件权限：<code>chmod [-R] 777 文件或目录</code>或者<code>chmod u=rwx,g=rx,o=r</code></li>
+</ul>
+<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><p>Linux 磁盘管理常用三个命令为 <code>df</code>、<code>du</code> 和 <code>fdisk</code>。</p>
+<ul>
+<li>列出文件系统的整体磁盘使用量：<code>df [-ahikHTm] [目录或文件名]</code><ul>
+<li>-a ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；</li>
+<li>-h ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；</li>
+<li>-i ：不用硬盘容量，而以 inode 的数量来显示</li>
+<li>-k ：以 KBytes 的容量显示各文件系统；</li>
+<li>-H ：以 M=1000K 取代 M=1024K 的进位方式；</li>
+<li>-T ：显示文件系统类型, 连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；</li>
+<li>-m ：以 MBytes 的容量显示各文件系统；</li>
+</ul>
+</li>
+<li>检查磁盘空间使用量：<code>du [-ahskm] 文件或目录名称</code><ul>
+<li>-a ：列出所有的文件与目录容量，因为默认仅统计目录底下的文件量而已。</li>
+<li>-h ：以人们较易读的容量格式 (G/M) 显示；</li>
+<li>-s ：列出总量而已，而不列出每个各别的目录占用容量；</li>
+<li>-S ：不包括子目录下的总计，与 -s 有点差别。</li>
+<li>-k ：以 KBytes 列出容量显示；</li>
+<li>-m ：以 MBytes 列出容量显示；</li>
+</ul>
+</li>
+<li>用于磁盘分区：<code>fdisk [-l] 装置名称</code><ul>
+<li>-l ：输出后面接的装置所有的分区内容。若仅有 fdisk -l 时， 则系统将会把整个系统内能够搜寻到的装置的分区均列出来。</li>
+</ul>
+</li>
+</ul>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><ul>
+<li>查看进程：<code>ps -选项/pstree -p</code>(pstree展示进程树)<ul>
+<li>常用选项：<ul>
+<li>-A 列出所有的进程</li>
+<li>-w 显示加宽可以显示较多的资讯</li>
+<li>-ef：显示父亲pid</li>
+<li>-au 显示较详细的资讯</li>
+<li>-aux 显示所有包含其他使用者的进程</li>
+</ul>
+</li>
+<li>-aux输出格式：<ul>
+<li><code>USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND</code><ul>
+<li>USER: 行程拥有者</li>
+<li>PID: pid</li>
+<li>%CPU: 占用的 CPU 使用率</li>
+<li>%MEM: 占用的记忆体使用率</li>
+<li>VSZ: 占用的虚拟记忆体大小</li>
+<li>RSS: 占用的记忆体大小</li>
+<li>TTY: 终端的次要装置号码 (minor device number of tty)</li>
+<li>STAT: 该行程的状态:<ul>
+<li>D: 无法中断的休眠状态 (通常 IO 的进程)</li>
+<li>R: 正在执行中</li>
+<li>S: 静止状态</li>
+<li>T: 暂停执行</li>
+<li>Z: 不存在但暂时无法消除</li>
+<li>W: 没有足够的记忆体分页可分配</li>
+<li>&lt;: 高优先序的行程</li>
+<li>N: 低优先序的行程</li>
+<li>L: 有记忆体分页分配并锁在记忆体内 (实时系统或捱A I/O)</li>
+</ul>
+</li>
+<li>START: 行程开始时间</li>
+<li>TIME: 执行的时间</li>
+<li>COMMAND:所执行的指令</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>杀掉进程：<code>kill [&lt;信息名称或编号&gt;][程序]/killall [选项]  name</code>(killall 与 kill 不同的是它会杀死指定名字的所有进程。)<ul>
+<li>最常用的信号是：<ul>
+<li>1 (HUP)：重新加载进程。</li>
+<li>9 (KILL)：杀死一个进程。</li>
+<li>15 (TERM)：正常停止一个进程。</li>
+</ul>
+</li>
+<li>killall的选项<ul>
+<li>-e | –exact ： 进程需要和名字完全相符</li>
+<li>-I | –ignore-case ：忽略大小写</li>
+<li>-g | –process-group ：结束进程组</li>
+<li>-i | –interactive ：结束之前询问</li>
+<li>-l | –list ：列出所有的信号名称</li>
+<li>-q | –quite ：进程没有结束时，不输出任何信息</li>
+<li>-r | –regexp ：将进程名模式解释为扩展的正则表达式。</li>
+<li>-s | –signal ：发送指定信号</li>
+<li>-u | –user ：结束指定用户的进程</li>
+<li>-v | –verbose ：显示详细执行过程</li>
+<li>-w | –wait ：等待所有的进程都结束</li>
+<li>-V |–version ：显示版本信息</li>
+<li>–help ：显示帮助信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>动态监控进程：<code>top [选项]</code>（可以进入之后输入u/k来显示某个用户的进程/杀死某个进程）<ul>
+<li>d : 改变显示的更新速度，或是在交谈式指令列( interactive command)按 s</li>
+<li>q : 没有任何延迟的显示速度，如果使用者是有 superuser 的权限，则 top 将会以最高的优先序执行</li>
+<li>c : 切换显示模式，共有两种模式，一是只显示执行档的名称，另一种是显示完整的路径与名称</li>
+<li>S : 累积模式，会将己完成或消失的子进程 ( dead child process ) 的 CPU time 累积起来</li>
+<li>s : 安全模式，将交谈式指令取消, 避免潜在的危机</li>
+<li>i : 不显示任何闲置 (idle) 或无用 (zombie) 的进程</li>
+<li>n : 更新的次数，完成后将会退出 top</li>
+<li>b : 批次档模式，搭配 “n” 参数一起使用，可以用来将 top 的结果输出到档案内</li>
+</ul>
+</li>
+</ul>
+<h3 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h3><ul>
+<li><p>查看服务：<code>chkconfig [--level 运行级别][服务名] --list</code></p>
+</li>
+<li><p>启动服务：<code>systemctl start 服务名</code></p>
+</li>
+<li><p>停止服务：<code>systemctl stop 服务名</code></p>
+</li>
+<li><p>重启服务：<code>systemctl restart 服务名</code></p>
+</li>
+<li><p>重新加载：<code>systemctl reload 服务名</code></p>
+</li>
+<li><p>查看服务状态：<code>systemctl status 服务名</code></p>
+</li>
+</ul>
+<h3 id="管理网络状态"><a href="#管理网络状态" class="headerlink" title="管理网络状态"></a>管理网络状态</h3><ul>
+<li>查看网络状态：<code>netstat [选项]</code><ul>
+<li>-an  按一定顺序排列输出</li>
+<li>-p  显示哪个进程在调用</li>
+</ul>
+</li>
+</ul>
+<h3 id="YUM"><a href="#YUM" class="headerlink" title="YUM"></a>YUM</h3><ul>
+<li> 列出所有可更新的软件清单命令：<code>yum check-update</code></li>
+<li> 更新所有软件命令：<code>yum update</code></li>
+<li> 仅安装指定的软件命令：<code>yum install &lt;package_name&gt;</code></li>
+<li> 仅更新指定的软件命令：<code>yum update &lt;package_name&gt;</code></li>
+<li> 列出所有可安裝的软件清单命令：<code>yum list</code></li>
+<li> 删除软件包命令：<code>yum remove &lt;package_name&gt;</code></li>
+<li> 查找软件包命令：<code>yum search &lt;keyword&gt;</code></li>
+</ul>
+<h2 id="Vi-Vim编辑器"><a href="#Vi-Vim编辑器" class="headerlink" title="Vi/Vim编辑器"></a>Vi/Vim编辑器</h2><p>Vim 是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。</p>
+<p>基本上 vi/vim 共分为三种模式，分别是<strong>命令模式</strong>，<strong>编辑模式</strong>和<strong>一般模式</strong>。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220719101949849.png" alt="image-20220719101949849"></p>
+<h3 id="一般模式可用的光标移动、复制粘贴、搜索替换等"><a href="#一般模式可用的光标移动、复制粘贴、搜索替换等" class="headerlink" title="一般模式可用的光标移动、复制粘贴、搜索替换等"></a>一般模式可用的光标移动、复制粘贴、搜索替换等</h3><table>
+<thead>
+<tr>
+<th align="left">移动光标的方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">h 或 向左箭头键(←)</td>
+<td>光标向左移动一个字符</td>
+</tr>
+<tr>
+<td align="left">j 或 向下箭头键(↓)</td>
+<td>光标向下移动一个字符</td>
+</tr>
+<tr>
+<td align="left">k 或 向上箭头键(↑)</td>
+<td>光标向上移动一个字符</td>
+</tr>
+<tr>
+<td align="left">l 或 向右箭头键(→)</td>
+<td>光标向右移动一个字符</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [f]</td>
+<td>屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [b]</td>
+<td>屏幕『向上』移动一页，相当于 [Page Up] 按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [d]</td>
+<td>屏幕『向下』移动半页</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [u]</td>
+<td>屏幕『向上』移动半页</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td>光标移动到非空格符的下一行</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td>光标移动到非空格符的上一行</td>
+</tr>
+<tr>
+<td align="left">n<space></td>
+<td>那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。例如 20<space> 则光标会向后面移动 20 个字符距离。</td>
+</tr>
+<tr>
+<td align="left">0 或功能键[Home]</td>
+<td>这是数字『 0 』：移动到这一行的最前面字符处 (常用)</td>
+</tr>
+<tr>
+<td align="left">$ 或功能键[End]</td>
+<td>移动到这一行的最后面字符处(常用)</td>
+</tr>
+<tr>
+<td align="left">H</td>
+<td>光标移动到这个屏幕的最上方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td>光标移动到这个屏幕的中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td>光标移动到这个屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td>移动到这个档案的最后一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nG</td>
+<td>n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
+</tr>
+<tr>
+<td align="left">gg</td>
+<td>移动到这个档案的第一行，相当于 1G 啊！ (常用)</td>
+</tr>
+<tr>
+<td align="left">n<Enter></td>
+<td>n 为数字。光标向下移动 n 行(常用)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">删除、复制</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x, X</td>
+<td>在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符(相当于 [backspace] 亦即是退格键) (常用)</td>
+</tr>
+<tr>
+<td align="left">nx</td>
+<td>n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 『10x』。</td>
+</tr>
+<tr>
+<td align="left">dd</td>
+<td>剪切游标所在的那一整行(常用)，用 p/P 可以粘贴。</td>
+</tr>
+<tr>
+<td align="left">ndd</td>
+<td>n 为数字。剪切光标所在的向下 n 行，例如 20dd 则是剪切 20 行(常用)，用 p/P 可以粘贴。</td>
+</tr>
+<tr>
+<td align="left">d1G</td>
+<td>删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">dG</td>
+<td>删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">d$</td>
+<td>删除游标所在处，到该行的最后一个字符</td>
+</tr>
+<tr>
+<td align="left">d0</td>
+<td>那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
+</tr>
+<tr>
+<td align="left">yy</td>
+<td>复制游标所在的那一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nyy</td>
+<td>n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
+</tr>
+<tr>
+<td align="left">y1G</td>
+<td>复制游标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">yG</td>
+<td>复制游标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">y0</td>
+<td>复制光标所在的那个字符到该行行首的所有数据</td>
+</tr>
+<tr>
+<td align="left">y$</td>
+<td>复制光标所在的那个字符到该行行尾的所有数据</td>
+</tr>
+<tr>
+<td align="left">p, P</td>
+<td>p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！ 举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？ 那么原本的第 20 行会被推到变成 30 行。 (常用)</td>
+</tr>
+<tr>
+<td align="left">J</td>
+<td>将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td>重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td>复原前一个动作。(常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl]+r</td>
+<td>重做上一个动作。(常用)</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td>不要怀疑！这就是小数点！意思是重复前一个动作的意思。 如果你想要重复删除、重复贴上等等动作，按下小数点『.』就好了！ (常用)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">搜索替换</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/word</td>
+<td>向光标之下寻找一个名称为 word 的字符串。例如要在档案内搜寻 vbird 这个字符串，就输入 /vbird 即可！ (常用)</td>
+</tr>
+<tr>
+<td align="left">?word</td>
+<td>向光标之上寻找一个字符串名称为 word 的字符串。</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td>这个 n 是英文按键。代表重复前一个搜寻的动作。举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
+</tr>
+<tr>
+<td align="left">N</td>
+<td>这个 N 是英文按键。与 n 刚好相反，为『反向』进行前一个搜寻动作。 例如 /vbird 后，按下 N 则表示『向上』搜寻 vbird 。</td>
+</tr>
+<tr>
+<td align="left">:n1,n2s/word1/word2/g</td>
+<td>n1 与 n2 为数字。在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2 ！举例来说，在 100 到 200 行之间搜寻 vbird 并取代为 VBIRD 则： 『:100,200s/vbird/VBIRD/g』。(常用)</td>
+</tr>
+<tr>
+<td align="left"><strong>:1,$s/word1/word2/g</strong> 或 <strong>:%s/word1/word2/g</strong></td>
+<td>从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！(常用)</td>
+</tr>
+<tr>
+<td align="left"><strong>:1,$s/word1/word2/gc</strong> 或 <strong>:%s/word1/word2/gc</strong></td>
+<td>从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！且在取代前显示提示字符给用户确认 (confirm) 是否需要取代！(常用)</td>
+</tr>
+</tbody></table>
+<h3 id="一般模式切换到指令行模式的可用的按钮说明"><a href="#一般模式切换到指令行模式的可用的按钮说明" class="headerlink" title="一般模式切换到指令行模式的可用的按钮说明"></a>一般模式切换到指令行模式的可用的按钮说明</h3><table>
+<thead>
+<tr>
+<th align="left">指令行的储存、离开等指令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:w</td>
+<td>将编辑的数据写入硬盘档案中(常用)</td>
+</tr>
+<tr>
+<td align="left">:w!</td>
+<td>若文件属性为『只读』时，强制写入该档案。不过，到底能不能写入， 还是跟你对该档案的档案权限有关啊！</td>
+</tr>
+<tr>
+<td align="left">:q</td>
+<td>离开 vi (常用)</td>
+</tr>
+<tr>
+<td align="left">:q!</td>
+<td>若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
+</tr>
+<tr>
+<td align="left">:wq</td>
+<td>储存后离开，若为 :wq! 则为强制储存后离开 (常用)</td>
+</tr>
+<tr>
+<td align="left">ZZ</td>
+<td>这是大写的 Z 喔！如果修改过，保存当前文件，然后退出！效果等同于(保存并退出)</td>
+</tr>
+<tr>
+<td align="left">ZQ</td>
+<td>不保存，强制退出。效果等同于 **:q!**。</td>
+</tr>
+<tr>
+<td align="left">:w [filename]</td>
+<td>将编辑的数据储存成另一个档案（类似另存新档）</td>
+</tr>
+<tr>
+<td align="left">:r [filename]</td>
+<td>在编辑的数据中，读入另一个档案的数据。亦即将 『filename』 这个档案内容加到游标所在行后面</td>
+</tr>
+<tr>
+<td align="left">:n1,n2 w [filename]</td>
+<td>将 n1 到 n2 的内容储存成 filename 这个档案。</td>
+</tr>
+<tr>
+<td align="left">:! command</td>
+<td>暂时离开 vi 到指令行模式下执行 command 的显示结果！例如 『:! ls /home』即可在 vi 当中察看 /home 底下以 ls 输出的档案信息！</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">vim 环境的变更</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:set nu</td>
+<td>显示行号，设定之后，会在每一行的前缀显示该行的行号</td>
+</tr>
+<tr>
+<td align="left">:set nonu</td>
+<td>与 set nu 相反，为取消行号！</td>
+</tr>
+</tbody></table>
+<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><p>在使用linux的时候，时不时会有需要定义处理程序的需求，这时就需要定时的任务调度。（任务调度是指系统在某个时间执行的特定的命令或程序）。</p>
+<p>linux提供了设置定时任务的相关命令：</p>
+<ul>
+<li><code>crontab [选项]</code><ul>
+<li>选项说明：<ul>
+<li>-e：编辑crontab定时任务</li>
+<li>-l：查询crontab任务</li>
+<li>-r：删除当前用户所有的crontab任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>service crond restart</code> ：重启任务调度</li>
+</ul>
+<p>相关目录：</p>
+<ul>
+<li>/var/spool/cron/ 目录下存放的是每个用户包括root的crontab任务，每个任务以创建者的名字命名</li>
+<li>/etc/crontab 这个文件负责调度各种管理和维护任务。</li>
+<li>/etc/cron.d/ 这个目录用来存放任何要执行的crontab文件或脚本。</li>
+</ul>
+<p>步骤：</p>
+<ol>
+<li>进行编辑任务：<code>crontab -e</code></li>
+<li>编辑任务：<code>*/1 * * * * ls –l  /etc/ &gt; /tmp/to.txt</code></li>
+<li>保存退出，即可自动执行任务</li>
+</ol>
+<p>crontab的命令构成为 时间+动作，其时间有<strong>分、时、日、月、周</strong>五种</p>
+<p>操作符有：</p>
+<ul>
+<li>***** 取值范围内的所有数字</li>
+<li><strong>/</strong> 每过多少个数字</li>
+<li><strong>-</strong> 从X到Z</li>
+<li><strong>，</strong>散列数字</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.iamwawa.cn/crontab.html">在线自动生成工具</a></p>
+<h2 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h2><p>虽然网络已经连通，但是以防每次重启虚拟机，linux的ip地址都动态的发生变化，还需要进行进一步网络配置</p>
+<h3 id="配置虚拟网卡"><a href="#配置虚拟网卡" class="headerlink" title="配置虚拟网卡"></a>配置虚拟网卡</h3><ul>
+<li><p>查看虚拟网卡：点击虚拟机左上角编辑—&gt;打开虚拟网络编辑器</p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220725142839432.png" alt="image-20220725142839432" style="zoom:50%;" />
+</li>
+<li><p>查看网关</p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220725143059013.png" alt="image-20220725143059013" style="zoom:50%;" />
+</li>
+<li><p>如果需要修改，可以点击更改设置进行修改</p>
+</li>
+</ul>
+<h3 id="获取ip"><a href="#获取ip" class="headerlink" title="获取ip"></a>获取ip</h3><ul>
+<li><p>设置自动连接：点击右上角网络图标，进入后选择你需要修改的网络点击设置</p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220725143816818.png" alt="image-20220725143816818" style="zoom:50%;" />
+
+<p>缺点：每次连接ip地址不一样</p>
+</li>
+<li><p>直接修改配置文件来指定ip</p>
+<ul>
+<li><p>进入进入目录/etc/sysconfig/network-scripts后用vim编辑ifcfg-ens33文件（版本为centos7）</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220727090644394.png" alt="image-20220727090644394"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Shell编程"><a href="#Shell编程" class="headerlink" title="Shell编程"></a>Shell编程</h2><p>在进行服务器集群管理、服务器的维护时，需要编写 Shell 程序来进行服务器管理比如编写一个定时备份数据库的脚本。</p>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>Shell 是一个命令行解释器，它为用户提供了一个向 Linux 内核发送请求以便运行程序的界面系统级程序，用户可以用 Shell 来启动、挂起、停止甚至是编写一些程序。</p>
+<p>Linux 的 Shell 种类众多，常见的有：</p>
+<ul>
+<li>Bourne Shell（/usr/bin/sh或/bin/sh）</li>
+<li>Bourne Again Shell（/bin/bash）**(常用)**</li>
+<li>C Shell（/usr/bin/csh）</li>
+<li>K Shell（/usr/bin/ksh）</li>
+<li>Shell for Root（/sbin/sh）</li>
+</ul>
+<h4 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h4><p>因为使用的是Bourne Again Shell，所以必须以<code>#!/bin/bash</code>开头,如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">echo &quot;Hello World !&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h5><ul>
+<li>定义变量：<code>变量名 = 值</code></li>
+<li>使用变量：使用一个定义过的变量，只要在变量名前面加美元符号即可<ul>
+<li><code>$&#123;变量名&#125;</code>(大括号可以省但不建议)</li>
+</ul>
+</li>
+<li>设置变量只读(不能再次赋值)：<code>readonly 变量名</code></li>
+<li>删除变量：<code>unset 变量名</code>（unset 命令不能删除只读变量）</li>
+<li>将 shell 变量输出为环境变量：<code>export 变量名=变量值</code></li>
+</ul>
+<blockquote>
+<p>变量名的命名须遵循如下规则：</p>
+<ul>
+<li>命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。</li>
+<li>中间不能有空格，可以使用下划线 <strong>_</strong>。</li>
+<li>不能使用标点符号。</li>
+<li>不能使用bash里的关键字（可用help命令查看保留关键字）。</li>
+</ul>
+</blockquote>
+<h5 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h5><p>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。(expr 是一款表达式计算工具，使用它能完成表达式的求值操作)</p>
+<ul>
+<li>算术运算符：+ 、- 、* 、/ 、% 、= 、== 、 != <ul>
+<li>使用：<code>expr $a + $b</code>以及<code>[ $a == $b ]</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>条件表达式要放在方括号之间，并且要有空格，例如: <strong>[$a==$b]</strong> 是错误的，必须写成 <strong>[ $a == $b ]</strong></p>
+</blockquote>
+<ul>
+<li><p>关系运算符：<code>[ $a 运算符 $b ]</code></p>
+<ul>
+<li>是否想等：<code>-eq</code></li>
+<li>是否不想等：<code>-ne</code></li>
+<li>大于：<code>-gt</code></li>
+<li>小于：<code>-lt</code></li>
+<li>大于等于：<code>-ge</code></li>
+<li>小于等于：<code>-le</code></li>
+</ul>
+</li>
+<li><p>布尔运算符：例子<code>[ $a -lt 20 -o $b -gt 100 ]</code></p>
+<ul>
+<li>取反：<code>!</code></li>
+<li>或运算：<code>-o</code></li>
+<li>与运算：<code>-a</code></li>
+</ul>
+</li>
+<li><p>逻辑运算符：例子：<code>[[ $a -lt 100 || $b -gt 100 ]]</code></p>
+<ul>
+<li>与：<code>&amp;&amp;</code></li>
+<li>或：<code>||</code></li>
+</ul>
+</li>
+<li><p>字符串运算符：例子<code>[ -n &quot;$a&quot; ]</code></p>
+<ul>
+<li>判断是否想等：<code>=</code></li>
+<li>是否不想等：<code>!=</code></li>
+<li>检查长度是否0：<code>-z</code></li>
+<li>长度是否不为0：<code>-n</code></li>
+<li>检查是否不为空：<code>$</code></li>
+</ul>
+</li>
+<li><p>文件测试运算符：例子<code>[ -r $file]</code></p>
+<ul>
+<li>检测文件是否是块设备文件：<code>-b file</code></li>
+<li>检测文件是否是字符设备文件：<code>-c file</code></li>
+<li>检测文件是否是目录：<code>-d file</code></li>
+<li>检测文件是否是普通文件：<code>-f file</code></li>
+<li>检测文件是否设置了 SGID 位：<code>-g file</code></li>
+<li>检测文件是否设置了粘着位(Sticky Bit)：<code>-k file</code></li>
+<li>检测文件是否是有名管道：<code>-p file</code></li>
+<li>检测文件是否设置了 SUID 位：<code>-u file</code></li>
+<li>检测文件是否可读：<code>-r file</code></li>
+<li>检测文件是否可写：<code>-w file</code></li>
+<li>检测文件是否可执行：<code>-x file</code></li>
+<li>检测文件是否为空：<code>-s file</code></li>
+<li>检测文件（包括目录）是否存在：<code>-e file</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h5><p>字符串是shell编程中最常用最有用的数据类型，字符串可以用单引号，也可以用双引号，也可以不用引号。</p>
+<ul>
+<li>字符串拼接：<code>greeting=&quot;hello, &quot;$&#123;your_name&#125;&quot; !&quot;</code>(不需要想java一样用+来拼接)</li>
+<li>获取字符串长度：<code>string=&quot;abcd&quot; echo $&#123;#string&#125;</code></li>
+<li>提取子串： <code>$&#123;str:1:4&#125;</code>输出从下标为1的字符开始的4个字符</li>
+<li>查找子字符：<code>expr index &quot;$string&quot; i</code> 输出i的下标</li>
+</ul>
+<h5 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h5><ul>
+<li><p>定义：<code>数组名=(值1 值2 ... 值n)</code></p>
+</li>
+<li><p>取值：<code>$&#123;数组名[下标]&#125;</code>(@/*可以获取所有元素<code>echo $&#123;array_name[@]&#125;</code>)</p>
+</li>
+<li><p>获取长度：<code>length=$&#123;#array_name[@]&#125;</code></p>
+</li>
+<li><p>获取所有键：<code>$&#123;!array_name[@]&#125;</code></p>
+</li>
+<li><p>设置关联数组（类似于java的map）：<code>declare -A MAP_name</code></p>
+<p>如：<code>declare -A map=([&quot;a&quot;]=&quot;1&quot;,[&quot;b&quot;]=&quot;2&quot;)</code></p>
+</li>
+</ul>
+<h5 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h5><ul>
+<li><p>单行注释：<code>#</code></p>
+</li>
+<li><p>多行注释：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:&lt;&lt;EOF</span><br><span class="line">注释内容...</span><br><span class="line">注释内容...</span><br><span class="line">注释内容...</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h5 id="参数的传递"><a href="#参数的传递" class="headerlink" title="参数的传递"></a>参数的传递</h5></li>
+<li><p>传参：<code>./test.sh 1 2 3</code>(执行的时候写在后面)</p>
+</li>
+<li><p>获取参数：<code>$n</code>(n为参数位置，n为0时获取的是文件名)</p>
+</li>
+<li><p>获取参数个数：<code>$#</code></p>
+</li>
+<li><p>以一个单字符串显示所有向脚本传递的参数：<code>$*/$@</code>($@会将参数用引号分隔)</p>
+</li>
+<li><p>脚本运行的当前进程ID号：<code>$$</code></p>
+</li>
+<li><p>后台运行的最后一个进程的ID号：<code>$!</code></p>
+</li>
+</ul>
+<h5 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h5><ul>
+<li>echo：用于字符串的输出<ul>
+<li>-e：开启转义</li>
+<li>输出日期等：echo <code>date</code></li>
+</ul>
+</li>
+<li>printf：输出函数（与c语言的类似）<ul>
+<li>格式：<code>printf  format-string  [arguments...]</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h5><ul>
+<li><p>条件判断：</p>
+<ul>
+<li><p><code>if 条件 then 执行语句 else 执行语句2 fi</code></p>
+</li>
+<li><p><code>if 条件 then 执行语句 elif 条件2 then 执行语句2 else 执行语句3 fi</code></p>
+</li>
+<li><p>例子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a=10</span><br><span class="line">b=20</span><br><span class="line">if [ $a == $b ]</span><br><span class="line">then</span><br><span class="line">   echo &quot;a 等于 b&quot;</span><br><span class="line">elif [ $a -gt $b ]</span><br><span class="line">then</span><br><span class="line">   echo &quot;a 大于 b&quot;</span><br><span class="line">elif [ $a -lt $b ]</span><br><span class="line">then</span><br><span class="line">   echo &quot;a 小于 b&quot;</span><br><span class="line">else</span><br><span class="line">   echo &quot;没有符合的条件&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>for循环：</p>
+<ul>
+<li><p><code>for 变量 in 数组 do 执行语句 done </code></p>
+</li>
+<li><p>案例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for loop in 1 2 3 4 5</span><br><span class="line">do</span><br><span class="line">    echo &quot;The value is: $loop&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>while 语句</p>
+<ul>
+<li><p><code>while 条件 do 执行语句 done</code></p>
+</li>
+<li><p>案例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">int=1</span><br><span class="line">while(( $int&lt;=5 ))</span><br><span class="line">do</span><br><span class="line">    echo $int</span><br><span class="line">    let &quot;int++&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>until循环</p>
+<ul>
+<li><p><code>until 条件 do 执行语句 done</code></p>
+</li>
+<li><p>案例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">a=0</span><br><span class="line"></span><br><span class="line">until [ ! $a -lt 10 ]</span><br><span class="line">do</span><br><span class="line">   echo $a</span><br><span class="line">   a=`expr $a + 1`</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>多分支语句：</p>
+<ul>
+<li><p><code>case 值 in 值1) 执行语句 ;; 值2) 执行语句2 ;; *) 执行语句3 ;; esac</code></p>
+</li>
+<li><p>案例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">case $aNum in</span><br><span class="line">    1)  echo &#x27;你选择了 1&#x27;</span><br><span class="line">    ;;</span><br><span class="line">    2)  echo &#x27;你选择了 2&#x27;</span><br><span class="line">    ;;</span><br><span class="line">    3)  echo &#x27;你选择了 3&#x27;</span><br><span class="line">    ;;</span><br><span class="line">    4)  echo &#x27;你选择了 4&#x27;</span><br><span class="line">    ;;</span><br><span class="line">    *)  echo &#x27;你没有输入 1 到 4 之间的数字&#x27;</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>跳出循环(与java一样)：</p>
+<ul>
+<li>break</li>
+<li>continue</li>
+</ul>
+</li>
+</ul>
+<h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><ul>
+<li><p>定义：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[ function ] funname()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    执行语句</span><br><span class="line"></span><br><span class="line">    [return int;]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>调用：<code>函数名</code></p>
+</li>
+<li><p>案例1(无参数)：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">demoFun()&#123;</span><br><span class="line">    echo <span class="string">&quot;这是我的第一个 shell 函数!&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">echo <span class="string">&quot;-----函数开始执行-----&quot;</span></span><br><span class="line">demoFun</span><br><span class="line">echo <span class="string">&quot;-----函数执行完毕-----&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>案例2(有参数)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">funWithReturn()&#123;</span><br><span class="line">    echo &quot;这个函数会对输入的两个数字进行相加运算...&quot;</span><br><span class="line">    echo &quot;输入第一个数字: &quot;</span><br><span class="line">    read aNum</span><br><span class="line">    echo &quot;输入第二个数字: &quot;</span><br><span class="line">    read anotherNum</span><br><span class="line">    echo &quot;两个数字分别为 $aNum 和 $anotherNum !&quot;</span><br><span class="line">    return $(($aNum+$anotherNum))</span><br><span class="line">&#125;</span><br><span class="line">funWithReturn</span><br><span class="line">echo &quot;输入的两个数字之和为 $? !&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>获得返回值：<code>$?</code></li>
+<li>获取参数个数：<code>$#</code></li>
+<li>获取当前进程id号：<code>$$</code></li>
+<li>获取后台进行的最后一个进程号：<code>$!</code></li>
+<li>以字符串形式展示参数：<code>$*/$@</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h5 id="引入外部shell文件"><a href="#引入外部shell文件" class="headerlink" title="引入外部shell文件"></a>引入外部shell文件</h5><ul>
+<li>方式一：<code>. 文件路径</code></li>
+<li>方式二：<code>source 文件路径</code></li>
+</ul>
+<h4 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h4><ol>
+<li>方式一：<ul>
+<li>使用户获得可执行权限：<code>chmod +x 脚本文件</code></li>
+<li>直接输入脚本路径如：<code>./test.sh</code></li>
+</ul>
+</li>
+<li>方式二：<ul>
+<li><code>sh + 脚本路径</code></li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/09/28/Linux/">http://example.com/2022/09/28/Linux/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/09/21/SpringBoot%E7%BB%9F%E4%B8%80%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/edho-pratama-yeB9jDmHm6M-unsplash.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SpringBoot统一响应处理</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">88</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux"><span class="toc-number">1.</span> <span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%9C"><span class="toc-number">1.2.</span> <span class="toc-text">Linux目录结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E6%9C%BA-%E9%87%8D%E5%90%AF"><span class="toc-number">1.3.1.</span> <span class="toc-text">关机&#x2F;重启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E7%9B%B8%E5%85%B3"><span class="toc-number">1.3.2.</span> <span class="toc-text">运行级别相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.3.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">1.3.4.</span> <span class="toc-text">文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F"><span class="toc-number">1.3.5.</span> <span class="toc-text">时间日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE"><span class="toc-number">1.3.6.</span> <span class="toc-text">搜索查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B"><span class="toc-number">1.3.7.</span> <span class="toc-text">压缩解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B3%A8%E9%94%80"><span class="toc-number">1.3.8.</span> <span class="toc-text">用户登录注销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.9.</span> <span class="toc-text">用户管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.10.</span> <span class="toc-text">用户组管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-number">1.3.11.</span> <span class="toc-text">文件权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.12.</span> <span class="toc-text">磁盘管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.13.</span> <span class="toc-text">进程管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.14.</span> <span class="toc-text">服务管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81"><span class="toc-number">1.3.15.</span> <span class="toc-text">管理网络状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YUM"><span class="toc-number">1.3.16.</span> <span class="toc-text">YUM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vi-Vim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text">Vi&#x2F;Vim编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%A8%A1%E5%BC%8F%E5%8F%AF%E7%94%A8%E7%9A%84%E5%85%89%E6%A0%87%E7%A7%BB%E5%8A%A8%E3%80%81%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E3%80%81%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E7%AD%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">一般模式可用的光标移动、复制粘贴、搜索替换等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%88%B0%E6%8C%87%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8F%AF%E7%94%A8%E7%9A%84%E6%8C%89%E9%92%AE%E8%AF%B4%E6%98%8E"><span class="toc-number">1.4.2.</span> <span class="toc-text">一般模式切换到指令行模式的可用的按钮说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.5.</span> <span class="toc-text">定时任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1"><span class="toc-number">1.6.1.</span> <span class="toc-text">配置虚拟网卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96ip"><span class="toc-number">1.6.2.</span> <span class="toc-text">获取ip</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell%E7%BC%96%E7%A8%8B"><span class="toc-number">1.7.</span> <span class="toc-text">Shell编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.7.0.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E5%86%99"><span class="toc-number">1.7.0.2.</span> <span class="toc-text">编写</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.7.0.2.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.7.0.2.2.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.7.0.2.3.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.7.0.2.4.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.7.0.2.5.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92"><span class="toc-number">1.7.0.2.6.</span> <span class="toc-text">参数的传递</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.0.2.7.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">1.7.0.2.8.</span> <span class="toc-text">流程控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.7.0.2.9.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8shell%E6%96%87%E4%BB%B6"><span class="toc-number">1.7.0.2.10.</span> <span class="toc-text">引入外部shell文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="toc-number">1.7.0.3.</span> <span class="toc-text">运行脚本</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/28/Linux/" title="Linux"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux"/></a><div class="content"><a class="title" href="/2022/09/28/Linux/" title="Linux">Linux</a><time datetime="2022-09-28T01:30:40.000Z" title="发表于 2022-09-28 09:30:40">2022-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/21/SpringBoot%E7%BB%9F%E4%B8%80%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/" title="SpringBoot统一响应处理"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/edho-pratama-yeB9jDmHm6M-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot统一响应处理"/></a><div class="content"><a class="title" href="/2022/09/21/SpringBoot%E7%BB%9F%E4%B8%80%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86/" title="SpringBoot统一响应处理">SpringBoot统一响应处理</a><time datetime="2022-09-21T01:38:28.000Z" title="发表于 2022-09-21 09:38:28">2022-09-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/20/SpringBoot%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="SpringBoot的异常处理"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/lauren-mancke-aOC7TSLb1o8-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot的异常处理"/></a><div class="content"><a class="title" href="/2022/09/20/SpringBoot%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="SpringBoot的异常处理">SpringBoot的异常处理</a><time datetime="2022-09-20T02:32:07.000Z" title="发表于 2022-09-20 10:32:07">2022-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/SpringBoot%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" title="SpringBoot参数校验"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot参数校验"/></a><div class="content"><a class="title" href="/2022/09/19/SpringBoot%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" title="SpringBoot参数校验">SpringBoot参数校验</a><time datetime="2022-09-19T06:30:26.000Z" title="发表于 2022-09-19 14:30:26">2022-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/16/SpringBoot%E9%85%8D%E7%BD%AEFastJson/" title="SpringBoot配置FastJson"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/jon-tyson-XzUMBNmQro0-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot配置FastJson"/></a><div class="content"><a class="title" href="/2022/09/16/SpringBoot%E9%85%8D%E7%BD%AEFastJson/" title="SpringBoot配置FastJson">SpringBoot配置FastJson</a><time datetime="2022-09-16T01:54:12.000Z" title="发表于 2022-09-16 09:54:12">2022-09-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  target="_blank" rel="noopener" href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
