@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MySQL短时提供性能的方法 | goMars的学习随记</title><meta name="keywords" content="后端,数据库,MySQL"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="短时提供性能的方法短连接风暴正常的短连接模式就是连接到数据库后，执行很少的SQL语句就断开，下次需要的时候再重连。如果使用的是短连接，在业务高峰期的时候，就可能出现连接数突然暴涨的情况。 解决方案：第一种方法：先处理掉那些占着连接但是不工作的线程：怎么判断哪些是事务外空闲的呢？ 执行show processlist  图中id&#x3D;4和id&#x3D;5的两个会话都是Sleep 状态。而要看事务具体状态的话，你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL短时提供性能的方法">
+<meta property="og:url" content="http://example.com/2023/07/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E7%9F%AD%E6%97%B6%E6%8F%90%E4%BE%9B%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="短时提供性能的方法短连接风暴正常的短连接模式就是连接到数据库后，执行很少的SQL语句就断开，下次需要的时候再重连。如果使用的是短连接，在业务高峰期的时候，就可能出现连接数突然暴涨的情况。 解决方案：第一种方法：先处理掉那些占着连接但是不工作的线程：怎么判断哪些是事务外空闲的呢？ 执行show processlist  图中id&#x3D;4和id&#x3D;5的两个会话都是Sleep 状态。而要看事务具体状态的话，你">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg">
+<meta property="article:published_time" content="2023-07-11T01:46:01.000Z">
+<meta property="article:modified_time" content="2023-07-11T01:49:00.028Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="http://example.com/2023/07/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E7%9F%AD%E6%97%B6%E6%8F%90%E4%BE%9B%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-11 09:49:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">157</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">83</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">48</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL短时提供性能的方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-11T01:46:01.000Z" title="发表于 2023-07-11 09:46:01">2023-07-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-11T01:49:00.028Z" title="更新于 2023-07-11 09:49:00">2023-07-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="短时提供性能的方法"><a href="#短时提供性能的方法" class="headerlink" title="短时提供性能的方法"></a>短时提供性能的方法</h1><h2 id="短连接风暴"><a href="#短连接风暴" class="headerlink" title="短连接风暴"></a>短连接风暴</h2><p>正常的短连接模式就是连接到数据库后，执行很少的SQL语句就断开，下次需要的时候再重连。如果使用的是短连接，在业务高峰期的时候，就可能出现连接数突然暴涨的情况。</p>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><h4 id="第一种方法：先处理掉那些占着连接但是不工作的线程："><a href="#第一种方法：先处理掉那些占着连接但是不工作的线程：" class="headerlink" title="第一种方法：先处理掉那些占着连接但是不工作的线程："></a>第一种方法：先处理掉那些占着连接但是不工作的线程：</h4><p>怎么判断哪些是事务外空闲的呢？</p>
+<p>执行<code>show processlist</code></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230317213544900.png" alt="image-20230317213544900"></p>
+<p>图中id=4和id=5的两个会话都是Sleep 状态。而要看事务具体状态的话，你可以查information_schema库的innodb_trx表。</p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230317213632522.png" alt="image-20230317213632522" style="zoom:50%;" />
+
+<p>这个结果里，trx_mysql_thread_id=4，表示id=4的线程还处在事务中。</p>
+<p>因此，如果是连接数过多，你可以优先断开事务外空闲太久的连接；如果这样还不够，再考虑断开事务内空闲太久的连接。</p>
+<blockquote>
+<p>从服务端断开连接使用的是kill connection + id的命令， 一个客户端处于sleep状态时，它的连接被服务端主动断开后，这个客户端并不会马上知道。直到客户端在发起下一个请求的时候，才会收到这样的报错“ERROR 2013 (HY000): Lost connection to MySQL server during query”。</p>
+<p>从数据库端主动断开连接可能是有损的，尤其是有的应用端收到这个错误后，不重新连接，而是直接用这个已经不能用的句柄重试查询。这会导致从应用端看上去，“MySQL一直没恢复”。</p>
+</blockquote>
+<h4 id="减少连接过程的消耗："><a href="#减少连接过程的消耗：" class="headerlink" title="减少连接过程的消耗："></a>减少连接过程的消耗：</h4><p>有的业务代码会在短时间内先大量申请数据库连接做备用，如果现在数据库确认是被连接行为打挂了，那么一种可能的做法，是让数据库跳过权限验证阶段。</p>
+<p>跳过权限验证的方法是：重启数据库，并使用–skip-grant-tables参数启动。这样，整个MySQL会跳过所有的权限验证阶段，包括连接过程和语句执行过程在内。</p>
+<blockquote>
+<p>但是，这种方法风险极高，是我特别不建议使用的方案。尤其你的库外网可访问的话，就更不能这么做了。</p>
+<p>在MySQL 8.0版本里，如果你启用–skip-grant-tables参数，MySQL会默认把 –skip-networking参数打开，表示这时候数据库只能被本地的客户端连接。可见，MySQL官方对skip-grant-tables这个参数的安全问题也很重视。</p>
+</blockquote>
+<h2 id="慢查询性能问题"><a href="#慢查询性能问题" class="headerlink" title="慢查询性能问题"></a>慢查询性能问题</h2><p>在MySQL中，会引发性能问题的慢查询，大体有以下三种可能：</p>
+<ol>
+<li><p><strong>索引没有设计好；</strong></p>
+<p>这种场景一般就是通过紧急创建索引来解决。MySQL 5.6版本以后，创建索引都支持Online DDL了，对于那种高峰期数据库已经被这个语句打挂了的情况，最高效的做法就是直接执行alter table 语句。</p>
+<blockquote>
+<p>如果是在一主一备的情况下，比较理想的是能够在备库先执行。</p>
+<p>大致流程是这样的：</p>
+<ol>
+<li>在备库B上执行 set sql_log_bin=off，也就是不写binlog，然后执行alter table 语句加上索引；</li>
+<li>执行主备切换；</li>
+<li>这时候主库是B，备库是A。在A上执行 set sql_log_bin=off，然后执行alter table 语句加上索引。</li>
+</ol>
+</blockquote>
+</li>
+<li><p><strong>SQL语句没写好；</strong></p>
+<p>这时，我们可以通过改写SQL语句来处理。MySQL 5.7提供了query_rewrite功能，可以把输入的一种语句改写成另外一种模式。</p>
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> query_rewrite.rewrite_rules(<span class="keyword">pattern</span>, replacement, pattern_database) <span class="keyword">values</span> (&quot;select * from t where id + 1 = ?&quot;, &quot;select * from t where id = ? - 1&quot;, &quot;db1&quot;);</span><br><span class="line"><span class="keyword">call</span> query_rewrite.flush_rewrite_rules();</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>MySQL选错了索引；</strong></p>
+<p>这时候，应急方案就是<strong>给这个语句加上force index</strong>或者<strong>使用查询重写功能，给原来的语句加上force index</strong></p>
+</li>
+</ol>
+<h3 id="预防方式："><a href="#预防方式：" class="headerlink" title="预防方式："></a>预防方式：</h3><ol>
+<li>上线前，在测试环境，把慢查询日志（slow log）打开，并且把long_query_time设置成0，确保每个语句都会被记录入慢查询日志；</li>
+<li>在测试表里插入模拟线上的数据，做一遍回归测试；</li>
+<li>观察慢查询日志里每类语句的输出，特别留意Rows_examined字段是否与预期一致</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/07/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E7%9F%AD%E6%97%B6%E6%8F%90%E4%BE%9B%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/">http://example.com/2023/07/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E7%9F%AD%E6%97%B6%E6%8F%90%E4%BE%9B%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/07/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B9%BB%E8%AF%BB%E9%97%AE%E9%A2%98/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL幻读问题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/05/数据库/MySQL/MySQL中Orderby是怎么工作的/" title="MySQL中Orderby是怎么工作的"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/168852040328.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-05</div><div class="title">MySQL中Orderby是怎么工作的</div></div></a></div><div><a href="/2023/07/07/数据库/MySQL/MySQL中执行单条语句很慢的场景/" title="MySQL中执行单条语句很慢的场景"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-07</div><div class="title">MySQL中执行单条语句很慢的场景</div></div></a></div><div><a href="/2021/02/24/数据库/MySQL/MySQL命令大全/" title="MySQL命令大全"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog05.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-24</div><div class="title">MySQL命令大全</div></div></a></div><div><a href="/2023/07/09/数据库/MySQL/MySQL幻读问题/" title="MySQL幻读问题"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-09</div><div class="title">MySQL幻读问题</div></div></a></div><div><a href="/2023/07/03/数据库/MySQL/MySQL语句执行过程及count-效率问题/" title="MySQL语句执行过程及count(*)效率问题"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog48.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">MySQL语句执行过程及count(*)效率问题</div></div></a></div><div><a href="/2023/06/19/数据库/MySQL/RedoLog刷脏页/" title="RedoLog刷脏页"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/168713919163.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-19</div><div class="title">RedoLog刷脏页</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">157</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">83</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">48</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%AD%E6%97%B6%E6%8F%90%E4%BE%9B%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">短时提供性能的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%AD%E8%BF%9E%E6%8E%A5%E9%A3%8E%E6%9A%B4"><span class="toc-number">1.1.</span> <span class="toc-text">短连接风暴</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">解决方案：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9A%E5%85%88%E5%A4%84%E7%90%86%E6%8E%89%E9%82%A3%E4%BA%9B%E5%8D%A0%E7%9D%80%E8%BF%9E%E6%8E%A5%E4%BD%86%E6%98%AF%E4%B8%8D%E5%B7%A5%E4%BD%9C%E7%9A%84%E7%BA%BF%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">第一种方法：先处理掉那些占着连接但是不工作的线程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B%E7%9A%84%E6%B6%88%E8%80%97%EF%BC%9A"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">减少连接过程的消耗：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">慢查询性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E9%98%B2%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">预防方式：</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E7%9F%AD%E6%97%B6%E6%8F%90%E4%BE%9B%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/" title="MySQL短时提供性能的方法"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL短时提供性能的方法"/></a><div class="content"><a class="title" href="/2023/07/11/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E7%9F%AD%E6%97%B6%E6%8F%90%E4%BE%9B%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95/" title="MySQL短时提供性能的方法">MySQL短时提供性能的方法</a><time datetime="2023-07-11T01:46:01.000Z" title="发表于 2023-07-11 09:46:01">2023-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B9%BB%E8%AF%BB%E9%97%AE%E9%A2%98/" title="MySQL幻读问题"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL幻读问题"/></a><div class="content"><a class="title" href="/2023/07/09/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E5%B9%BB%E8%AF%BB%E9%97%AE%E9%A2%98/" title="MySQL幻读问题">MySQL幻读问题</a><time datetime="2023-07-09T01:42:47.000Z" title="发表于 2023-07-09 09:42:47">2023-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E4%B8%AD%E6%89%A7%E8%A1%8C%E5%8D%95%E6%9D%A1%E8%AF%AD%E5%8F%A5%E5%BE%88%E6%85%A2%E7%9A%84%E5%9C%BA%E6%99%AF/" title="MySQL中执行单条语句很慢的场景"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog04.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL中执行单条语句很慢的场景"/></a><div class="content"><a class="title" href="/2023/07/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E4%B8%AD%E6%89%A7%E8%A1%8C%E5%8D%95%E6%9D%A1%E8%AF%AD%E5%8F%A5%E5%BE%88%E6%85%A2%E7%9A%84%E5%9C%BA%E6%99%AF/" title="MySQL中执行单条语句很慢的场景">MySQL中执行单条语句很慢的场景</a><time datetime="2023-07-07T01:50:39.000Z" title="发表于 2023-07-07 09:50:39">2023-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/05/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E4%B8%ADOrderby%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/" title="MySQL中Orderby是怎么工作的"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/168852040328.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL中Orderby是怎么工作的"/></a><div class="content"><a class="title" href="/2023/07/05/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E4%B8%ADOrderby%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/" title="MySQL中Orderby是怎么工作的">MySQL中Orderby是怎么工作的</a><time datetime="2023-07-05T01:18:28.000Z" title="发表于 2023-07-05 09:18:28">2023-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/03/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%8F%8Acount-%E6%95%88%E7%8E%87%E9%97%AE%E9%A2%98/" title="MySQL语句执行过程及count(*)效率问题"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog48.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL语句执行过程及count(*)效率问题"/></a><div class="content"><a class="title" href="/2023/07/03/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%8F%8Acount-%E6%95%88%E7%8E%87%E9%97%AE%E9%A2%98/" title="MySQL语句执行过程及count(*)效率问题">MySQL语句执行过程及count(*)效率问题</a><time datetime="2023-07-03T11:58:57.000Z" title="发表于 2023-07-03 19:58:57">2023-07-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  target="_blank" rel="noopener" href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
