@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>分布式一致性算法 | goMars的学习随记</title><meta name="keywords" content="分布式系统"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="分布式一致性算法概述分布式一致性算法是一组用于确保分布式系统中数据一致性的算法。这些算法旨在解决多个节点之间的数据同步和一致性问题，以确保在分布式环境中的各个节点上的数据副本保持一致。 一些常见的分布式一致性算法包括：  Paxos算法：Paxos算法是一种经典的分布式一致性算法，用于确保在网络中多个节点之间达成一致性协议。 Raft算法：Raft算法是另一种用于分布式一致性的算法，它的设计更加容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式一致性算法">
+<meta property="og:url" content="http://example.com/2023/11/04/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="分布式一致性算法概述分布式一致性算法是一组用于确保分布式系统中数据一致性的算法。这些算法旨在解决多个节点之间的数据同步和一致性问题，以确保在分布式环境中的各个节点上的数据副本保持一致。 一些常见的分布式一致性算法包括：  Paxos算法：Paxos算法是一种经典的分布式一致性算法，用于确保在网络中多个节点之间达成一致性协议。 Raft算法：Raft算法是另一种用于分布式一致性的算法，它的设计更加容">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg">
+<meta property="article:published_time" content="2023-11-04T01:16:53.000Z">
+<meta property="article:modified_time" content="2023-11-04T01:17:43.346Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="分布式一致性算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="http://example.com/2023/11/04/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-04 09:17:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">51</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">分布式一致性算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-04T01:16:53.000Z" title="发表于 2023-11-04 09:16:53">2023-11-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-04T01:17:43.346Z" title="更新于 2023-11-04 09:17:43">2023-11-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="分布式一致性算法"><a href="#分布式一致性算法" class="headerlink" title="分布式一致性算法"></a>分布式一致性算法</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>分布式一致性算法是一组用于确保分布式系统中数据一致性的算法。这些算法旨在解决多个节点之间的数据同步和一致性问题，以确保在分布式环境中的各个节点上的数据副本保持一致。</p>
+<p>一些常见的分布式一致性算法包括：</p>
+<ol>
+<li><strong>Paxos算法</strong>：Paxos算法是一种经典的分布式一致性算法，用于确保在网络中多个节点之间达成一致性协议。</li>
+<li><strong>Raft算法</strong>：Raft算法是另一种用于分布式一致性的算法，它的设计更加容易理解和实现，适用于构建可靠的分布式系统。</li>
+<li><strong>ZAB 算法：</strong>ZAB（ZooKeeper Atomic Broadcast）选举算法是为 ZooKeeper 实现分布式协调功能而设计的。</li>
+<li><strong>Gossip算法：</strong>Gossip算法，是一种分布式计算中常用的算法，它用于在一个分布式系统中传播信息或数据，以实现数据的一致性和同步。</li>
+</ol>
+<h2 id="算法简单介绍"><a href="#算法简单介绍" class="headerlink" title="算法简单介绍"></a>算法简单介绍</h2><h3 id="Paxos算法"><a href="#Paxos算法" class="headerlink" title="Paxos算法"></a>Paxos算法</h3><p>Paxos算法是一种分布式一致性算法，用于在分布式系统中达成一致的共识。它是由Leslie Lamport于1990年提出的，被认为是分布式系统领域的经典算法之一。Paxos算法的主要目标是允许多个节点在面对故障和网络延迟的情况下，达成共识，确保数据的一致性；Paxos算法的核心思想是<strong>通过多轮的消息传递和投票来达成共识</strong>。</p>
+<p><strong>关键概念：</strong></p>
+<ol>
+<li><strong>提议者（Proposers）</strong>：提议者是试图向系统提交一个值的节点。每个提议者会生成一个提案（Proposal），其中包含一个提案号（Proposal Number）和一个值。提案号是唯一  标识提案的，通常包括一个提议者的标识符和一个递增的序号。</li>
+<li><strong>学习者（Learners）</strong>：学习者是节点，它们等待系统中的大多数节点接受相同的提案，以达成共识。一旦学习者确定了共识值，它们就会学到这个值，即<strong>状态转移过程</strong>。</li>
+<li><strong>接受者（Acceptors）</strong>：接受者是节点，它们用来接受提议并投票是否接受提案。每个接受者可以接受一个提案，并在接受提案后通知其他节点。接受者可以有不同的投票策略，但通常<strong>选择接受具有最高提案号的提案。</strong></li>
+</ol>
+<p><strong>基本流程：</strong></p>
+<ul>
+<li>准备阶段：<ol>
+<li>提议者选择一个唯一的提案号，并向接受者发送一个准备请求（Prepare Request）包含该提案号。</li>
+<li>每个接受者比较提案号，如果接受者之前已经回应过更高提案号的准备请求，则拒绝请求。否则，接受者返回一个承诺不再接受低于该提案号的提案，并返回之前已经接受的提案（如果有的话）。</li>
+<li>提议者收到多数接受者的承诺后，进入下一阶段。</li>
+</ol>
+</li>
+<li>提议阶段：<ol>
+<li>提议者向多数接受者发送一个提案请求（Accept Request），包含提案号和值。</li>
+<li>每个接受者检查提案号是否是它之前承诺的最高提案号，如果是，则接受提案，并将提案号和值广播给其他节点。</li>
+<li>学习者在收到<strong>多数节点（一半以上）</strong>的接受消息后，确定了共识值。</li>
+</ol>
+</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ol>
+<li><strong>一致性保证</strong>：Paxos算法能够确保在分布式系统中的所有节点之间达成一致性，即使在面临网络故障和节点故障的情况下也能够保持一致。</li>
+<li><strong>容错性</strong>：Paxos是一种具有强容错性的算法，可以处理节点故障、消息丢失等异常情况，保证系统的可用性和一致性。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li><strong>复杂性</strong>：Paxos算法的实现和理解相对复杂，它包括多个阶段和消息交互，需要谨慎设计和调试，容易出现错误。</li>
+<li><strong>性能开销</strong>：Paxos算法在某些情况下（因为消息交互次数多）可能会引入较大的性能开销，特别是在网络通信和消息传递方面，可能导致延迟增加。</li>
+</ol>
+<h3 id="Raft算法"><a href="#Raft算法" class="headerlink" title="Raft算法"></a>Raft算法</h3><p>Raft算法是一种用于分布式一致性的算法，类似于Paxos，但它旨在更易于理解和实现。Raft算法由Diego Ongaro和John Ousterhout于2013年提出，并已成为分布式系统中常用的共识算法之一，尤其在分布式数据库和分布式存储系统中得到广泛应用。</p>
+<p>Raft算法的设计目标是提供更直观的分布式一致性解决方案，通过将问题分解为可管理的部分，使得算法更容易理解和实现。</p>
+<p><strong>关键概念：</strong></p>
+<ol>
+<li>领导者（Leader）：领导者是Raft算法中的核心节点，主要负责日志复制、心跳检测等工作。</li>
+<li>跟随者（Follower）：跟随者是Raft算法中的被动节点，只响应来自领导者和候选者的消息。</li>
+<li>候选者（Candidate）：候选者是Raft算法中的中间状态，用于领导者选举过程。</li>
+</ol>
+<p><strong>步骤：</strong></p>
+<ol>
+<li><p><strong>领导者选举</strong>：</p>
+<ul>
+<li>在一个Raft集群中，只有领导者可以接受客户端的请求并将其复制到日志中。</li>
+<li>领导者选举使用<strong>随机化的定时器</strong>和<strong>心跳机制</strong>来实现。候选者节点发起选举，并需要获得多数节点的支持才能成为领导者。</li>
+</ul>
+<blockquote>
+<p>超时机制（随机）：因为随机可以规避多领导者竞选</p>
+<ul>
+<li>Follower等待心跳超时</li>
+<li>等待选举投票超时</li>
+</ul>
+<p>投票规则：</p>
+<ul>
+<li>term大的成员拒绝投票给term小的RequestVote消息。</li>
+<li>最后一条日志项编号大的拒绝投票给最后一条日志项编号小的成员。</li>
+<li>每个成员，一届term任期内只投出一张选票，先来先获得投票。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>日志复制</strong>：日志项是连续的</p>
+<ul>
+<li>领导者负责将客户端的操作添加到日志中，并将日志复制到其他节点。这确保了所有节点都具有相同的操作序列。</li>
+<li>跟随者节点在接收到领导者的日志条目后，将其附加到本地日志。</li>
+</ul>
+</li>
+<li><p><strong>安全性</strong>：</p>
+<ul>
+<li>Raft算法使用严格的一致性模型，确保只有领导者可以接受客户端的请求，这样避免了分布式系统中的多个领导者问题。</li>
+<li>安全性还包括数据持久性，即数据在节点故障时不会丢失。Raft要求领导者在接收请求后必须等待<strong>大多数节点</strong>的确认后才能提交日志条目。</li>
+</ul>
+</li>
+</ol>
+<p><strong>优点：</strong></p>
+<ol>
+<li>简单性：Raft的设计目标之一是提供更容易理解和实现的共识算法。相对于Paxos等复杂的算法，Raft的概念更直观，因此更容易实现和维护。</li>
+<li>安全性：Raft算法在保证分布式系统的安全性方面表现出色。它确保当大多数节点正常运行时，系统能够达成共识，从而防止数据丢失或损坏。</li>
+<li>选举机制：Raft使用选举机制来选举领导者，确保系统中的节点能够动态适应节点故障和网络分区等情况。这有助于系统的可用性和容错性。</li>
+<li>日志复制：Raft通过日志复制来确保系统的一致性。这种方式更直观，易于理解，并且能够有效地处理数据复制和恢复。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>性能开销：Raft算法的性能开销相对较高，尤其是在大规模分布式系统中。这主要是因为它需要维护额外的状态和进行领导者选举。</li>
+<li>限制：Raft算法对网络分区（节点之间的通信中断）的处理方式相对保守。虽然这有助于确保一致性，但在某些情况下可能导致系统不可用。</li>
+</ol>
+<blockquote>
+<p>相对于Paxos，Raft更易于理解和实现，因此在实际应用中更受欢迎。它提供了一种直观的方式来处理分布式一致性问题，有助于开发人员更容易地构建可靠的分布式系统。</p>
+</blockquote>
+<h3 id="ZAB-算法"><a href="#ZAB-算法" class="headerlink" title="ZAB 算法"></a>ZAB 算法</h3><p>ZAB（ZooKeeper Atomic Broadcast）选举算法是为 ZooKeeper 实现分布式协调功能而设计的。相较于 Raft 算法的投票机制，ZAB 算法增加了通过节点 ID 和数据 ID 作为参考进行选主，节点 ID 和数据 ID 越大，表示数据越新，优先成为主。</p>
+<p><strong>关键概念：</strong></p>
+<ol>
+<li>领导者（Leader）：Zookeeper集群的核心角色，在集群启动或崩溃恢复中通过Follower参与选举产生，<strong>为客户端提供读写服务，并对事务请求进行处理</strong>。</li>
+<li>跟随者（Follower）：Zookeeper集群的核心角色，在集群启动或崩溃恢复中参加选举，没有被选上就是这个角色，<strong>为客户端提供读取服务</strong>，也就是处理非事务请求，Follower不能处理事务请求，对于收到的事务请求会转发给Leader。</li>
+<li>观察者（Observer）：观察者角色，<strong>不参加选举，为客户端提供读取服务，处理非事务请求</strong>，对于收到的事务请求会转发给Leader。使用Observer的目的是为了扩展系统，提高读取性能。</li>
+<li>成员状态：<ul>
+<li>LOOKING: 竞选状态，没有Leader。</li>
+<li>FOLLOWING: 随从状态，同步Leader 状态，参与Leader选举的投票过程。</li>
+<li>OBSERVING: 观察状态，同步Leader 状态，不参与Leader选举的投票过程。</li>
+<li>LEADING: 领导者状态，存在Leader。</li>
+</ul>
+</li>
+</ol>
+<p><strong>步骤：</strong></p>
+<ul>
+<li>选举阶段： 在选举阶段，ZAB算法用于选举一个领导者节点，这个领导者节点将负责处理所有写操作和数据复制。在分布式系统中，只有一个领导者能够进行写操作，以确保一致性。选举过程包括节点的争夺和选举出领导者，通常采用基于投票的机制，其中大多数节点投票给同一个节点成为领导者。</li>
+<li>成员发现： 成员发现阶段是指ZAB算法用于检测集群中的新节点或失效节点，并确保所有节点都知道当前的集群成员。这一阶段确保节点的<strong>动态加入和离开不会破坏共识算法的正常运行</strong>。</li>
+<li>数据同步： 一旦选出领导者，领导者负责接受客户端的写请求，并将这些写请求转化为一个序列的提案（proposal）。然后，领导者将这些提案发送给集群中的其他节点以进行复制。数据同步阶段确保集群中的所有节点都有相同的数据状态，以维护一致性。</li>
+<li>数据广播： 在数据广播阶段，领导者将接受到的提案广播给集群中的其他节点，这些节点将按照相同的顺序应用这些提案，从而确保各节点的数据状态保持一致。一旦多数节点成功应用了提案，数据就被视为已经提交，并且可以告知客户端，从而完成一次写操作</li>
+</ul>
+<p><strong>优点：</strong>ZAB协议优点是在保证数据一致性的同时，具有高可用性和可扩展性。</p>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>内存占用多：ZAB协议缺点是需要占用大量的内存和存储空间来记录节点状态。</li>
+<li>选主开销：在选主过程中，需要进行领导者选举，这会引入额外的开销和延迟。</li>
+<li>单一领导者：ZAB算法采用了单一领导者模式，这意味着所有的写操作都必须经过领导者，可能会成为性能瓶颈。</li>
+</ol>
+<h3 id="Gossip算法（复制算法）"><a href="#Gossip算法（复制算法）" class="headerlink" title="Gossip算法（复制算法）"></a>Gossip算法（复制算法）</h3><p>Gossip算法，又称八卦算法，是一种用于分布式系统中的信息传播和数据同步的算法。它的工作方式类似于人们之间传播八卦或谣言的方式，通过节点之间<strong>相互交流信息</strong>来实现分布式系统的协调和数据一致性。</p>
+<p><strong>节点状态：</strong></p>
+<ul>
+<li><strong>Susceptible (S)</strong>: “Susceptible” 节点是指在 Gossip 协议中<strong>可能会传播消息即未传播</strong>的节点。这些节点处于接收消息的状态，它们会接受来自其他节点的信息并可能将其传播给其他节点。当一个节点接收到消息时，它可以变为 “Infective” 状态。</li>
+<li><strong>Infective (I)</strong>: “Infective” 节点是<strong>已经接收了消息</strong>并可以传播消息的节点。这些节点会将他们接收到的消息传播给其他节点，以便在系统中传播信息和状态。当一个节点变为 “Infective” 状态后，它可以传播消息给其他节点，并继续保持 “Infective” 状态，以确保消息能够传播到系统中的其他节点。</li>
+<li><strong>Recovered (R)</strong>: “Recovered” 节点是指<strong>已经接收并传播了消息的节点，但它们不再继续传播相同的消息</strong>。这些节点可以被认为是已经处理了消息并不再活跃地传播它们。在某些 Gossip 协议中，节点可能会从 “Infective” 状态转变为 “Recovered” 状态，以限制消息的传播范围。</li>
+</ul>
+<p><strong>复制方式：</strong></p>
+<ul>
+<li><p>直接邮寄：就是指你的节点收到更新数据的时侯直接把这个数据发送给其它的节点。</p>
+</li>
+<li><p>反熵：每个节点周期性地随机选择其他节点（<strong>一般是采用闭环结构</strong>），然后通过互相交换自己的所有数据来消除两者之间的差异，直到整个网络中节点数据一致。</p>
+</li>
+<li><p>谣言传播：</p>
+<p>各节点周期性的，向随机的一组节点广播更新数据。</p>
+<p>其他节点收到更新的数据后，继卖周期性的，向随机的一组节点广播更新数据，直到所有节点都处理了新数据。</p>
+<p>为了使谣言传播能够停止（避免广播风暴) ，gossip增加removed状态，当节点收到的谣言并且该谣言处于removed (之前已经处理过的谣言）时，该节点将不继续传播该谣言。</p>
+</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ol>
+<li>去中心化，集群中各个节点都是对等的。</li>
+<li>无法保证在某个时刻所有节点状态一致。</li>
+<li>比较适合小数据量的同步。失败检测、路由同步、Pub/Sub、动态负载均衡。</li>
+</ol>
+<h3 id="Distro协议"><a href="#Distro协议" class="headerlink" title="Distro协议"></a>Distro协议</h3><p>Distro算法是集Gossip以及 Eureka协议的优点并加以优化而出来的，对于原生的Gossip，由于随机选取发送消息的节点，也就不可避免的存在消息重复发送给同一节点的情况，增加了网络的传输的压力，也给消息节点带来额外的处理负载，而Distro算法引入了权威Server的概念，每个节点负责一部分数据以及将自己的数据同步给其他节点，有效的降低了消息冗余的问题。</p>
+<p><strong>步骤：</strong></p>
+<ul>
+<li>Nacos 启动时首先从其他远程节点同步全部数据。</li>
+<li>Nacos 每个节点是平等的都可以处理写入请求，同时把新数据同步到其他节点。</li>
+<li>每个节点只负责部分数据，定时发送自己负责数据的校验值到其他节点来保持数据一致性。</li>
+<li>当该节点接收到属于该节点负责的服务时，直接写入。</li>
+<li>当该节点接收到不属于该节点负责的服务时，将在集群内部路由，转发给对应的节点，从而完成写入。</li>
+<li>读取操作则不需要路由，因为集群中的各个节点会同步服务状态，每个节点都会有一份最新的服务数据。</li>
+<li>而当节点发生宕机后，原本该节点负责的一部分服务的写入任务会转移到其他节点，从而保证 Nacos 集群整体的可用性。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/04/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/">http://example.com/2023/11/04/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/">分布式一致性算法</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/11/01/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9E%B6%E6%9E%84/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">多级缓存架构</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/23/MySQL数据异构同步方案/" title="MySQL数据异构同步方案"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog13.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-23</div><div class="title">MySQL数据异构同步方案</div></div></a></div><div><a href="/2023/10/29/动态通知方案/" title="动态通知方案"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-29</div><div class="title">动态通知方案</div></div></a></div><div><a href="/2023/11/01/多级缓存架构/" title="多级缓存架构"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-01</div><div class="title">多级缓存架构</div></div></a></div><div><a href="/2023/09/24/系统设计/JWT认证/" title="JWT认证"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-24</div><div class="title">JWT认证</div></div></a></div><div><a href="/2023/03/17/系统设计/分布式系统认证/" title="分布式系统认证"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/lauren-mancke-aOC7TSLb1o8-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-17</div><div class="title">分布式系统认证</div></div></a></div><div><a href="/2023/10/19/系统设计/分布式系统/BASE理论/" title="BASE理论"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog07.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-19</div><div class="title">BASE理论</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">205</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">95</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">51</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">分布式一致性算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">算法简单介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Paxos%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">Paxos算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Raft%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">Raft算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZAB-%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">ZAB 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gossip%E7%AE%97%E6%B3%95%EF%BC%88%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">Gossip算法（复制算法）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Distro%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.5.</span> <span class="toc-text">Distro协议</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/04/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/" title="分布式一致性算法"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="分布式一致性算法"/></a><div class="content"><a class="title" href="/2023/11/04/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/" title="分布式一致性算法">分布式一致性算法</a><time datetime="2023-11-04T01:16:53.000Z" title="发表于 2023-11-04 09:16:53">2023-11-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/01/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9E%B6%E6%9E%84/" title="多级缓存架构"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多级缓存架构"/></a><div class="content"><a class="title" href="/2023/11/01/%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9E%B6%E6%9E%84/" title="多级缓存架构">多级缓存架构</a><time datetime="2023-11-01T01:26:07.000Z" title="发表于 2023-11-01 09:26:07">2023-11-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/29/%E5%8A%A8%E6%80%81%E9%80%9A%E7%9F%A5%E6%96%B9%E6%A1%88/" title="动态通知方案"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="动态通知方案"/></a><div class="content"><a class="title" href="/2023/10/29/%E5%8A%A8%E6%80%81%E9%80%9A%E7%9F%A5%E6%96%B9%E6%A1%88/" title="动态通知方案">动态通知方案</a><time datetime="2023-10-29T01:13:11.000Z" title="发表于 2023-10-29 09:13:11">2023-10-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/23/MySQL%E6%95%B0%E6%8D%AE%E5%BC%82%E6%9E%84%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88/" title="MySQL数据异构同步方案"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog13.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL数据异构同步方案"/></a><div class="content"><a class="title" href="/2023/10/23/MySQL%E6%95%B0%E6%8D%AE%E5%BC%82%E6%9E%84%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88/" title="MySQL数据异构同步方案">MySQL数据异构同步方案</a><time datetime="2023-10-23T02:03:14.000Z" title="发表于 2023-10-23 10:03:14">2023-10-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/22/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/CAP%E5%AE%9A%E7%90%86/" title="CAP定理"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CAP定理"/></a><div class="content"><a class="title" href="/2023/10/22/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/CAP%E5%AE%9A%E7%90%86/" title="CAP定理">CAP定理</a><time datetime="2023-10-22T01:43:08.000Z" title="发表于 2023-10-22 09:43:08">2023-10-22</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  target="_blank" rel="noopener" href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
