@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>内存管理(三) | goMars的学习随记</title><meta name="keywords" content="操作系统 内存管理"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="内存管理(三)超越物理内存：机制操作系统如何利用大而慢的设备，透明地提供巨大虚拟地址空间的假象？ 不仅是一个进程，增加交换空间让操作系统为多个并发运行的进程都提供巨大地址空间的假象。 交换空间我们要做的第一件事情就是，在硬盘上开辟一部分空间用于物理页的移入和移出。在操作系统中，一般这样的空间称为交换空间（swap space），因为我们将内存中的页交换到其中，并在需要的时候又交换回去。 交换空间的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存管理(三)">
+<meta property="og:url" content="http://example.com/2023/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E4%B8%89/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="内存管理(三)超越物理内存：机制操作系统如何利用大而慢的设备，透明地提供巨大虚拟地址空间的假象？ 不仅是一个进程，增加交换空间让操作系统为多个并发运行的进程都提供巨大地址空间的假象。 交换空间我们要做的第一件事情就是，在硬盘上开辟一部分空间用于物理页的移入和移出。在操作系统中，一般这样的空间称为交换空间（swap space），因为我们将内存中的页交换到其中，并在需要的时候又交换回去。 交换空间的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog41.jpg">
+<meta property="article:published_time" content="2023-04-30T01:49:35.000Z">
+<meta property="article:modified_time" content="2023-05-05T04:47:52.913Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="内存管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog41.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="http://example.com/2023/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E4%B8%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"0EM01UMIDP","apiKey":"8f6a2bd8d9b6c8e2b5bdc233c586d096","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-05 12:47:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog41.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">内存管理(三)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-30T01:49:35.000Z" title="发表于 2023-04-30 09:49:35">2023-04-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-05T04:47:52.913Z" title="更新于 2023-05-05 12:47:52">2023-05-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="内存管理-三"><a href="#内存管理-三" class="headerlink" title="内存管理(三)"></a>内存管理(三)</h1><h2 id="超越物理内存：机制"><a href="#超越物理内存：机制" class="headerlink" title="超越物理内存：机制"></a>超越物理内存：机制</h2><p>操作系统如何利用大而慢的设备，透明地<strong>提供巨大虚拟地址空间的假象</strong>？</p>
+<p>不仅是一个进程，增加交换空间让操作系统为多个并发运行的进程都提供巨大地址空间的假象。</p>
+<h3 id="交换空间"><a href="#交换空间" class="headerlink" title="交换空间"></a>交换空间</h3><p>我们要做的第一件事情就是，在硬盘上开辟一部分空间用于物理页的移入和移出。在操作系统中，一般这样的空间称为<strong>交换空间（swap space）</strong>，因为我们将内存中的页交换到其中，并在需要的时候又交换回去。</p>
+<p>交换空间的大小是非常重要的，它决定了系统在某一时刻能够使用的最大内存页数。</p>
+<h3 id="存在位"><a href="#存在位" class="headerlink" title="存在位"></a>存在位</h3><p>硬件（或操作系统，在软件管理TLB 时）<strong>判断是否在内存中的方法</strong>，是通过页表项中的一条新信息，即存在位（present bit）。如果存在位设置为1，则表示该页存在于物理内存中，并且所有内容都如上所述进行。如果存在位设置为零，则页不在内存中，而在硬盘上。访问不在物理内存中的页，这种行为通常被称为页错误（page fault）。</p>
+<p>当TLB 未命中发生的时候有3 种重要情景：</p>
+<ol>
+<li>第一种情况，该页存在（present）且有效（valid）（第18～21 行）。在这种情况下，TLB 未命中处理程序可以简单地从PTE 中获取PFN，然后重试指令（这次TLB 会命中），并因此继续前面描述的流程。</li>
+<li>第二种情况（第22～23 行），页错误处理程序需要运行。虽然这是进程可以访问的合法页（毕竟是有的），但它并不在物理内存中。</li>
+<li>第三种情况，访问的是一个无效页，可能由于程序中的错误（第13～14 行）。在这种情况下，PTE 中的其他位都不重要了。硬件捕获这个非法访问，操作系统陷阱处理程序运行，可能会杀死非法进程。</li>
+</ol>
+<blockquote>
+<p>在上面描述的过程中，你可能会注意到，我们假设有足够的空闲内存来从存储交换空间换入（page in）的页。当然，情况可能并非如此。内存可能已满（或接近满了）。因此，操作系统可能希望<strong>先交换出（page out）一个或多个页，以便为操作系统即将交换入的新页留出空间</strong>。选择哪些页被交换出或被替换（replace）的过程，被称为<strong>页交换策略（page-replacementpolicy）</strong>。</p>
+</blockquote>
+<h3 id="交换何时真正发生"><a href="#交换何时真正发生" class="headerlink" title="交换何时真正发生"></a>交换何时真正发生</h3><p>为了保证有少量的空闲内存，大多数操作系统会设置<strong>高水位线（High Watermark，HW）和低水位线（Low Watermark，LW）</strong>，来帮助决定何时从内存中清除页。原理是这样：当操作系统发现有少于LW 个页可用时，后台负责释放内存的线程会开始运行，直到有HW 个可用的物理页。这个后台线程有时称为交换守护进程（swap daemon）或页守护进程（pagedaemon），它然后会很开心地进入休眠状态，因为它毕竟为操作系统释放了一些内存。</p>
+<h2 id="内存页替换策略"><a href="#内存页替换策略" class="headerlink" title="内存页替换策略"></a>内存页替换策略</h2><h3 id="最优替换策略"><a href="#最优替换策略" class="headerlink" title="最优替换策略"></a>最优替换策略</h3><p>Belady展示了一个简单的方法（但遗憾的是，很难实现！），即<strong>替换内存中在最远将来才会被访问到的页</strong>，可以达到缓存未命中率最低。</p>
+<blockquote>
+<p>遗憾的是，正如我们之前在开发调度策略时所看到的那样，未来的访问是无法知道的，你无法为通用操作系统实现最优策略①。因此，在开发一个真正的、可实现的策略时，我们将聚焦于寻找其他决定把哪个页面踢出的方法。因此，最优策略只能作为比较，知道我们的策略有多接近“完美”。</p>
+</blockquote>
+<h3 id="简单策略：FIFO"><a href="#简单策略：FIFO" class="headerlink" title="简单策略：FIFO"></a>简单策略：FIFO</h3><p>页在进入系统时，简单地放入一个队列。当发生替换时，<strong>队列尾部的页（“先入”页）被踢出</strong>。FIFO 有一个很大的优势：实现相当简单。</p>
+<blockquote>
+<p>对比FIFO 和最优策略，FIFO 明显不如最优策略，FIFO 命中率只有36.4%（不包括强制性未命中为57.1%）。先进先出（FIFO）根本无法确定页的重要性：即使页0 已被多次访问，FIFO 仍然会将其踢出，因为它是第一个进入内存的。</p>
+</blockquote>
+<h3 id="另一简单策略：随机"><a href="#另一简单策略：随机" class="headerlink" title="另一简单策略：随机"></a>另一简单策略：随机</h3><p>另一个类似的替换策略是<strong>随机</strong>，在内存满的时候它随机选择一个页进行替换。随机具有类似于FIFO 的属性。实现我来很简单，但是它在挑选替换哪个页时不够智能。</p>
+<h3 id="利用历史数据：LRU"><a href="#利用历史数据：LRU" class="headerlink" title="利用历史数据：LRU"></a>利用历史数据：LRU</h3><p>正如在调度策略所做的那样，为了提高后续的命中率，我们再次通过历史的访问情况作为参考。例如，如果某个程序在过去访问过某个页，则很有可能在不久的将来会再次访问该页。</p>
+<p>页替换策略可以使用的一个历史信息是频率（frequency）。<strong>如果一个页被访问了很多次，也许它不应该被替换，因为它显然更有价值</strong>。页更常用的属性是访问的近期性（recency），越近被访问过的页，也许再次访问的可能性也就越大。</p>
+<p>系统的每个页有一个使用位，然后这些使用位存储在某个地方（例如，它们可能在每个进程的页表中，或者只在某个数组中）。每当页被引用（即读或写）时，硬件将使用位设置为1。但是，硬件不会清除该位（即将其设置为0），这由操作系统负责。</p>
+<p><strong>实现方法：</strong></p>
+<p>操作系统如何利用使用位来实现近似LRU？可以有很多方法，有一个简单的方法称作<strong>时钟算法（clock algorithm）</strong>。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230430100109881.png" alt="image-20230430100109881"></p>
+<p>Clock算法逻辑如下：</p>
+<ol>
+<li>每个缓存槽都有一个对应的状态，每当这个缓存槽中的数据被访问后，将状态至为 1，否则为0 （图中用绿色表示状态为1，红色表示状态为0）</li>
+<li>使用一个指针A指向下一个将要被淘汰的位置</li>
+<li>每次需要淘汰缓存中，从A指针开始，顺时针遍历，找到第一个状态为0的槽，将其淘汰</li>
+<li>而B指针会定时顺时针遍历，把所有的缓存槽的状态为都重置为0</li>
+</ol>
+<blockquote>
+<p>时钟算法的一个小修改（最初也由Corbato提出），是对内存中的页是否被修改的额外考虑。这样做的原因是：如果页已被修改（modified）并因此变脏（dirty），则踢出它就必须将它写回磁盘，这很昂贵。如果它没有被修改（因此是干净的，clean），踢出就没成本。物理帧可以简单地重用于其他目的而无须额外的I/O。因此，<strong>一些虚拟机系统更倾向于踢出干净页，而不是脏页。</strong></p>
+</blockquote>
+<p>当内存就是被超额请求时，操作系统应该做什么，这组正在运行的进程的内存需求是否超出了可用物理内存？</p>
+<p>在这种情况下，系统将不断地进行换页，这种情况有时被称为<strong>抖动（thrashing）</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E4%B8%89/">http://example.com/2023/04/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E4%B8%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog41.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81/"><img class="prev-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog35.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">死锁</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E4%BA%8C/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">内存管理(二)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/04/26/计算机基础/操作系统/内存管理-一/" title="内存管理(一)"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog36.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-26</div><div class="title">内存管理(一)</div></div></a></div><div><a href="/2023/04/29/计算机基础/操作系统/内存管理-二/" title="内存管理(二)"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-29</div><div class="title">内存管理(二)</div></div></a></div><div><a href="/2023/04/24/计算机基础/操作系统/进程管理-二/" title="进程管理(二)"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/christopher-gower-vjMgqUkS8q8-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-24</div><div class="title">进程管理(二)</div></div></a></div><div><a href="/2023/04/20/计算机基础/操作系统/进程管理-一/" title="进程管理(一)"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-20</div><div class="title">进程管理(一)</div></div></a></div><div><a href="/2023/05/03/计算机基础/操作系统/死锁/" title="死锁"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog35.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-03</div><div class="title">死锁</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-%E4%B8%89"><span class="toc-number">1.</span> <span class="toc-text">内存管理(三)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E8%B6%8A%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%EF%BC%9A%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">超越物理内存：机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4"><span class="toc-number">1.1.1.</span> <span class="toc-text">交换空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E4%BD%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">存在位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E4%BD%95%E6%97%B6%E7%9C%9F%E6%AD%A3%E5%8F%91%E7%94%9F"><span class="toc-number">1.1.3.</span> <span class="toc-text">交换何时真正发生</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E9%A1%B5%E6%9B%BF%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.</span> <span class="toc-text">内存页替换策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E6%9B%BF%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text">最优替换策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%AD%96%E7%95%A5%EF%BC%9AFIFO"><span class="toc-number">1.2.2.</span> <span class="toc-text">简单策略：FIFO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E7%AE%80%E5%8D%95%E7%AD%96%E7%95%A5%EF%BC%9A%E9%9A%8F%E6%9C%BA"><span class="toc-number">1.2.3.</span> <span class="toc-text">另一简单策略：随机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE%EF%BC%9ALRU"><span class="toc-number">1.2.4.</span> <span class="toc-text">利用历史数据：LRU</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/26/dubbo/" title="dubbo"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dubbo"/></a><div class="content"><a class="title" href="/2024/01/26/dubbo/" title="dubbo">dubbo</a><time datetime="2024-01-26T01:51:39.000Z" title="发表于 2024-01-26 09:51:39">2024-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高并发系统分布式服务方案"/></a><div class="content"><a class="title" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案">高并发系统分布式服务方案</a><time datetime="2024-01-22T08:07:40.000Z" title="发表于 2024-01-22 16:07:40">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog47.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="消息队列延迟问题"/></a><div class="content"><a class="title" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题">消息队列延迟问题</a><time datetime="2024-01-18T01:54:10.000Z" title="发表于 2024-01-18 09:54:10">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CDN静态资源加速"/></a><div class="content"><a class="title" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速">CDN静态资源加速</a><time datetime="2024-01-14T02:11:34.000Z" title="发表于 2024-01-14 10:11:34">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="缓存的读写策略"/></a><div class="content"><a class="title" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略">缓存的读写策略</a><time datetime="2024-01-11T04:33:01.000Z" title="发表于 2024-01-11 12:33:01">2024-01-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog41.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  target="_blank" rel="noopener" href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

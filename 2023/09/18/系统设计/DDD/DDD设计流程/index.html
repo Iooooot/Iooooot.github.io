@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DDD设计流程 | goMars的学习随记</title><meta name="keywords" content="DDD领域模型"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="设计流程战略设计战略设计是根据用户旅程分析，找出领域对象和聚合根，对实体和值对象进行聚类组成聚合，划分限界上下文，建立领域模型的过程。 战略设计采用的方法是事件风暴，包括：产品愿景、场景分析、领域建模和微服务拆分等几个主要过程。 产品愿景事件风暴时，所有参与者针对每一个要点，在贴纸上写出自己的意见，贴到白板上。事件风暴主持者会对每个贴纸，讨论并对发散的意见进行收敛和统一，形成产品愿景图。   产品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDD设计流程">
+<meta property="og:url" content="http://example.com/2023/09/18/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/DDD/DDD%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="设计流程战略设计战略设计是根据用户旅程分析，找出领域对象和聚合根，对实体和值对象进行聚类组成聚合，划分限界上下文，建立领域模型的过程。 战略设计采用的方法是事件风暴，包括：产品愿景、场景分析、领域建模和微服务拆分等几个主要过程。 产品愿景事件风暴时，所有参与者针对每一个要点，在贴纸上写出自己的意见，贴到白板上。事件风暴主持者会对每个贴纸，讨论并对发散的意见进行收敛和统一，形成产品愿景图。   产品">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg">
+<meta property="article:published_time" content="2023-09-18T02:18:44.000Z">
+<meta property="article:modified_time" content="2023-09-18T02:20:02.498Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="DDD领域模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="http://example.com/2023/09/18/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/DDD/DDD%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"0EM01UMIDP","apiKey":"8f6a2bd8d9b6c8e2b5bdc233c586d096","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-18 10:20:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">DDD设计流程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-18T02:18:44.000Z" title="发表于 2023-09-18 10:18:44">2023-09-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-18T02:20:02.498Z" title="更新于 2023-09-18 10:20:02">2023-09-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/DDD%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/">DDD领域模型</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="设计流程"><a href="#设计流程" class="headerlink" title="设计流程"></a>设计流程</h1><h2 id="战略设计"><a href="#战略设计" class="headerlink" title="战略设计"></a>战略设计</h2><p>战略设计是根据用户旅程分析，找出<strong>领域对象</strong>和<strong>聚合根</strong>，对<strong>实体</strong>和<strong>值对象</strong>进行聚类组成<strong>聚合</strong>，<strong>划分限界上下文</strong>，<strong>建立领域模型</strong>的过程。</p>
+<p>战略设计采用的方法是事件风暴，包括：产品愿景、场景分析、领域建模和微服务拆分等几个主要过程。</p>
+<h3 id="产品愿景"><a href="#产品愿景" class="headerlink" title="产品愿景"></a>产品愿景</h3><p>事件风暴时，所有参与者针对每一个要点，在贴纸上写出自己的意见，贴到白板上。事件风暴主持者会对每个贴纸，讨论并对发散的意见进行收敛和统一，形成产品愿景图。</p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230821112711283.png" alt="image-20230821112711283" style="zoom:50%;" />
+
+<p>产品愿景分析对于初创系统明确系统建设重点，统一团队建设目标和建立通用语言是很有价值的。但如果你的系统目标和需求非常清晰，这一步可以忽略。</p>
+<h3 id="场景分析"><a href="#场景分析" class="headerlink" title="场景分析"></a>场景分析</h3><p>场景分析是从用户视角出发，探索业务领域中的典型场景，产出领域中需要支撑的场景分类、用例操作以及不同子域之间的依赖关系，用以支撑领域建模。</p>
+<p><strong>方法：</strong></p>
+<p>项目团队成员一起用事件风暴分析，根据不同角色的旅程和场景分析，尽可能全面地梳理从前端操作到后端业务逻辑发生的所有<strong>操作、命令、领域事件以及外部依赖关系</strong>等信息。</p>
+<p><strong>例如：</strong></p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230821112949225.png" alt="image-20230821112949225" style="zoom:50%;" />
+
+<h3 id="领域建模"><a href="#领域建模" class="headerlink" title="领域建模"></a>领域建模</h3><p>领域建模是通过对业务和问题域进行分析，建立领域模型。向上通过限界上下文指导微服务边界设计，向下通过聚合指导实体对象设计。</p>
+<p><strong>步骤：</strong></p>
+<ol>
+<li>找出领域实体和值对象等领域对象；</li>
+<li>找出聚合根，根据实体、值对象与聚合根的依赖关系，建立聚合；</li>
+<li>根据业务及语义边界等因素，定义限界上下文。</li>
+</ol>
+<h3 id="微服务的拆分"><a href="#微服务的拆分" class="headerlink" title="微服务的拆分"></a>微服务的拆分</h3><p>理论上一个限界上下文就可以设计为一个微服务，但还需要综合考虑多种外部因素，比如：职责单一性、敏态与稳态业务分离、非功能性需求（如弹性伸缩、版本发布频率和安全等要求）、软件包大小、团队沟通效率和技术异构等非业务要素。</p>
+<h2 id="战术设计"><a href="#战术设计" class="headerlink" title="战术设计"></a>战术设计</h2><p>战术设计是根据领域模型进行微服务设计的过程。这个阶段主要梳理微服务内的领域对象，梳理领域对象之间的关系，确定它们在代码模型和分层架构中的位置，建立领域模型与微服务模型的映射关系，以及服务之间的依赖关系。</p>
+<p>战术设计包括以下两个阶段：<strong>分析微服务领域对象</strong>和<strong>设计微服务代码结构</strong>。</p>
+<h3 id="分析微服务领域对象"><a href="#分析微服务领域对象" class="headerlink" title="分析微服务领域对象"></a>分析微服务领域对象</h3><p>领域模型有很多领域对象，但是这些对象带有比较重的业务属性。要完成从领域模型到微服务的落地，还需要进一步的分析和设计。在事件风暴基础上，我们进一步细化领域对象以及它们的关系，补充事件风暴可能遗漏的业务和技术细节。</p>
+<h3 id="服务的识别和设计"><a href="#服务的识别和设计" class="headerlink" title="服务的识别和设计"></a>服务的识别和设计</h3><p>我们可以将命令作为服务识别和设计的起点；具体步骤如下：</p>
+<ol>
+<li>根据命令设计应用服务，确定应用服务的功能，服务集合，组合和编排方式。服务集合中的服务包括领域服务或其它微服务的应用服务。</li>
+<li>根据应用服务功能要求设计领域服务，定义领域服务。这里需要注意：应用服务可能是由多个聚合的领域服务组合而成的。</li>
+<li>根据领域服务的功能，确定领域服务内的实体以及功能。</li>
+<li>设计实体基本属性和方法。</li>
+</ol>
+<h3 id="聚合中的对象"><a href="#聚合中的对象" class="headerlink" title="聚合中的对象"></a>聚合中的对象</h3><p>逐一对聚合中的对象进行详细分析，确定出对象中属性，画出请假聚合对象关系图。</p>
+<p><strong>例如：</strong></p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230821113837407.png" alt="image-20230821113837407" style="zoom:50%;" />
+
+<blockquote>
+<p>值对象同时被聚合根和实体引用。这类值对象的数据来<strong>源于其它聚合，不可修改，可重复使用</strong>。将这种对象设计为值对象而不是实体，可以提高系统性能，降低数据库实体关联的复杂度，所以我一般建议优先设计为值对象。</p>
+</blockquote>
+<h3 id="微服务内的对象清单"><a href="#微服务内的对象清单" class="headerlink" title="微服务内的对象清单"></a>微服务内的对象清单</h3><p>在确定各领域对象的属性后，我们就可以设计各领域对象在代码模型中的代码对象（包括代码对象的包名、类名和方法名），建立领域对象与代码对象的一一映射关系了。根据这种映射关系，相关人员可快速定位到业务逻辑所在的代码位置。</p>
+<p><strong>例如：</strong></p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230821113932516.png" alt="image-20230821113932516"  />
+
+<h3 id="设计微服务代码结构"><a href="#设计微服务代码结构" class="headerlink" title="设计微服务代码结构"></a>设计微服务代码结构</h3><p>根据 DDD 的代码模型和各领域对象所在的包、类和方法，我们可以定义出请假微服务的代码结构，设计代码对象。</p>
+<ul>
+<li><p><strong>应用层代码结构：</strong></p>
+<p>应用层包括：应用服务、DTO 以及事件发布相关代码。</p>
+<blockquote>
+<p>如果应用服务逻辑复杂的话，一个应用服务就可以构建一个类，这样可以避免一个类的代码过于庞大，不利于维护。</p>
+</blockquote>
+</li>
+<li><p><strong>领域层代码结构：</strong></p>
+<p>领域层包括一个或多个聚合的实体类、事件实体类、领域服务以及工厂、仓储相关代码。一个聚合对应一个聚合代码目录，聚合之间在代码上完全隔离，聚合之间通过应用层协调。</p>
+</li>
+</ul>
+<h2 id="后续的工作"><a href="#后续的工作" class="headerlink" title="后续的工作"></a>后续的工作</h2><ol>
+<li><strong>详细设计</strong><br>在完成领域模型和微服务设计后，我们还需要对微服务进行详细的设计。主要设计以下内容：实体属性、数据库表和字段、实体与数据库表映射、服务参数规约及功能实现等。</li>
+<li><strong>代码开发和测试</strong><br>开发人员只需要按照详细的设计文档和功能要求，找到业务功能对应的代码位置，完成代码开发就可以了。代码开发完成后，开发人员要编写单元测试用例，基于挡板模拟依赖对象完成服务测试。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/09/18/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/DDD/DDD%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B/">http://example.com/2023/09/18/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/DDD/DDD%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DDD%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/">DDD领域模型</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/09/20/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E4%BC%98%E5%8C%96/"><img class="prev-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog01.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java基础编程优化</div></div></a></div><div class="next-post pull-right"><a href="/2023/09/16/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/DDD/DDD%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog09.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">DDD领域模型基础</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/16/系统设计/DDD/DDD领域模型基础/" title="DDD领域模型基础"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog09.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-16</div><div class="title">DDD领域模型基础</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">设计流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%98%E7%95%A5%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">战略设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E6%84%BF%E6%99%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">产品愿景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">场景分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%86%E5%9F%9F%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.1.3.</span> <span class="toc-text">领域建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%8B%86%E5%88%86"><span class="toc-number">1.1.4.</span> <span class="toc-text">微服务的拆分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%98%E6%9C%AF%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">战术设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">分析微服务领域对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AF%86%E5%88%AB%E5%92%8C%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">服务的识别和设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.3.</span> <span class="toc-text">聚合中的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%86%85%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%B8%85%E5%8D%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">微服务内的对象清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.5.</span> <span class="toc-text">设计微服务代码结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">后续的工作</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/26/dubbo/" title="dubbo"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dubbo"/></a><div class="content"><a class="title" href="/2024/01/26/dubbo/" title="dubbo">dubbo</a><time datetime="2024-01-26T01:51:39.000Z" title="发表于 2024-01-26 09:51:39">2024-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高并发系统分布式服务方案"/></a><div class="content"><a class="title" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案">高并发系统分布式服务方案</a><time datetime="2024-01-22T08:07:40.000Z" title="发表于 2024-01-22 16:07:40">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog47.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="消息队列延迟问题"/></a><div class="content"><a class="title" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题">消息队列延迟问题</a><time datetime="2024-01-18T01:54:10.000Z" title="发表于 2024-01-18 09:54:10">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CDN静态资源加速"/></a><div class="content"><a class="title" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速">CDN静态资源加速</a><time datetime="2024-01-14T02:11:34.000Z" title="发表于 2024-01-14 10:11:34">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="缓存的读写策略"/></a><div class="content"><a class="title" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略">缓存的读写策略</a><time datetime="2024-01-11T04:33:01.000Z" title="发表于 2024-01-11 12:33:01">2024-01-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/chiara-f-MI8He1NWPWg-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  target="_blank" rel="noopener" href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

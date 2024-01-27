@@ -1,0 +1,458 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MySQL分库分表 | goMars的学习随记</title><meta name="keywords" content="分布式系统 MySQL分库分表"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="分库分表系统正在持续不断地发展，注册的用户越来越多，数据库中存储的数据也越来越多。 会遇到的问题：  这时即使你使用了索引，索引占用的空间也随着数据量的增长而增大，数据库就无法缓存全量的索引信息，那么就需要从磁盘上读取索引数据，就会影响到查询的性能了。 数据量的增加也占据了磁盘的空间，数据库在备份和恢复的时间变长。 不同模块的数据，比如用户数据和用户关系数据，全都存储在一个主库中，一旦主库发生故障">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL分库分表">
+<meta property="og:url" content="http://example.com/2023/12/22/MySQL%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="分库分表系统正在持续不断地发展，注册的用户越来越多，数据库中存储的数据也越来越多。 会遇到的问题：  这时即使你使用了索引，索引占用的空间也随着数据量的增长而增大，数据库就无法缓存全量的索引信息，那么就需要从磁盘上读取索引数据，就会影响到查询的性能了。 数据量的增加也占据了磁盘的空间，数据库在备份和恢复的时间变长。 不同模块的数据，比如用户数据和用户关系数据，全都存储在一个主库中，一旦主库发生故障">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg">
+<meta property="article:published_time" content="2023-12-22T01:41:20.000Z">
+<meta property="article:modified_time" content="2023-12-22T01:43:11.177Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="MySQL分库分表">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="http://example.com/2023/12/22/MySQL%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"0EM01UMIDP","apiKey":"8f6a2bd8d9b6c8e2b5bdc233c586d096","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-22 09:43:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL分库分表</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-22T01:41:20.000Z" title="发表于 2023-12-22 09:41:20">2023-12-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-22T01:43:11.177Z" title="更新于 2023-12-22 09:43:11">2023-12-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h1><p>系统正在持续不断地发展，注册的用户越来越多，数据库中存储的数据也越来越多。</p>
+<p>会遇到的问题：</p>
+<ul>
+<li>这时即使你使用了索引，索引占用的空间也随着数据量的增长而增大，数据库就无法缓存全量的索引信息，那么就需要从磁盘上读取索引数据，就会影响到查询的性能了。</li>
+<li>数据量的增加也占据了磁盘的空间，数据库在备份和恢复的时间变长。</li>
+<li>不同模块的数据，比如用户数据和用户关系数据，全都存储在一个主库中，一旦主库发生故障，所有的模块都会受到影响。</li>
+</ul>
+<p>这些问题都是数据库的写入请求量大造成的性能和可用性方面的问题，一般采取的措施就是对数据进行分片即<strong>分库分表</strong>。</p>
+<blockquote>
+<p>为什么要分库分表：</p>
+<ul>
+<li>如果数据库已经到了写瓶颈怎么办？要么优化写操作，要么分库。<ul>
+<li>对于写瓶颈来说，分区表可以缓解问题，而读写分离几乎没有效果，比如频繁地增删改操作。</li>
+</ul>
+</li>
+<li>如果数据库已经到了读瓶颈怎么办？要么优化读操作，要么加从库，要么分库或分表。</li>
+<li>对于硬件瓶颈来说，读写分离、分区表基本上也解决不了，比如写操作引发的网络带宽问题。</li>
+</ul>
+<p>一般非必要不进行分库分表，大致要求如下：</p>
+<ul>
+<li>单表数据超过1000w</li>
+<li>单表数据文件大小超过20GB</li>
+</ul>
+<p>方案分为：</p>
+<ul>
+<li>单库多表：有效缩小磁盘扫描范围<ul>
+<li>单表数据量过大、锁竞争等跟表维度相关的资源引发的性能问题时选择</li>
+</ul>
+</li>
+<li>多库单表：根据不同业务分库<ul>
+<li>当单一数据库实例无法满足整体业务的读写需求时，可以考虑根据业务模块分库。</li>
+</ul>
+</li>
+<li>多库多表：提供数据库并行处理能力<ul>
+<li>当系统面临高并发、大数据量的情况，即使分库仍然无法满足性能需求时，可以选择分库分表。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>好处：</strong></p>
+<ul>
+<li>每个节点只保存部分的数据，这样可以有效地<strong>减少单个数据库节点和单个数据表中存储的数据量</strong>，在解决了数据存储瓶颈的同时也能有效地提升数据查询的性能。</li>
+<li>让单一写请求变为多个数据分片节点的请求，在一定程度上也会提升并发写入的性能。</li>
+</ul>
+<p>数据库分库分表的方式有两种：一种是<strong>垂直拆分</strong>，另一种是<strong>水平拆分</strong>。</p>
+<h2 id="垂直拆分"><a href="#垂直拆分" class="headerlink" title="垂直拆分"></a>垂直拆分</h2><p>垂直拆分，顾名思义就是对数据库竖着拆分，也就是将数据库的表拆分到多个不同的数据库中。原则一般是<strong>按照业务类型来拆分</strong>，核心思想是专库专用，将业务耦合度比较高的表拆分到单独的库中。这样在数据层面还起到<strong>故障隔离</strong>的作用。</p>
+<p><strong>垂直拆分示例图：</strong></p>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230422165257447.png" alt="image-20230422165257447" style="zoom:67%;" />
+
+<p><strong>问题：</strong></p>
+<p>垂直拆分依然不能解决某一个业务模块的数据大量膨胀的问题，一旦你的系统遭遇某一个业务库的数据量暴增，就需要将数据拆分到多个数据库和数据表中，<strong>也就是对数据库和数据表做水平拆分了。</strong></p>
+<h2 id="水平拆分"><a href="#水平拆分" class="headerlink" title="水平拆分"></a>水平拆分</h2><p>水平拆分就和垂直拆分的关注点不一样了，关注点在数据的特点，将单一数据表按照某一种规则拆分到多个数据库和多个数据表中。</p>
+<p><strong>常见拆分的规则：</strong></p>
+<ol>
+<li><p>按照某一个<strong>字段的哈希值</strong>做拆分，这种拆分规则比较适用于实体表；</p>
+<p>比如说用户表，内容表，我们一般按照这些实体表的 ID 字段来拆分，先对ID做一次hash对n取余得到是哪个库，再对m取余得到哪个表。</p>
+<p><strong>缺点：</strong>存在范围查询跨库问题</p>
+</li>
+<li><p>另一种比较常用的是<strong>按照某一个字段的区间</strong>来拆分，比较常用的是时间字段。</p>
+<p>比如说内容表，按照创建时间进行分片，根据数据量来判断每天一个表或者每个月一个表。在查询时就可以根据创建时间先定位数据存储在哪个表里面，再按照查询条件来查询。</p>
+<p><strong>缺点：</strong>存在明显的热点问题，数据倾斜，例如一般只会关注最近的数据。</p>
+<p><strong>注意事项：</strong>需要提前创建好数据库表，不然没库表可写会发生故障。</p>
+</li>
+</ol>
+<h2 id="容量预估"><a href="#容量预估" class="headerlink" title="容量预估"></a>容量预估</h2><p>分库分表容量确定需要依据两点：你现在有多少数据、你将来有多少数据。所以如果讨论到了容量估算的问题，你就要直接指出核心：<strong>现有数据和增长趋势。</strong></p>
+<ul>
+<li><p>存量数据：存量数据是最好处理的。基本上你只需要简单计算一下就可以得到。</p>
+<blockquote>
+<p>不过并不是所有存量数据都需要进行分库分表，部分不重要的、用不上的、历史悠久的数据，不如直接归档，或者放到大数据平台上。所以你真正需要计算的是那些还需要线上继续查询的数据的量。</p>
+</blockquote>
+</li>
+<li><p>增长趋势：你需要考虑两点，一个是现有<strong>数据增长率（一阶导数）</strong>，另一个是<strong>数据增长率的变化趋势（二阶导数）</strong>。</p>
+<ul>
+<li>数据增长率：数据的增长趋势只需要根据公司的战略规划来就可以（按照业务可能的增长上限3-5年来评估，避免扩容）。比如说今年公司的目标是业务翻倍，那么就可以认为今年数据的增长率是 100%。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>大厂在容量规划的时候都是按照 2 的幂来规划的，比如说 4×2×8 ，或者 8×4×32。而且在扩容的时候，也是按照 2 的幂来进行的。也就是说，基本上扩容都是选择容量翻倍。这其实是因为 2 的特性，在使用哈希取余来进行分库分表的时候，可以使用位运算来计算余数，非常高效。</p>
+</blockquote>
+<h2 id="分库分表引入的问题："><a href="#分库分表引入的问题：" class="headerlink" title="分库分表引入的问题："></a>分库分表引入的问题：</h2><ul>
+<li><p><strong>分布式事务问题：</strong></p>
+<p>需要引入XA、TCC、SAGA等分布式事务解决方案。</p>
+</li>
+<li><p><strong>查询的复杂度问题：</strong></p>
+<p>原先只需要根据查询条件到从库中查询数据即可，现在则需要先确认数据在哪一个库表中，再到那个库表中查询数据。但是可以通过前面提到的<strong>数据库中间件</strong>来解决。</p>
+</li>
+<li><p><strong>分库分表键问题：</strong></p>
+<p>无论是哈希拆分还是区间段的拆分，我们首先都需要选取一个数据库字段，这样之后<strong>所有的查询都需要带上这个字段</strong>，才能找到数据所在的库和表，否则就只能向所有的数据库和数据表发送查询命令。</p>
+<ul>
+<li><p>如果主键Id中可以解析出分表键的话，这种方案是最简单的。</p>
+</li>
+<li><p>如果需要按照别的字段来查询，最合适的解决方案是<strong>建立一个该字段和 ID 的映射表</strong>。在查询的时候要先通过昵称查询到 ID，再通过 ID 查询完整的数据。</p>
+<blockquote>
+<p>一般来说，在设计中间表的时候应该包含尽可能少的列，而且这些列的值应该尽可能不变，会频繁更新的列就不要放了，而且大表存在表结构改变问题。</p>
+</blockquote>
+</li>
+<li><p>二次分库分表：二次分库分表指复制出来一份数据，然后尝试再进行分库分表。所以你的系统里面就会有两份数据，分别按照不同的分库分表规则存储。缺陷就是数据一致性问题，以及数据复制一份需要很多存储空间。</p>
+</li>
+<li><p>使用其他中间件：为了支持复杂多样的查询，可以尝试使用别的中间件，比如说 Elasticsearch。为了减轻 Elasticsearch 的压力，我们选择了只同步部分字段。一些非常庞大的字段，比如说 TEXT 或者 BLOB 本身我们是不会同步过去的。</p>
+</li>
+<li><p>我们还有一些兜底措施，也就是如果一个查询确实没办法使用前面那些方案的时候，那就可以考虑使用广播。也就是说直接把所有的请求发送到所有的候选节点里面，然后收集到的数据就是查询的结果。</p>
+</li>
+</ul>
+<blockquote>
+<p>数据同步问题：在引入中间表、二次分库分表和使用其他中间件三个解决方案里面，都面临一个同样的问题：你怎么进行数据同步？</p>
+<ul>
+<li>双写：就是在写入源数据表的时候，同时写到另外一个地方。这个可以通过改造 ORM 或者分库分表中间件来达成。</li>
+<li>利用 Canal：利用 Canal 之类的框架监听 binlog，然后异步地把数据库同步到其他地方。</li>
+</ul>
+<p>不管是双写，还是监控 binlog，都绕不开失败这个话题。那失败的时候怎么办呢？无非就是各种重试（<strong>Spring-Retry</strong>），在重试都失败之后进行异步修护，如果修护失败就人手工介入处理。</p>
+<p><strong>亮点方案：</strong></p>
+<p>在分库分表之后，为了充分满足不同情况下的查询需求，我们公司综合使用了三种方案：引入中间表、二次分库分表和 Elasticsearch。对于卖家查询来说，我们直接复制了一份数据，按照卖家 ID 分库分表。对于一些复杂的查询来说，就是利用 Elasticsearch。还有一些查询是通过建立中间表来满足，比如说商品 ID 和订单 ID 的映射关系。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20231205111335092.png" alt="image-20231205111335092"></p>
+<p>买家和卖家同时修改订单问题：</p>
+<ul>
+<li>所以类似的场景最好是采用<strong>分布式锁和双写方案</strong>。比如买家修改状态的时候，要先拿到分布式锁，然后同时修改买家库和卖家库。当然，要是覆盖数据也没关系，那么就还是可以继续采用 Canal 的同步方案</li>
+<li>也可以考虑只允许从买家库进去修改数据，也就是说，不允许直接修改卖家库的数据。举个例子，如果卖家想要修改某个订单的数据，那么他需要在卖家库查到订单的信息，但是在修改的时候要拿着订单信息去买家库修改。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>一些数据库的特性在实现时可能变得很困难：</strong></p>
+<ul>
+<li><p>比如说多表的 JOIN 在单库时是可以通过一个 SQL 语句完成的，但是拆分到多个数据库之后就无法跨库执行 SQL 了。</p>
+<p><strong>解决：</strong>可以在业务层去处理先查A库再查B库；使用MyCat、ShardingSphere实现两表跨库join</p>
+</li>
+<li><p>count()问题</p>
+<p><strong>解决：</strong>将计数的数据单独存储在一张表中或者记录在 Redis 里面</p>
+</li>
+<li><p>跨节点分页查询问题</p>
+<p><strong>解决：</strong></p>
+<ul>
+<li>业务端单节点各取n条，之后合并运算取top n；</li>
+<li>禁止跨页查询，通过上一次查询条件来进行where筛除</li>
+<li>或者就同步到es中在es中进行查询</li>
+</ul>
+<blockquote>
+<p>亮点方案：</p>
+<ul>
+<li><p>二次查询：二次查询的基本理念是先尝试<strong>获得某个数据的全局偏移量，然后再根据这个偏移量来计算剩下数据的偏移量</strong>。</p>
+<p>假设你的分库分表总共有 N 个表，查询是 LIMIT X OFFSET Y，步骤如下：</p>
+<ul>
+<li>首先发送查询语句 LIMIT X OFFSET Y/N 到所有的表。</li>
+<li>找到所有返回结果中的最小值（升序），记为 min。</li>
+<li>执行第二次查询，关键是 BETWEEN min AND max。其中 max 是在第一次查询的数据中每个表各自的最大值。</li>
+<li>根据 min、第一次查询和第二次查询的值来确定 min 的全局偏移量。总的来说，min 在某个表里面的偏移量这样计算：如果第二次查询比第一次查询多了 K 条数据，那么偏移量就是 Y 除以 N 减去 K。然后把所有表的偏移量加在一起，得到的就是 min 的全局偏移量。</li>
+<li>根据 min 的全局偏移量，在第二次查询的结果里面向后补足到 Y，得到第一条数据的位置，再取 X 条。</li>
+</ul>
+</li>
+<li><p>引入中间表：引入中间表的意思是额外存储一份数据，只用来排序。这个方案里面就是在中间表里<strong>加上排序相关的列</strong>。</p>
+<p>缺点：</p>
+<ul>
+<li><p>这个方案有两个明显的缺陷，一个是 WHERE 也只能使用中间表上的列；另外一个是维护中间表也会引入数据一致性的问题。</p>
+<ul>
+<li><p>对于一致性问题：</p>
+<p>比较简单的做法就是业务保持双写，也就是写入目标表也写入中间表。不过这里我更加建议使用 <strong>Canal</strong> 之类的框架来监听 binlog，异步更新中间表。这样做的好处是业务完全没有感知，没有什么改造成本。更新的时候可以考虑引入重试机制，进一步降低失败的几率。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>唯一主键生成问题：</strong></p>
+<p>当我们分库分表之后，同一个逻辑表的数据被分布到多个库中，这时如果使用数据库自增字段作为主键，那么只能保证在这个库中是唯一的，无法保证全局的唯一性。</p>
+<blockquote>
+<ul>
+<li><p>uuid：</p>
+<ul>
+<li><strong>UUID 不是递增的</strong>：<ul>
+<li>因为这样可以迫使数据库的树朝着一个方向增长，而不会造成中间叶节点分裂，这样插入性能最好。随机会引起更加频繁地页分裂，在糟糕的情况下，这种分裂可能引起连锁反应，整棵树的树形结构都会受到影响。</li>
+<li>顺序读问题：自增主键还有一个好处，就是数据会有更大的概率按照主键的大小排序，两条主键相近的记录，在磁盘上位置也是相近的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>设置步长递增：</p>
+<p>例如：经过分库分表之后我有十个表，那么我可以让每一个表按照步长来生成自增 ID。比如说第一个表就是生成 1、11、21、31 这种 ID，第二个表就是生成 2、12、22、32 这种 ID。</p>
+<p>ID 虽然并不一定是全局递增的，但是在一个表内部，它肯定是递增的。这个方案的性能基本取决于数据库性能，应用层面上也不需要关注。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>解决：</strong></p>
+<ul>
+<li><p>基于 Snowflake 算法</p>
+<p>Snowflake 的核心思想是将 64bit 的二进制数字分成若干部分，每一部分都存储有特定含义的数据，比如说时间戳、机器 ID、序列号等等，最终生成全局唯一的有序 ID。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230424151618698.png" alt="image-20230424151618698"></p>
+<p>有些时候还可以缩短序列号，加入一些业务ID字段；又或者进一步切割，机器 ID 前半部分表示机器，后半部分可以表示这个机器上用于产生 ID 的进程、线程或者协程。</p>
+<blockquote>
+<p>注意嵌入业务代码带来的问题：</p>
+<ul>
+<li><p>无法保证全局递增，但是性能比完全随机好</p>
+</li>
+<li><p>产生一样 ID 的概率不是没有，而是极低。它要求同一个用户在同一时刻创建了两个订单，然后订单 ID 的随机数部分一模一样，这是一个很低的概率。</p>
+<p>解决方案其实也很简单，就是在插入数据的时候，如果返回了主键冲突错误，那么重新产生一个，再次尝试就可以了。</p>
+</li>
+</ul>
+</blockquote>
+<p>实现方式：</p>
+<ul>
+<li>一种是嵌入到业务代码里，也就是分布在业务服务器中</li>
+<li>另外一个部署方式是作为独立的服务部署，这也就是我们常说的发号器服务。</li>
+</ul>
+<blockquote>
+<p>可以利用提前批量取并缓存TLB中来优化发号器。</p>
+</blockquote>
+<p>问题：</p>
+<ul>
+<li><p>依赖于时间戳，一旦系统时间不准，就有可能生成重复的 ID，时间回拨问题。</p>
+<p>发现系统时钟不准，就可以让发号器暂时拒绝发号，直到时钟准确为止</p>
+</li>
+<li><p>如果请求发号器的 QPS 不高，比如说发号器每毫秒只发一个 ID，就会造成生成 ID 的末位永远是 1，那么在分库分表时如果使用 ID 作为分区键就会造成库表分配的不均匀。</p>
+<ol>
+<li>时间戳不记录毫秒而是记录秒，这样在一个时间区间里可以多发出几个号。</li>
+<li>生成的序列号的起始号可以做一下随机。</li>
+</ol>
+</li>
+<li><p>并发很高，序列号不够用：</p>
+<ol>
+<li>如果 12 比特不够，你就给更多比特，这部分比特可以从时间戳里面拿出来</li>
+<li>如果还不够，那么就让业务方等待一下，到下一个时刻，自然又可以生成新的 ID 了，也就是时间戳变了，这也是一种变相的限流。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>其他唯一主键方案：</p>
+<ul>
+<li>百度开源的UidGenerator（仅支持单机部署）使用Snowflake算法，单机QPS可达600万。</li>
+<li>美团Leaf（分布式ID生成系统），QPS近5万。</li>
+<li>微信序列号生成器</li>
+</ul>
+</blockquote>
+</li>
+<li><p>扩容问题：</p>
+<ul>
+<li>范围分表容易扩容，但存在尾部热点问题</li>
+<li>Hash分表极难扩容，建议改为一致性Hash，但迁移难度较大</li>
+</ul>
+</li>
+<li><p>访问查询问题：例如对于以uid为hash进行分库后，如果需要按照username来查询就会遇到不知道去哪个库的问题。</p>
+<ul>
+<li>基因法：会改变uid生成的策略，会对username进行md5加密取最后两位，uid的生成策略就是前62位随机生成+上面的两位组成（不一定是两位，看有几台数据库2的次方）。<ul>
+<li>优点：性能极好，不用额外查询便可快捷分表查询。</li>
+<li>缺点：<ul>
+<li>建议2(1)/4(2)/8(3)/16(4)数据库节点，提前规划不具备迁移条件</li>
+<li>主键生成器算法要求更高，如62+2全局唯一</li>
+<li>只能由1个非主键字段与之主键对应</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>倒排索引：生成Redis倒排索引，key为需要查询的<code>关键字:值</code>，value为<code>uid,服务器编号</code><ul>
+<li>优点：最通用的分库分表检索方案，几乎适用于所有系统。</li>
+<li>缺点：<ul>
+<li>控制不好数据量爆炸，对Redis内存需求量大（如果SSD性能好，也可使用InnoDB表替代)</li>
+<li>需要手动维护数据库与缓存间的一致性，存在软状态</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>当然，虽然分库分表会对我们使用数据库带来一些不便，但是相比它所带来的扩展性和性能方面的提升，我们还是需要做的。</p>
+<p>所以总结了下面分库分表的原则：</p>
+<ol>
+<li><p>如果在性能上没有瓶颈点那么就尽量不做分库分表；</p>
+</li>
+<li><p>如果要做，就尽量一次到位，比如说 16 库，每个库 64 表就基本能够满足几年内你的业务的需求。</p>
+</li>
+<li><p>如果更加熟悉 NoSQL 数据库，那么也可以考虑使用这些 NoSQL 数据库替代传统的关系型数据库。</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/12/22/MySQL%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">http://example.com/2023/12/22/MySQL%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a><a class="post-meta__tags" href="/tags/MySQL%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/">MySQL分库分表</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/27/%E5%88%A9%E7%94%A8NoSQL%E4%BC%98%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93/"><img class="prev-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/firmbee-com-DfMMzzi3rmg-unsplash.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">利用NoSQL优化数据库</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/19/MySQL%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL读写分离</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/14/CDN静态资源加速/" title="CDN静态资源加速"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-14</div><div class="title">CDN静态资源加速</div></div></a></div><div><a href="/2023/12/27/利用NoSQL优化数据库/" title="利用NoSQL优化数据库"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/firmbee-com-DfMMzzi3rmg-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-27</div><div class="title">利用NoSQL优化数据库</div></div></a></div><div><a href="/2023/12/19/MySQL读写分离/" title="MySQL读写分离"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">MySQL读写分离</div></div></a></div><div><a href="/2024/01/06/缓存概述/" title="缓存概述"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-06</div><div class="title">缓存概述</div></div></a></div><div><a href="/2024/01/18/消息队列延迟问题/" title="消息队列延迟问题"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog47.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-18</div><div class="title">消息队列延迟问题</div></div></a></div><div><a href="/2024/01/11/缓存的读写策略/" title="缓存的读写策略"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-11</div><div class="title">缓存的读写策略</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">分库分表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E6%8B%86%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text">垂直拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E6%8B%86%E5%88%86"><span class="toc-number">1.2.</span> <span class="toc-text">水平拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E9%87%8F%E9%A2%84%E4%BC%B0"><span class="toc-number">1.3.</span> <span class="toc-text">容量预估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%BC%95%E5%85%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">分库分表引入的问题：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/26/dubbo/" title="dubbo"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dubbo"/></a><div class="content"><a class="title" href="/2024/01/26/dubbo/" title="dubbo">dubbo</a><time datetime="2024-01-26T01:51:39.000Z" title="发表于 2024-01-26 09:51:39">2024-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高并发系统分布式服务方案"/></a><div class="content"><a class="title" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案">高并发系统分布式服务方案</a><time datetime="2024-01-22T08:07:40.000Z" title="发表于 2024-01-22 16:07:40">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog47.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="消息队列延迟问题"/></a><div class="content"><a class="title" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题">消息队列延迟问题</a><time datetime="2024-01-18T01:54:10.000Z" title="发表于 2024-01-18 09:54:10">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CDN静态资源加速"/></a><div class="content"><a class="title" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速">CDN静态资源加速</a><time datetime="2024-01-14T02:11:34.000Z" title="发表于 2024-01-14 10:11:34">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="缓存的读写策略"/></a><div class="content"><a class="title" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略">缓存的读写策略</a><time datetime="2024-01-11T04:33:01.000Z" title="发表于 2024-01-11 12:33:01">2024-01-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  target="_blank" rel="noopener" href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>

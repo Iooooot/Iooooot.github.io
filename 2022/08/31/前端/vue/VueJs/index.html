@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VueJs | goMars的学习随记</title><meta name="keywords" content="vue"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Vuejs基础Vue (是一套用于构建用户界面的浙进式框架。与其它大型框架不同的是，Vue被设计为可以白底向上逐层应用。Vue的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工贝链以及各种支持类库结合使用时，Vue也完全能够为复杂的单页应用提供驱动。 Vue初体验123456789101112131415161718192021222324252627&amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueJs">
+<meta property="og:url" content="http://example.com/2022/08/31/%E5%89%8D%E7%AB%AF/vue/VueJs/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="Vuejs基础Vue (是一套用于构建用户界面的浙进式框架。与其它大型框架不同的是，Vue被设计为可以白底向上逐层应用。Vue的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工贝链以及各种支持类库结合使用时，Vue也完全能够为复杂的单页应用提供驱动。 Vue初体验123456789101112131415161718192021222324252627&amp;l">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/nathan-fertig-FBXuXp57eM0-unsplash.jpg">
+<meta property="article:published_time" content="2022-08-31T06:41:39.000Z">
+<meta property="article:modified_time" content="2023-04-22T01:17:17.168Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/nathan-fertig-FBXuXp57eM0-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="http://example.com/2022/08/31/%E5%89%8D%E7%AB%AF/vue/VueJs/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"0EM01UMIDP","apiKey":"8f6a2bd8d9b6c8e2b5bdc233c586d096","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-22 09:17:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/nathan-fertig-FBXuXp57eM0-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">VueJs</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-31T06:41:39.000Z" title="发表于 2022-08-31 14:41:39">2022-08-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-22T01:17:17.168Z" title="更新于 2023-04-22 09:17:17">2023-04-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/Vue/">Vue</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Vuejs基础"><a href="#Vuejs基础" class="headerlink" title="Vuejs基础"></a>Vuejs基础</h1><p>Vue (是一套用于构建用户界面的浙进式框架。与其它大型框架不同的是，Vue被设计为可以白底向上逐层应用。Vue的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工贝链以及各种支持类库结合使用时，Vue也完全能够为复杂的单页应用提供驱动。</p>
+<h3 id="Vue初体验"><a href="#Vue初体验" class="headerlink" title="Vue初体验"></a>Vue初体验</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>初体验<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123;message&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;item in movies&quot;</span>&gt;</span></span><br><span class="line">                &#123;&#123;item&#125;&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">                el:<span class="string">&#x27;#app&#x27;</span>,<span class="comment">//用于挂载要管理的元素</span></span></span><br><span class="line"><span class="javascript">                data:&#123; <span class="comment">//定义数据</span></span></span><br><span class="line"><span class="javascript">                    message:<span class="string">&#x27;你好啊&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                    movies:[<span class="string">&#x27;少年派&#x27;</span>,<span class="string">&#x27;星际穿越&#x27;</span>]</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Vue中的MVVM"><a href="#Vue中的MVVM" class="headerlink" title="Vue中的MVVM"></a>Vue中的MVVM</h3><h4 id="MVVM的概念"><a href="#MVVM的概念" class="headerlink" title="MVVM的概念"></a>MVVM的概念</h4><p>​    MVVM是Model-View-ViewModel的简写。它本质上就是MVC 的改进版。MVVM 就是将其中的View 的状态和行为抽象化，让我们将视图 UI 和业务逻辑分开。</p>
+<h4 id="Vue中MVVM："><a href="#Vue中MVVM：" class="headerlink" title="Vue中MVVM："></a>Vue中MVVM：</h4><p>通过ViewModel将view和model分隔。ViewModel的主要作用：</p>
+<ol>
+<li>将model生成的数据与view进行绑定，并且对model中的数据进行实时监听保证view中的数据最新。</li>
+<li>对view的DOM进行监听，如果发生某个事件会调用model中相应的回调。</li>
+</ol>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220626183439079.png" style="zoom:67%;" />
+
+<h3 id="Vue实例中的基本选项"><a href="#Vue实例中的基本选项" class="headerlink" title="Vue实例中的基本选项"></a>Vue实例中的基本选项</h3><ul>
+<li><p>el：</p>
+<ul>
+<li>类型：string|HTMLElement</li>
+<li>作用：Vue实例管理的DOM</li>
+</ul>
+</li>
+<li><p>data：</p>
+<ul>
+<li>类型：Object|Function</li>
+<li>作用：Vue实例对应的数据对象</li>
+</ul>
+</li>
+<li><p>methods：</p>
+<ul>
+<li>类型：[key:string]：Function</li>
+<li>作用：定义属于Vue的一些方法，可以在其他地方调用，也可以在指令中使用。</li>
+</ul>
+</li>
+<li><p>生命周期函数：</p>
+<ul>
+<li>类型：如beforeCreate: function(){}等….(详细如下<a href="#jump1">Vue生命周期</a>介绍)</li>
+</ul>
+</li>
+<li><p>computed（计算属性）：</p>
+<ul>
+<li>类型：[key:string]：function(){}</li>
+<li>作用：将属性进行加工处理，并返回</li>
+<li>使用：<code>&lt;span&gt;&#123;&#123;fullName&#125;&#125;&lt;/span&gt;</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;  <span class="comment">//计算属性</span></span><br><span class="line">  	<span class="comment">// 完整写法</span></span><br><span class="line">  	fullName:&#123;</span><br><span class="line">      <span class="function"><span class="title">get</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      	<span class="keyword">return</span> <span class="built_in">this</span>.firstName + <span class="string">&#x27;-&#x27;</span> + <span class="built_in">this</span>.lastName;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="function"><span class="title">set</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">      	<span class="built_in">console</span>.log(<span class="string">&quot;fullName被人修改了哦!!&quot;</span>);</span><br><span class="line">      	<span class="keyword">const</span> arr = value.split(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">      	<span class="built_in">this</span>.firstName = arr[<span class="number">0</span>];</span><br><span class="line">        <span class="built_in">this</span>.lastName = arr[<span class="number">1</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//只有考虑读取才能使用这个简写</span></span><br><span class="line">    <span class="function"><span class="title">fullName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.firstName + <span class="string">&#x27;-&#x27;</span> + <span class="built_in">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>filters(过滤器)：</p>
+<ul>
+<li>类型：key:string(value){}</li>
+<li>作用：将数据进行过滤并返回过滤后的结果</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明</span></span><br><span class="line">filters:&#123;</span><br><span class="line">    <span class="function"><span class="title">timeFormater</span>(<span class="params">value,str</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dayjs(value).format(str)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line">&lt;h3&gt;现在是:&#123;&#123;time | timeFormater(<span class="string">&#x27;YYYY-MM-DD HH:mm:ss&#x27;</span>)&#125;&#125;&lt;/h3&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>watch(属性监视)：</p>
+<ul>
+<li>类型：key(newValue,oldValue):{}</li>
+<li>作用：监视属性的变化</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123; <span class="comment">//同样可以检测普通属性和计算属性</span></span><br><span class="line">    <span class="comment">// isHot:&#123;</span></span><br><span class="line">    <span class="comment">//     deep:true, //深度监视 监视多级结构中所有属性的变化</span></span><br><span class="line">    <span class="comment">//     immediate:true, //初始化时调用一下</span></span><br><span class="line">    <span class="comment">//     handler(newValue,oldValue)&#123;//当isHot发生变化时调用</span></span><br><span class="line">    <span class="comment">//         console.log(&quot;天气发生变化&quot;+oldValue+newValue);</span></span><br><span class="line">    <span class="comment">//     &#125;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// 只需要handler时可以简写</span></span><br><span class="line">    <span class="function"><span class="title">isHot</span>(<span class="params">newValue,oldValue</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;天气发生变化&quot;</span>+oldValue+newValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;   </span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 写法2 </span></span><br><span class="line">vm.$watch(<span class="string">&#x27;isHot&#x27;</span>,&#123;</span><br><span class="line">    immediate:<span class="literal">true</span>, <span class="comment">//初始化时调用一下</span></span><br><span class="line">    <span class="function"><span class="title">handler</span>(<span class="params">newValue,oldValue</span>)</span>&#123;<span class="comment">//当isHot发生变化时调用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<blockquote>
+<p>其余可以参考<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D%AE">官方网站</a></p>
+</blockquote>
+<h3 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a><span id="jump1">Vue生命周期</span></h3><blockquote>
+<p>Vue官方生命周期图例：</p>
+</blockquote>
+<img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20220626190200058.png" style="zoom:67%;" />
+
+<h4 id="Vue各个生命周期阶段介绍："><a href="#Vue各个生命周期阶段介绍：" class="headerlink" title="Vue各个生命周期阶段介绍："></a>Vue各个生命周期阶段介绍：</h4><ol>
+<li>beforeCreate：刚刚初始化事件但数据代理还未开始时，并且无法通过vm访问到data中的数据和methods中的方法</li>
+<li>created：完成数据检测和数据代理之后调用，并且可以通过vm访问到data中的数据和methods中的方法</li>
+<li>beforeMount：在Vue解析模板并生成虚拟DOM但还不能显示解析好的内容后调用，页面呈现的是未经Vue编译的DOM,对DOM的操作最终会失效</li>
+<li>mounted：Vue完成模板的解析并把初试真实DOM元素放入页面后（挂载完毕），页面中呈现的是经过Vue编译的DOM</li>
+<li>beforeUpdate：当更新数据时，重新解析模板之前调用，数据是新的页面是旧的</li>
+<li>updated：当模板解析页面与数据同步之后调用，Vue会生成新的虚拟DOM随后与旧的DOM进行比较完成更新页面渲染</li>
+<li>beforeDestroy：调用Vue.$destory()会完全销毁一个实例，清除它与其他实例的链接,解绑它的全部指令和事件监听器，在摧毁之前调用data、methods都可用,但是对数据的更新之后将不会触发更新了</li>
+<li>destroyed：Vue完成销毁之后调用</li>
+</ol>
+<h3 id="Vue指令"><a href="#Vue指令" class="headerlink" title="Vue指令"></a>Vue指令</h3><h4 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h4><ul>
+<li><p>v-once：只会动态渲染一次，动态渲染以后就是静态资源了</p>
+</li>
+<li><p>v-clock：标识延迟加载的标签，如果vue加载完毕后就关闭</p>
+</li>
+<li><p>v-html：用于嵌入html代码</p>
+</li>
+<li><p>v-pre：直接静态渲染不进行解析加快编译</p>
+</li>
+<li><p>v-text：往标签中写入文本数据</p>
+</li>
+<li><p>v-bind：动态绑定属性（可以绑定href、src、class、style等）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">&quot;imgURL&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">&quot;imgURL&quot;</span>&gt;</span>  <span class="comment">&lt;!-- 简写 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 动态添加类名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">&quot;&#123;active:isActive&#125;&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">&quot;[&#x27;a&#x27;,&#x27;b&#x27;]&quot;</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="comment">&lt;!-- 数组语法 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 动态绑定样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">&quot;&#123;fontSize: fsize+&#x27;px&#x27;&#125;&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">&quot;styleObj&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>v-for：用于遍历</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 遍历数组--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(p,index) in persons&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;p.id&quot;</span>&gt;</span><span class="comment">&lt;!-- p为元素，index为索引 添加key提高DOM渲染的效率--&gt;</span></span><br><span class="line">        &#123;&#123;index+1&#125;&#125;:&#123;&#123;p.name&#125;&#125;-&#123;&#123;p.age&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span>      </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 遍历对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(value,key,index) in person&quot;</span>&gt;</span><span class="comment">&lt;!-- value为对象属性值，key为对象属性名 index为索引--&gt;</span></span><br><span class="line">        &#123;&#123;index+1&#125;&#125;:&#123;&#123;key&#125;&#125;-&#123;&#123;value&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span>      </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>v-on:事件：绑定事件(简写为@)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=<span class="string">&quot;root&quot;</span>&gt;</span><br><span class="line">        &lt;h2&gt;欢迎来到&#123;&#123;name&#125;&#125;学习&lt;/h2&gt;</span><br><span class="line">        &lt;button v-on:click=<span class="string">&quot;showInfo1&quot;</span>&gt;点我提示信息&lt;/button&gt;</span><br><span class="line">        &lt;button @click=<span class="string">&quot;showInfo2($event,66)&quot;</span>&gt;点我提示信息&lt;/button&gt;</span><br><span class="line">        &lt;!-- keyup事件后面加哪个键</span><br><span class="line">            回车：enter</span><br><span class="line">            删除：<span class="keyword">delete</span></span><br><span class="line">            退出：esc</span><br><span class="line">            空格：space</span><br><span class="line">            换行：tab（特殊需要配合keydown如：ctrl,alt,shift,meta）</span><br><span class="line">            上：up</span><br><span class="line">            下：down</span><br><span class="line">            左：left</span><br><span class="line">            右：right</span><br><span class="line">        --&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;按下回车提示输入&quot;</span> @keyup.enter=<span class="string">&quot;showInfo&quot;</span>&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">        Vue.config.productionTip = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">            el:<span class="string">&#x27;#root&#x27;</span>,</span><br><span class="line">            <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>&#123;</span><br><span class="line">                    name:<span class="string">&#x27;我家&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            methods:&#123;</span><br><span class="line">                <span class="function"><span class="title">showInfo1</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(event.target.innerText);</span><br><span class="line">                    alert(<span class="string">&quot;你好啊1~&quot;</span>);</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="function"><span class="title">showInfo2</span>(<span class="params">event,number</span>)</span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(event);</span><br><span class="line">                    <span class="built_in">console</span>.log(number);</span><br><span class="line">                    alert(<span class="string">&quot;你好啊2~&quot;</span>+number);</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="function"><span class="title">showInfo</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">                    <span class="comment">// if(event.keyCode !== 13) return  </span></span><br><span class="line">                    <span class="built_in">console</span>.log(event.target.value);</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>并且还有可以在事件后面添加修饰符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- <span class="number">1.</span>prevent阻止跳转</span><br><span class="line">            <span class="number">2.</span>stop阻止事件冒泡(事件向上传递)</span><br><span class="line">            <span class="number">3.</span>once事件只触发一次</span><br><span class="line">            <span class="number">4.</span>capture使用事件的捕获模式(以由外向内执行事件)</span><br><span class="line">            <span class="number">5.</span>self只有event.target是当前操作的元素才会触发事件</span><br><span class="line">            <span class="number">6.</span>passive事件的默认行为立即执行，无需等待事件回调执行完毕</span><br><span class="line">       --&gt;</span><br><span class="line">       &lt;a href=<span class="string">&quot;http://www.baidu.com&quot;</span> @click.prevent=<span class="string">&quot;showInfo&quot;</span>&gt;点击超链接咯&lt;/a&gt;</span><br><span class="line">       &lt;div @click=<span class="string">&quot;showInfo&quot;</span>&gt;</span><br><span class="line">           &lt;button @click.stop=<span class="string">&quot;showInfo&quot;</span>&gt;点我提示信息&lt;/button&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">       &lt;button @click.once=<span class="string">&quot;showInfo&quot;</span>&gt;点我提示信息&lt;/button&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>v-if/v-else-if/v-else：判断是否满足条件，不满足则不会渲染该元素及其子元素</p>
+</li>
+<li><p>v-show：判断是否满足条件进行隐藏展示,适合多次频繁切换</p>
+</li>
+<li><p>v-model：进行表单数据的双向绑定 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- v-model结合radio --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">value</span>=<span class="string">&quot;男&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;sex&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- v-model结合checkbox --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;篮球&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;hobbies&quot;</span>&gt;</span>篮球</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;足球&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;hobbies&quot;</span>&gt;</span>足球</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;乒乓球&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;hobbies&quot;</span>&gt;</span>乒乓球</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;羽毛球&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;hobbies&quot;</span>&gt;</span>羽毛球</span><br><span class="line"><span class="comment">&lt;!-- v-model结合select --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span>=<span class="string">&quot;city&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>请选择校区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;beijing&quot;</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;shenzhen&quot;</span>&gt;</span>深圳<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;wuhan&quot;</span>&gt;</span>武汉<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>修饰符：</p>
+<ul>
+<li>lazy：可以让数据在失去焦点或者回车时才会更新</li>
+<li>number：可以让在输入的内容自动转成数字类型</li>
+<li>trim：可以过滤左右两边的空格</li>
+</ul>
+</li>
+</ul>
+<h4 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h4><p>有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--使用自定义指令 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>放大后的n值是:<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-big</span>=<span class="string">&quot;n&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-fbind:value</span>=<span class="string">&quot;n&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--定义指令 --&gt;</span></span><br><span class="line">directives:&#123;</span><br><span class="line">	big(element,binding)&#123; //简写方式只会在 bind 和 update 时触发相同行为</span><br><span class="line">		element.innerText = binding.value*10</span><br><span class="line">	&#125;,</span><br><span class="line">	fbind:&#123;</span><br><span class="line">        //指令和元素成功绑定时</span><br><span class="line">        bind(element,binding)&#123;</span><br><span class="line">        	element.value = binding.value;</span><br><span class="line">		&#125;,</span><br><span class="line">        //指令所在元素被插入页面时</span><br><span class="line">        insert(element,binding)&#123;</span><br><span class="line">            element.focus();  </span><br><span class="line">        &#125;,</span><br><span class="line">        //指令所在的模板被重新解析时</span><br><span class="line">        update(element,binding)&#123;</span><br><span class="line">            element.value = binding.value;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="相关的钩子函数"><a href="#相关的钩子函数" class="headerlink" title="相关的钩子函数"></a>相关的钩子函数</h5><ul>
+<li><p><code>bind</code>：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。</p>
+</li>
+<li><p><code>inserted</code>：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。</p>
+</li>
+<li><p><code>update</code>：所在组件的 VNode 更新时调用，<strong>但是可能发生在其子 VNode 更新之前</strong>。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。</p>
+</li>
+<li><p><code>componentUpdated</code>：指令所在组件的 VNode <strong>及其子 VNode</strong> 全部更新后调用。</p>
+</li>
+<li><p><code>unbind</code>：只调用一次，指令与元素解绑时调用。</p>
+</li>
+</ul>
+<h5 id="钩子函数参数"><a href="#钩子函数参数" class="headerlink" title="钩子函数参数"></a>钩子函数参数</h5><p>指令钩子函数会被传入以下参数：</p>
+<ul>
+<li><code>el</code>：指令所绑定的元素，可以用来直接操作 DOM。</li>
+<li><code>binding</code>：一个对象，包含以下 property：<ul>
+<li><code>name</code>：指令名，不包括 <code>v-</code> 前缀。</li>
+<li><code>value</code>：指令的绑定值。</li>
+<li><code>oldValue</code>：指令绑定的前一个值，仅在 <strong>update</strong>和 <strong>componentUpdated</strong> 钩子中可用。无论值是否改变都可用。</li>
+<li><code>expression</code>：字符串形式的指令表达式。</li>
+<li><code>arg</code>：传给指令的参数，可选。例如 <code>v-my-directive:foo</code> 中，参数为 <code>&quot;foo&quot;</code>。</li>
+<li><code>modifiers</code>：一个包含修饰符的对象。例如：<code>v-my-directive.foo.bar</code> 中，修饰符对象为 <code>&#123; foo: true, bar: true &#125;</code>。</li>
+</ul>
+</li>
+<li><code>vnode</code>：Vue 编译生成的虚拟节点。</li>
+<li><code>oldVnode</code>：上一个虚拟节点，仅在 <strong>update</strong>和 <strong>componentUpdated</strong> 钩子中可用。</li>
+</ul>
+<blockquote>
+<p>除了 <code>el</code> 之外，其它参数都应该是只读的，切勿进行修改。</p>
+</blockquote>
+<h5 id="动态指令参数"><a href="#动态指令参数" class="headerlink" title="动态指令参数"></a>动态指令参数</h5><p>指令的参数可以是动态的。例如，在 <code>v-mydirective:[argument]=&quot;value&quot;</code> 中，<code>argument</code> 参数可以根据组件实例数据进行更新！并且可以通过<code>binding.arg</code>获取</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/08/31/%E5%89%8D%E7%AB%AF/vue/VueJs/">http://example.com/2022/08/31/%E5%89%8D%E7%AB%AF/vue/VueJs/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/vue/">vue</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/nathan-fertig-FBXuXp57eM0-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/09/01/%E5%89%8D%E7%AB%AF/vue/vue%E7%BB%84%E4%BB%B6%E5%8C%96/"><img class="prev-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">vue组件化</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/26/%E5%89%8D%E7%AB%AF/mock/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog58.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">mock</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/09/04/前端/vue/VueCLI/" title="VueCLI"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/luke-chesser-a2NRu2Wxa2o-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-04</div><div class="title">VueCLI</div></div></a></div><div><a href="/2022/09/13/前端/vue/Vuex/" title="Vuex"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/christopher-gower-vjMgqUkS8q8-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-13</div><div class="title">Vuex</div></div></a></div><div><a href="/2022/09/09/前端/vue/Vue响应式方法/" title="Vue响应式方法"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/hello-i-m-nik-z1d-LP8sjuI-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-09</div><div class="title">Vue响应式方法</div></div></a></div><div><a href="/2022/09/10/前端/vue/Vue异步请求/" title="Vue异步请求"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/kevin-bhagat-zNRITe8NPqY-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-10</div><div class="title">Vue异步请求</div></div></a></div><div><a href="/2022/09/11/前端/vue/vue-Router/" title="vue_Router"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/fabian-irsara-67l-QujB14w-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-11</div><div class="title">vue_Router</div></div></a></div><div><a href="/2022/09/07/前端/vue/vue实现动画/" title="vue实现动画"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/jens-kreuter-6d3rldyNBmM-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-07</div><div class="title">vue实现动画</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">224</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">108</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">53</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vuejs%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">Vuejs基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-number">1.0.1.</span> <span class="toc-text">Vue初体验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E4%B8%AD%E7%9A%84MVVM"><span class="toc-number">1.0.2.</span> <span class="toc-text">Vue中的MVVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MVVM%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">MVVM的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue%E4%B8%ADMVVM%EF%BC%9A"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">Vue中MVVM：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E5%AE%9E%E4%BE%8B%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%80%89%E9%A1%B9"><span class="toc-number">1.0.3.</span> <span class="toc-text">Vue实例中的基本选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.0.4.</span> <span class="toc-text">Vue生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue%E5%90%84%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%98%B6%E6%AE%B5%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-number">1.0.4.1.</span> <span class="toc-text">Vue各个生命周期阶段介绍：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E6%8C%87%E4%BB%A4"><span class="toc-number">1.0.5.</span> <span class="toc-text">Vue指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%8C%87%E4%BB%A4"><span class="toc-number">1.0.5.1.</span> <span class="toc-text">内置指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"><span class="toc-number">1.0.5.2.</span> <span class="toc-text">自定义指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E7%9A%84%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="toc-number">1.0.5.2.1.</span> <span class="toc-text">相关的钩子函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="toc-number">1.0.5.2.2.</span> <span class="toc-text">钩子函数参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%8C%87%E4%BB%A4%E5%8F%82%E6%95%B0"><span class="toc-number">1.0.5.2.3.</span> <span class="toc-text">动态指令参数</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/26/dubbo/" title="dubbo"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dubbo"/></a><div class="content"><a class="title" href="/2024/01/26/dubbo/" title="dubbo">dubbo</a><time datetime="2024-01-26T01:51:39.000Z" title="发表于 2024-01-26 09:51:39">2024-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高并发系统分布式服务方案"/></a><div class="content"><a class="title" href="/2024/01/22/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1%E6%96%B9%E6%A1%88/" title="高并发系统分布式服务方案">高并发系统分布式服务方案</a><time datetime="2024-01-22T08:07:40.000Z" title="发表于 2024-01-22 16:07:40">2024-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog47.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="消息队列延迟问题"/></a><div class="content"><a class="title" href="/2024/01/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/" title="消息队列延迟问题">消息队列延迟问题</a><time datetime="2024-01-18T01:54:10.000Z" title="发表于 2024-01-18 09:54:10">2024-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CDN静态资源加速"/></a><div class="content"><a class="title" href="/2024/01/14/CDN%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F/" title="CDN静态资源加速">CDN静态资源加速</a><time datetime="2024-01-14T02:11:34.000Z" title="发表于 2024-01-14 10:11:34">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="缓存的读写策略"/></a><div class="content"><a class="title" href="/2024/01/11/%E7%BC%93%E5%AD%98%E7%9A%84%E8%AF%BB%E5%86%99%E7%AD%96%E7%95%A5/" title="缓存的读写策略">缓存的读写策略</a><time datetime="2024-01-11T04:33:01.000Z" title="发表于 2024-01-11 12:33:01">2024-01-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/nathan-fertig-FBXuXp57eM0-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  target="_blank" rel="noopener" href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
