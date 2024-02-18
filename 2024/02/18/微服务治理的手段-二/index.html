@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>微服务治理的手段(二) | goMars的学习随记</title><meta name="keywords" content="微服务 服务治理"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="微服务治理的手段(二)服务容错常用的手段主要有以下几种。  FailOver：失败自动切换。就是服务消费者发现调用失败或者超时后，自动从可用的服务节点列表总选择下一个节点重新发起调用，也可以设置重试的次数。这种策略要求服务调用的操作必须是幂等的，也就是说无论调用多少次，只要是同一个调用，返回的结果都是相同的，一般适合服务调用是读请求的场景。 FailBack：失败通知。就是服务消费者调用失败或者超">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务治理的手段(二)">
+<meta property="og:url" content="https://iooooot.github.io/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="微服务治理的手段(二)服务容错常用的手段主要有以下几种。  FailOver：失败自动切换。就是服务消费者发现调用失败或者超时后，自动从可用的服务节点列表总选择下一个节点重新发起调用，也可以设置重试的次数。这种策略要求服务调用的操作必须是幂等的，也就是说无论调用多少次，只要是同一个调用，返回的结果都是相同的，一般适合服务调用是读请求的场景。 FailBack：失败通知。就是服务消费者调用失败或者超">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg">
+<meta property="article:published_time" content="2024-02-18T03:06:09.000Z">
+<meta property="article:modified_time" content="2024-02-18T03:08:16.969Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="服务治理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="https://iooooot.github.io/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"0EM01UMIDP","apiKey":"8f6a2bd8d9b6c8e2b5bdc233c586d096","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-18 11:08:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">228</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">111</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">微服务治理的手段(二)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-18T03:06:09.000Z" title="发表于 2024-02-18 11:06:09">2024-02-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-18T03:08:16.969Z" title="更新于 2024-02-18 11:08:16">2024-02-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="微服务治理的手段-二"><a href="#微服务治理的手段-二" class="headerlink" title="微服务治理的手段(二)"></a>微服务治理的手段(二)</h1><h2 id="服务容错"><a href="#服务容错" class="headerlink" title="服务容错"></a>服务容错</h2><h3 id="常用的手段"><a href="#常用的手段" class="headerlink" title="常用的手段"></a>常用的手段</h3><p>主要有以下几种。</p>
+<ul>
+<li><strong>FailOver：</strong>失败自动切换。就是服务消费者发现调用失败或者超时后，自动从可用的服务节点列表总选择下一个节点重新发起调用，也可以设置重试的次数。这种策略要求服务调用的操作必须是幂等的，也就是说无论调用多少次，只要是同一个调用，返回的结果都是相同的，一般适合服务调用是读请求的场景。</li>
+<li><strong>FailBack：</strong>失败通知。就是服务消费者调用失败或者超时后，不再重试，而是根据失败的详细信息，来决定后续的执行策略。比如对于非幂等的调用场景，如果调用失败后，不能简单地重试，而是应该查询服务端的状态，看调用到底是否实际生效，如果已经生效了就不能再重试了；如果没有生效可以再发起一次调用。</li>
+<li><strong>FailCache：</strong>失败缓存。就是服务消费者调用失败或者超时后，不立即发起重试，而是隔一段时间后再次尝试发起调用。比如后端服务可能一段时间内都有问题，如果立即发起重试，可能会加剧问题，反而不利于后端服务的恢复。如果隔一段时间待后端节点恢复后，再次发起调用效果会更好。</li>
+<li><strong>FailFast：</strong>快速失败。就是服务消费者调用一次失败后，不再重试。实际在业务执行时，一般非核心业务的调用，会采用快速失败策略，调用失败后一般就记录下失败日志就返回了。</li>
+</ul>
+<blockquote>
+<p>从我对服务容错不同策略的描述中，你可以看出它们的使用场景是不同的，一般情况下对于幂等的调用，可以选择 FailOver 或者 FailCache，非幂等的调用可以选择 FailBack 或者 FailFast。</p>
+</blockquote>
+<h3 id="集群故障"><a href="#集群故障" class="headerlink" title="集群故障"></a>集群故障</h3><p>应付集群故障的思路，主要有两种：<strong>限流</strong>和<strong>降级</strong>。</p>
+<p><strong>1. 限流</strong></p>
+<p>顾名思义，限流就是限制流量，通常情况下，系统能够承载的流量根据集群规模的大小是固定的，可以称之为系统的最大容量。当真实流量超过了系统的最大容量后，就会导致系统响应变慢，服务调用出现大量超时，反映给用户的感觉就是卡顿、无响应。所以，应该根据系统的最大容量，给系统设置一个阈值，超过这个阈值的请求会被自动抛弃，这样的话可以最大限度地保证系统提供的服务正常。</p>
+<blockquote>
+<p>在实际项目中，可以用两个指标来衡量服务的请求量，一个是 QPS 即每秒请求量，一个是工作线程数。不过 QPS 因为不同服务的响应快慢不同，所以系统能够承载的 QPS 相差很大，因此一般选择工作线程数来作为限流的指标，给系统设置一个总的最大工作线程数以及单个服务的最大工作线程数，这样的话无论是系统的总请求量过大导致整体工作线程数量达到最大工作线程数，还是某个服务的请求量超过单个服务的最大工作线程数，都会被限流，以起到保护整个系统的作用。</p>
+<p><strong>限流的问题：</strong></p>
+<ol>
+<li>如何确定限流的阈值：<ul>
+<li>根据经验设置一个比较保守，并且满足系统负载要求的阈值，在之后的使用中慢慢进行调整。</li>
+<li>可以通过压力测试来决定限流的阈值。</li>
+</ul>
+</li>
+<li>限流可能会引入脆弱性：<ul>
+<li>如果我们在分布式系统的复杂拓扑调用中，遍布限流功能，那么以后对每个服务的扩容，新功能的上线，以及调用拓扑结构的变更，就都有可能会导致局部服务流量的骤增，从而引发限流使业务有损。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p><strong>2. 降级</strong></p>
+<p>什么是降级呢？在我看来，降级就是通过停止系统中的某些功能，来保证系统整体的可用性。降级可以说是一种被动防御的措施，为什么这么说呢？因为它一般是系统已经出现故障后所采取的一种止损措施。</p>
+<blockquote>
+<p><strong>降级分级：</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20230926124746629.png" alt="image-20230926124746629"></p>
+<p><strong>降级方式：</strong></p>
+<ol>
+<li>手动降级：在分布式系统中提前设置好降级开关，然后通过类似配置中心的集中式降级平台，来管理降级开关的配置信息，在系统需要降级的时候，通过降级平台手动启动降级开关，对系统进行降级处理。<ul>
+<li>一级降级：会对 P1、P2、P3 的服务同时进行降级</li>
+<li>二级降级：会对 P2、P3 的服务同时进行降级</li>
+<li>三级降级：会对 P3 的服务同时进行降级</li>
+</ul>
+</li>
+<li>自动降级：自动降级是指在分布式系统中，当系统的某些指标或者接口调用出现错误时，直接启动降级逻辑，但是因为自动降级不能通过开关来控制，所以需要认真评估。</li>
+</ol>
+</blockquote>
+<h3 id="单-IDC-故障"><a href="#单-IDC-故障" class="headerlink" title="单 IDC 故障"></a>单 IDC 故障</h3><p>在现实情况下，整个 IDC 脱网的事情时有发生，多半是因为不可抗力比如机房着火、光缆被挖断等，如果业务全部部署在这个 IDC，那就完全不可访问了，所以国内大部分的互联网业务多采用多 IDC 部署。</p>
+<p>采用多 IDC 部署的最大好处就是当有一个 IDC 发生故障时，可以把原来访问故障 IDC 的流量切换到正常的 IDC，来保证业务的正常访问。</p>
+<p>流量切换的方式一般有两种：</p>
+<p><strong>1. 基于 DNS 解析的流量切换</strong></p>
+<p>基于 DNS 解析流量的切换，一般是通过把请求访问域名解析的 VIP 从一个 IDC 切换到另外一个 IDC。比如访问“<a target="_blank" rel="noopener" href="http://www.weibo.com/">www.weibo.com</a>”，正常情况下北方用户会解析到联通机房的 VIP，南方用户会解析到电信机房的 VIP，如果联通机房发生故障的话，会把北方用户访问也解析到电信机房的 VIP，只不过此时网络延迟可能会变长。</p>
+<p><strong>2. 基于 RPC 分组的流量切换</strong></p>
+<p>对于一个服务来说，如果是部署在多个 IDC 的话，一般每个 IDC 就是一个分组。假如一个 IDC 出现故障，那么原先路由到这个分组的流量，就可以通过向配置中心下发命令，把原先路由到这个分组的流量全部切换到别的分组，这样的话就可以切换故障 IDC 的流量了。</p>
+<h3 id="单机故障"><a href="#单机故障" class="headerlink" title="单机故障"></a>单机故障</h3><p>处理单机故障一个有效的办法就是<strong>自动重启</strong>。具体来讲，你可以设置一个阈值，比如以某个接口的平均耗时为准，当监控单机上某个接口的平均耗时超过一定阈值时，就认为这台机器有问题，这个时候就需要把有问题的机器从线上集群中摘除掉，然后在重启服务后，重新加入到集群中。</p>
+<blockquote>
+<p>不过这里要注意的是，需要防止网络抖动造成的接口超时从而触发自动重启。一种方法是在收集单机接口耗时数据时，多采集几个点，比如每 10s 采集一个点，采集 5 个点，当 5 个点中有超过 3 个点的数据都超过设定的阈值范围，才认为是真正的单机问题，这时会触发自动重启策略。</p>
+</blockquote>
+<h3 id="服务调用失败"><a href="#服务调用失败" class="headerlink" title="服务调用失败"></a>服务调用失败</h3><p>微服务架构下服务调用失败的几种常见手段：超时、重试、双发以及熔断。</p>
+<p><strong>超时</strong></p>
+<p>针对服务调用都要设置一个超时时间，以避免依赖的服务迟迟没有返回调用结果，把服务消费者拖死。这其中，超时时间的设定也是有讲究的，不是越短越好，因为太短可能会导致有些服务调用还没有来得及执行完就被丢弃了；当然时间也不能太长，太长有可能导致服务消费者被拖垮。</p>
+<blockquote>
+<p>具体来说，就是按照服务提供者线上真实的服务水平，取 P999 或者 P9999 的值，也就是以 99.9% 或者 99.99% 的调用都在多少毫秒内返回为准。</p>
+</blockquote>
+<p><strong>重试</strong></p>
+<p>在实际服务调用时，经常还要设置一个服务调用超时后的重试次数。假如某个服务调用的超时时间设置为 100ms，重试次数设置为 1，那么当服务调用超过 100ms 后，服务消费者就会立即发起第二次服务调用，而不会再等待第一次调用返回的结果了。</p>
+<p><strong>双发</strong></p>
+<p>一个简单的提高服务调用成功率的办法就是每次服务消费者要发起服务调用的时候，都同时发起两次服务调用，一方面可以提高调用的成功率，另一方面两次服务调用哪个先返回就采用哪次的返回结果，平均响应时间也要比一次调用更快，这就是双发。</p>
+<blockquote>
+<p>我这里讲一个更为聪明的双发，即“备份请求”（Backup Requests），它的大致思想是服务消费者发起一次服务调用后，在给定的时间内如果没有返回请求结果，那么服务消费者就立刻发起另一次服务调用。</p>
+</blockquote>
+<p><strong>熔断</strong></p>
+<p>前面讲得一些手段在服务提供者偶发异常时会十分管用，但是假如服务提供者出现故障，短时间内无法恢复时，无论是超时重试还是双发不但不能提高服务调用的成功率，反而会因为重试给服务提供者带来更大的压力，从而加剧故障。</p>
+<p>针对这种情况，就需要服务消费者能够探测到服务提供者发生故障，并短时间内<strong>停止请求</strong>，给服务提供者故障恢复的时间，待服务提供者恢复后，再继续请求。这就好比一条电路，电流负载过高的话，保险丝就会熔断，以防止火灾的发生，所以这种手段就被叫作“熔断”。</p>
+<p>熔断中断路器的几种状态：</p>
+<ul>
+<li>Closed 状态：正常情况下，断路器是处于关闭状态的，偶发的调用失败也不影响。</li>
+<li>Open 状态：当服务调用失败次数达到一定阈值时，断路器就会处于开启状态，后续的服务调用就直接返回，不会向服务提供者发起请求。</li>
+<li>Half Open 状态：当断路器开启后，每隔一段时间，会进入半打开状态，这时候会向服务提供者发起探测调用，以确定服务提供者是否恢复正常。如果调用成功了，断路器就关闭；如果没有成功，断路器就继续保持开启状态，并等待下一个周期重新进入半打开状态。</li>
+</ul>
+<blockquote>
+<p> <strong>熔断的工作原理：</strong></p>
+<p> 熔断就是把客户端的每一次服务调用用断路器封装起来，通过断路器来监控每一次服务调用。如果某一段时间内，服务调用失败的次数达到一定阈值，那么断路器就会被触发，后续的服务调用就直接返回，也就不会再向服务提供者发起请求了。</p>
+<p> <strong>粒度控制</strong></p>
+<ul>
+<li>服务：熔断整个服务，粒度非常大，熔断敏感度低，并且误伤的范围大，不建议使用</li>
+<li>实例：熔断服务的某一个实例，粒度比较大，熔断敏感度低，并且误伤的范围大，不建议使用</li>
+<li>接口：熔断服务的某一个接口，粒度比较细,熔断的效果比较好</li>
+<li>实例的接口：熔断实例的某一个接口，粒度非常细，熔断的效果非常好，建议使用</li>
+</ul>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iooooot.github.io/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/">https://iooooot.github.io/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iooooot.github.io" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/">服务治理</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/02/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">微服务治理的手段</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/02/13/微服务治理的手段/" title="微服务治理的手段"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-13</div><div class="title">微服务治理的手段</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">228</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">111</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text">微服务治理的手段(二)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%AE%B9%E9%94%99"><span class="toc-number">1.1.</span> <span class="toc-text">服务容错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">常用的手段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E6%95%85%E9%9A%9C"><span class="toc-number">1.1.2.</span> <span class="toc-text">集群故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95-IDC-%E6%95%85%E9%9A%9C"><span class="toc-number">1.1.3.</span> <span class="toc-text">单 IDC 故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%9C%BA%E6%95%85%E9%9A%9C"><span class="toc-number">1.1.4.</span> <span class="toc-text">单机故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E5%A4%B1%E8%B4%A5"><span class="toc-number">1.1.5.</span> <span class="toc-text">服务调用失败</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/" title="微服务治理的手段(二)"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微服务治理的手段(二)"/></a><div class="content"><a class="title" href="/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/" title="微服务治理的手段(二)">微服务治理的手段(二)</a><time datetime="2024-02-18T03:06:09.000Z" title="发表于 2024-02-18 11:06:09">2024-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5/" title="微服务治理的手段"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微服务治理的手段"/></a><div class="content"><a class="title" href="/2024/02/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5/" title="微服务治理的手段">微服务治理的手段</a><time datetime="2024-02-13T03:29:05.000Z" title="发表于 2024-02-13 11:29:05">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/02/%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/" title="监控微服务调用"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="监控微服务调用"/></a><div class="content"><a class="title" href="/2024/02/02/%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/" title="监控微服务调用">监控微服务调用</a><time datetime="2024-02-02T02:52:13.000Z" title="发表于 2024-02-02 10:52:13">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/30/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E7%A1%80/" title="微服务基础"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微服务基础"/></a><div class="content"><a class="title" href="/2024/01/30/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E7%A1%80/" title="微服务基础">微服务基础</a><time datetime="2024-01-30T02:25:45.000Z" title="发表于 2024-01-30 10:25:45">2024-01-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/26/dubbo/" title="dubbo"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/yoshiko.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dubbo"/></a><div class="content"><a class="title" href="/2024/01/26/dubbo/" title="dubbo">dubbo</a><time datetime="2024-01-26T01:51:39.000Z" title="发表于 2024-01-26 09:51:39">2024-01-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
