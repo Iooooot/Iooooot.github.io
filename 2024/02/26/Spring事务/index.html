@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spring事务 | goMars的学习随记</title><meta name="keywords" content="事务 Spring"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="事务   spring的事务是由aop来实现的，首先要生成具体的代理对象，然后按照aop的整套流程来执行具体的操作逻辑，正常情况下要通过通知来完成核心功能，但是事务不是通过通知来实现的，而是通过一个TransactionInterceptor，然后调用invoke来实现具体的逻辑   1. 先做准备工作，解析各个方法上事务相关的属性，根据具体的属性来判断是否开始新事务   2. 当需要开启的时候，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring事务">
+<meta property="og:url" content="https://iooooot.github.io/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="事务   spring的事务是由aop来实现的，首先要生成具体的代理对象，然后按照aop的整套流程来执行具体的操作逻辑，正常情况下要通过通知来完成核心功能，但是事务不是通过通知来实现的，而是通过一个TransactionInterceptor，然后调用invoke来实现具体的逻辑   1. 先做准备工作，解析各个方法上事务相关的属性，根据具体的属性来判断是否开始新事务   2. 当需要开启的时候，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg">
+<meta property="article:published_time" content="2024-02-26T04:38:29.000Z">
+<meta property="article:modified_time" content="2024-02-26T04:39:57.440Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Spring事务">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="https://iooooot.github.io/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"0EM01UMIDP","apiKey":"8f6a2bd8d9b6c8e2b5bdc233c586d096","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-26 12:39:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">113</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring事务</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-26T04:38:29.000Z" title="发表于 2024-02-26 12:38:29">2024-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-26T04:39:57.440Z" title="更新于 2024-02-26 12:39:57">2024-02-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/">Spring全家桶</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/Spring/">Spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>   spring的事务是由aop来实现的，首先要生成具体的代理对象，然后按照aop的整套流程来执行具体的操作逻辑，正常情况下要通过通知来完成核心功能，但是事务不是通过通知来实现的，而是通过一个<code>TransactionInterceptor</code>，然后调用invoke来实现具体的逻辑</p>
+<pre><code>  1. 先做准备工作，解析各个方法上事务相关的属性，根据具体的属性来判断是否开始新事务
+  2. 当需要开启的时候，获取数据库连接，关闭自动提交功能，开起事务
+  3. 执行具体的sql逻辑操作
+  4. 在操作过程中，如果执行失败了，那么会通过completeTransactionAfterThrowing来完成事务的回滚操作，回滚的具体逻辑是通过doRollBack方法来实现的，实现的时候也是要先获取连接对象，通过连接对象来回滚
+  5. 如果执行过程中，没有任何意外情况的发生，那么通过commitTransactionAfterReturning来完成事务的提交操作，提交的具体逻辑是通过doCommit方法来实现的，实现的时候也是要获取连接，通过连接对象来提交
+  6. 当事务执行完毕之后需要清除相关的事务信息cleanupTransactionInfo
+</code></pre>
+<h2 id="失效场景"><a href="#失效场景" class="headerlink" title="失效场景"></a>失效场景</h2><p>   1、非public权限修饰方法</p>
+<p>   2、内部捕获了异常</p>
+<p>   3、没有抛出异常</p>
+<p>   4、非RuntimeException抛出</p>
+<h2 id="事务传播"><a href="#事务传播" class="headerlink" title="事务传播"></a>事务传播</h2><p>   Spring提供了7种传播特性：Required、Requires_new、nested、Support、Not_Support、Never、Mandatory</p>
+<ul>
+<li><p>Required：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。</p>
+</li>
+<li><p>Requires_new：创建一个新的事务，如果当前存在事务，则把当前事务挂起。</p>
+<ul>
+<li>nested：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则创建一个新的事务。</li>
+</ul>
+</li>
+<li><p>Mandatory：如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。</p>
+<ul>
+<li>Support：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</li>
+</ul>
+</li>
+<li><p>Not_Support：以非事务方式运行，如果当前存在事务，则把当前事务挂起。</p>
+<ul>
+<li>Never：以非事务方式运行，如果当前存在事务，则抛出异常。</li>
+</ul>
+</li>
+</ul>
+<h3 id="某一个事务嵌套另一个事务的时候怎么办？"><a href="#某一个事务嵌套另一个事务的时候怎么办？" class="headerlink" title="某一个事务嵌套另一个事务的时候怎么办？"></a>某一个事务嵌套另一个事务的时候怎么办？</h3><p>总：事务的传播特性指的是不同方法的嵌套调用过程中，事务应该如何进行处理，是用同一个事务还是不同的事务，当出现异常的时候会回滚还是提交，两个方法之间的相关影响，在日常工作中，使用比较多的是Required、Requires_new、nested</p>
+<ul>
+<li>判断内外方法是否是同一个事务：<ul>
+<li>是：异常统一在外层方法处理</li>
+<li>不是：内层方法有可能影响到外层方法，但是外层方法是不会影响内层方法的</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iooooot.github.io/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/">https://iooooot.github.io/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iooooot.github.io" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring/">Spring</a><a class="post-meta__tags" href="/tags/Spring%E4%BA%8B%E5%8A%A1/">Spring事务</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/epoll%E3%80%81poll-%E5%92%8C-select/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog41.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">epoll、poll 和 select</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/04/15/Spring全家桶/Spring/Spring-1/" title="Spring_1"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog49.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-15</div><div class="title">Spring_1</div></div></a></div><div><a href="/2021/04/25/Spring全家桶/Spring/Spring-2/" title="Spring_2"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog50.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-25</div><div class="title">Spring_2</div></div></a></div><div><a href="/2022/09/15/Spring全家桶/SpringBoot/SpringBoot/" title="SpringBoot"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/firmbee-com-DfMMzzi3rmg-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-15</div><div class="title">SpringBoot</div></div></a></div><div><a href="/2022/09/19/Spring全家桶/SpringBoot/SpringBoot参数校验/" title="SpringBoot参数校验"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-19</div><div class="title">SpringBoot参数校验</div></div></a></div><div><a href="/2022/09/20/Spring全家桶/SpringBoot/SpringBoot的异常处理/" title="SpringBoot的异常处理"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/lauren-mancke-aOC7TSLb1o8-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-20</div><div class="title">SpringBoot的异常处理</div></div></a></div><div><a href="/2022/11/08/Spring全家桶/SpringBoot/SpringBoot日志/" title="SpringBoot日志"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/jon-tyson-XzUMBNmQro0-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-08</div><div class="title">SpringBoot日志</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">113</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">失效场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD"><span class="toc-number">1.2.</span> <span class="toc-text">事务传播</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%90%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E5%B5%8C%E5%A5%97%E5%8F%A6%E4%B8%80%E4%B8%AA%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%97%B6%E5%80%99%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">某一个事务嵌套另一个事务的时候怎么办？</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/" title="Spring事务"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring事务"/></a><div class="content"><a class="title" href="/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/" title="Spring事务">Spring事务</a><time datetime="2024-02-26T04:38:29.000Z" title="发表于 2024-02-26 12:38:29">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/epoll%E3%80%81poll-%E5%92%8C-select/" title="epoll、poll 和 select"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog41.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="epoll、poll 和 select"/></a><div class="content"><a class="title" href="/2024/02/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/epoll%E3%80%81poll-%E5%92%8C-select/" title="epoll、poll 和 select">epoll、poll 和 select</a><time datetime="2024-02-22T05:52:19.000Z" title="发表于 2024-02-22 13:52:19">2024-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/" title="微服务治理的手段(二)"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-muOHbrFGEQY-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微服务治理的手段(二)"/></a><div class="content"><a class="title" href="/2024/02/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5-%E4%BA%8C/" title="微服务治理的手段(二)">微服务治理的手段(二)</a><time datetime="2024-02-18T03:06:09.000Z" title="发表于 2024-02-18 11:06:09">2024-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5/" title="微服务治理的手段"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/souvik-banerjee-OMhubJCrtu0-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微服务治理的手段"/></a><div class="content"><a class="title" href="/2024/02/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9A%84%E6%89%8B%E6%AE%B5/" title="微服务治理的手段">微服务治理的手段</a><time datetime="2024-02-13T03:29:05.000Z" title="发表于 2024-02-13 11:29:05">2024-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/02/%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/" title="监控微服务调用"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="监控微服务调用"/></a><div class="content"><a class="title" href="/2024/02/02/%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/" title="监控微服务调用">监控微服务调用</a><time datetime="2024-02-02T02:52:13.000Z" title="发表于 2024-02-02 10:52:13">2024-02-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a  href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
