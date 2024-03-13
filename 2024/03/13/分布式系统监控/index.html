@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>分布式系统监控 | goMars的学习随记</title><meta name="keywords" content="分布式系统 系统监控"><meta name="author" content="goMars,wht661024@163.com"><meta name="copyright" content="goMars"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="系统监控概述分布式系统的系统指标监控是确保系统正常运行、性能稳定和问题排查的关键方面之一。这种监控涵盖了一系列指标，用于衡量系统的各个方面，以及帮助管理员和运维团队识别问题、优化性能和规划资源。以下是分布式系统的一些常见系统指标监控的概述：  性能指标： 响应时间：衡量系统对请求的响应速度，通常以毫秒或秒为单位。 吞吐量：指系统在单位时间内能够处理的请求数量，通常以请求&#x2F;秒来表示。 并发连接数：跟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式系统监控">
+<meta property="og:url" content="https://iooooot.github.io/2024/03/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/index.html">
+<meta property="og:site_name" content="goMars的学习随记">
+<meta property="og:description" content="系统监控概述分布式系统的系统指标监控是确保系统正常运行、性能稳定和问题排查的关键方面之一。这种监控涵盖了一系列指标，用于衡量系统的各个方面，以及帮助管理员和运维团队识别问题、优化性能和规划资源。以下是分布式系统的一些常见系统指标监控的概述：  性能指标： 响应时间：衡量系统对请求的响应速度，通常以毫秒或秒为单位。 吞吐量：指系统在单位时间内能够处理的请求数量，通常以请求&#x2F;秒来表示。 并发连接数：跟">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg">
+<meta property="article:published_time" content="2024-03-13T01:13:34.000Z">
+<meta property="article:modified_time" content="2024-03-13T01:15:00.511Z">
+<meta property="article:author" content="goMars">
+<meta property="article:tag" content="分布式系统">
+<meta property="article:tag" content="系统监控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="https://iooooot.github.io/2024/03/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"0EM01UMIDP","apiKey":"8f6a2bd8d9b6c8e2b5bdc233c586d096","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-13 09:15:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        })(window)</script><link rel="stylesheet" href="/css/shadow.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/hideCategory.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">234</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">116</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">goMars的学习随记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">分布式系统监控</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-13T01:13:34.000Z" title="发表于 2024-03-13 09:13:34">2024-03-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-13T01:15:00.511Z" title="更新于 2024-03-13 09:15:00">2024-03-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>分布式系统的系统指标监控是确保系统正常运行、性能稳定和问题排查的关键方面之一。这种监控涵盖了一系列指标，用于衡量系统的各个方面，以及帮助管理员和运维团队识别问题、优化性能和规划资源。以下是分布式系统的一些常见系统指标监控的概述：</p>
+<ol>
+<li><strong>性能指标</strong>：<ul>
+<li><strong>响应时间</strong>：衡量系统对请求的响应速度，通常以毫秒或秒为单位。</li>
+<li><strong>吞吐量</strong>：指系统在单位时间内能够处理的请求数量，通常以请求/秒来表示。</li>
+<li><strong>并发连接数</strong>：跟踪同时连接到系统的客户端数量。</li>
+</ul>
+</li>
+<li><strong>资源利用率</strong>：<ul>
+<li><strong>CPU利用率</strong>：监控CPU的负载，以确保系统不超负荷。</li>
+<li><strong>内存利用率</strong>：跟踪系统内存使用情况，以防止内存泄漏或资源耗尽。</li>
+<li><strong>磁盘利用率</strong>：监控磁盘空间的使用情况，以确保不会出现存储问题。</li>
+<li><strong>网络带宽利用率</strong>：测量网络连接的带宽利用率，以确保网络性能。</li>
+</ul>
+</li>
+<li><strong>错误和异常</strong>：<ul>
+<li><strong>日志和异常信息</strong>：监控系统日志以及异常和错误报告，以识别问题和故障。</li>
+<li><strong>错误码计数</strong>：跟踪特定错误代码的出现次数，以便快速定位问题。</li>
+</ul>
+</li>
+<li><strong>安全指标</strong>：<ul>
+<li><strong>入侵检测</strong>：检测未经授权的访问或潜在威胁。</li>
+<li><strong>漏洞扫描</strong>：定期扫描系统以查找潜在的安全漏洞。</li>
+<li><strong>访问控制日志</strong>：记录系统访问以跟踪用户活动并排查潜在的安全问题。</li>
+</ul>
+</li>
+<li><strong>可用性和可恢复性</strong>：<ul>
+<li><strong>系统可用性</strong>：监控系统的正常运行时间，以确保它满足服务级别协议（SLA）。</li>
+<li><strong>备份和恢复状态</strong>：跟踪备份和恢复操作的状态，以确保数据的安全性和可恢复性。</li>
+</ul>
+</li>
+<li><strong>负载均衡和容错</strong>：<ul>
+<li><strong>负载均衡状态</strong>：跟踪负载均衡器的性能，以确保请求被正确分发到后端服务器。</li>
+<li><strong>容错状态</strong>：检测系统中的故障，并采取相应措施以确保系统的高可用性。</li>
+</ul>
+</li>
+<li><strong>资源分配</strong>：<ul>
+<li><strong>自动伸缩指标</strong>：基于负载和需求调整资源分配，以优化性能和资源利用。</li>
+</ul>
+</li>
+<li><strong>容量规划</strong>：<ul>
+<li><strong>历史数据分析</strong>：分析历史性能数据以规划未来的资源需求，以满足用户和业务需求。</li>
+</ul>
+</li>
+</ol>
+<p>分布式系统的系统指标监控是一个复杂的任务，通常需要使用监控工具和平台来自动化数据收集、分析和报警。这些指标的监控有助于确保系统的稳定性、性能和可用性，以满足用户需求并减少故障和停机时间。</p>
+<h2 id="具体架构"><a href="#具体架构" class="headerlink" title="具体架构"></a>具体架构</h2><p>主要监控系统的搭建通常涉及多个组件和工具的组合，其中包括：</p>
+<ol>
+<li><strong>Prometheus</strong>：Prometheus 是核心的监控和数据收集引擎。它负责定期从各种数据源中收集指标数据，并提供数据存储和查询功能。Prometheus 还包括警报管理功能。</li>
+<li><strong>Node Exporter</strong>：Node Exporter 是 Prometheus 的一个重要组件，用于监控主机级别的系统指标，如 CPU 使用率、内存、磁盘、网络等。</li>
+<li><strong>各种 Exporters</strong>：除了 Node Exporter，您可能还需要使用其他 Exporters 来监控特定应用程序或服务，例如：<ul>
+<li><strong>Blackbox Exporter</strong> 用于对网络服务进行黑盒测试。</li>
+<li><strong>MySQL Exporter</strong> 用于监控 MySQL 数据库性能。</li>
+<li><strong>NGINX Exporter</strong> 用于监控 NGINX Web服务器性能。</li>
+</ul>
+</li>
+<li><strong>Grafana</strong>：Grafana 是一个可视化和仪表板工具，它与 Prometheus 集成得很好。您可以使用 Grafana 创建漂亮的监控仪表板，以可视化监控数据和创建警报规则。</li>
+<li><strong>警报通知工具</strong>：用于将警报通知发送给相关团队或人员的工具，如邮件通知、短信、钉钉 等。</li>
+<li><strong>存储后端</strong>：Prometheus 默认使用本地存储，但在大规模部署中，您可能需要考虑使用远程存储后端，如 Thanos 或 TSDB，以实现长期数据存储和更好的可扩展性。</li>
+</ol>
+<p><img src= "/img/loading.gif" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/image-20231024104606566.png" alt="image-20231024104606566"></p>
+<p>整个监控流程的描述：</p>
+<ol>
+<li><strong>数据采集</strong>：<ul>
+<li><strong>Exporters</strong>：不同的 Exporters 安装在监控目标（如服务器、应用程序、数据库）上，定期采集各种指标，如 CPU 使用率、内存、网络流量、数据库查询等。</li>
+<li><strong>PushGateway</strong>：对于那些无法使用拉取模型的短期作业或者其他自定义的监控指标，它们将监控数据推送到 PushGateway。</li>
+</ul>
+</li>
+<li><strong>数据存储</strong>：<ul>
+<li><strong>Prometheus</strong>：Prometheus 接收通过拉取或从 PushGateway 接收的监控数据，将数据存储在本地时间序列数据库中（TSDB）。这包括指标的时间戳、标签（用于标识监控目标和数据类型）和相应的值。</li>
+</ul>
+</li>
+<li><strong>数据查询</strong>：<ul>
+<li><strong>Prometheus</strong>：Prometheus 提供了一个强大的查询语言（PromQL），允许用户执行各种查询来检索和分析存储在 TSDB 中的监控数据。这些查询可以用于创建仪表板、生成图表、计算聚合值等。</li>
+</ul>
+</li>
+<li><strong>数据可视化</strong>：<ul>
+<li><strong>Grafana</strong>：Grafana 用于可视化监控数据。管理员可以创建仪表板并将其配置为使用 Prometheus 作为数据源。这使用户能够以直观的方式查看和分析监控数据，绘制图表、图形和趋势线。</li>
+</ul>
+</li>
+<li><strong>警报管理</strong>：<ul>
+<li><strong>Prometheus</strong>：Prometheus 可以配置警报规则，当特定条件满足时，生成警报。这些警报规则用于监控系统状态和性能，并在发现问题时触发警报。</li>
+<li><strong>AlertManager</strong>：AlertManager 接管警报的路由和通知。它可以集成多个通知通道，如通知、短信、钉钉 等，以便向相关团队发送通知。</li>
+</ul>
+</li>
+<li><strong>监控维护和操作</strong>：<ul>
+<li>管理员可以通过 Prometheus 和 Grafana 进行监控系统的维护和操作。他们可以配置监控目标、更新仪表板、调整警报规则，以及管理存储策略以控制数据的保留。</li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:wht661024@163.com">goMars</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://iooooot.github.io/2024/03/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/">https://iooooot.github.io/2024/03/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://iooooot.github.io" target="_blank">goMars的学习随记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a><a class="post-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/">系统监控</a></div><div class="post_share"><div class="social-share" data-image="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/03/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9F%BA%E6%9C%AC%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/"><img class="next-cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">基本网络攻击与防御</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/14/CDN静态资源加速/" title="CDN静态资源加速"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-14</div><div class="title">CDN静态资源加速</div></div></a></div><div><a href="/2023/12/19/MySQL读写分离/" title="MySQL读写分离"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog08.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-19</div><div class="title">MySQL读写分离</div></div></a></div><div><a href="/2023/12/22/MySQL分库分表/" title="MySQL分库分表"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog02.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-22</div><div class="title">MySQL分库分表</div></div></a></div><div><a href="/2023/12/27/利用NoSQL优化数据库/" title="利用NoSQL优化数据库"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/firmbee-com-DfMMzzi3rmg-unsplash.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-27</div><div class="title">利用NoSQL优化数据库</div></div></a></div><div><a href="/2024/01/18/消息队列延迟问题/" title="消息队列延迟问题"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog47.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-18</div><div class="title">消息队列延迟问题</div></div></a></div><div><a href="/2024/01/11/缓存的读写策略/" title="缓存的读写策略"><img class="cover" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog12.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-11</div><div class="title">缓存的读写策略</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blogphoto2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">goMars</div><div class="author-info__description">Your only limit is your soul<br>一个正在路上的开发者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">234</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">116</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">54</div></a></div></div><a class="button--animated" id="card-info-btn" href="javaScript:alert(&quot;喜欢的话,点击Ctrl+D收藏哟~&quot;);"><i class="fab fa-leanpub"></i><span>加入书签</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Iooooot" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/wht661024@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客哟~随便看看，说不定有你感兴趣的呐..</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7"><span class="toc-number">1.</span> <span class="toc-text">系统监控</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">具体架构</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/" title="分布式系统监控"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="分布式系统监控"/></a><div class="content"><a class="title" href="/2024/03/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/" title="分布式系统监控">分布式系统监控</a><time datetime="2024-03-13T01:13:34.000Z" title="发表于 2024-03-13 09:13:34">2024-03-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9F%BA%E6%9C%AC%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" title="基本网络攻击与防御"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog39.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基本网络攻击与防御"/></a><div class="content"><a class="title" href="/2024/03/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9F%BA%E6%9C%AC%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" title="基本网络攻击与防御">基本网络攻击与防御</a><time datetime="2024-03-09T01:56:44.000Z" title="发表于 2024-03-09 09:56:44">2024-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/05/HTTP%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5/" title="HTTP优化策略"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/blog01.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTTP优化策略"/></a><div class="content"><a class="title" href="/2024/03/05/HTTP%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5/" title="HTTP优化策略">HTTP优化策略</a><time datetime="2024-03-05T02:52:44.000Z" title="发表于 2024-03-05 10:52:44">2024-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/01/HTTP%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/" title="HTTP接口安全策略"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTTP接口安全策略"/></a><div class="content"><a class="title" href="/2024/03/01/HTTP%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/" title="HTTP接口安全策略">HTTP接口安全策略</a><time datetime="2024-03-01T02:17:30.000Z" title="发表于 2024-03-01 10:17:30">2024-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/" title="Spring事务"><img data-lazy-src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring事务"/></a><div class="content"><a class="title" href="/2024/02/26/Spring%E4%BA%8B%E5%8A%A1/" title="Spring事务">Spring事务</a><time datetime="2024-02-26T04:38:29.000Z" title="发表于 2024-02-26 12:38:29">2024-02-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/ben-kolde-FaPxZ88yZrw-unsplash.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By goMars</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a href="https://iooooot.github.io/">blog</a>!&emsp;I hope you would like it！<br/><a>蜀ICP备2024057194号-1</a><br/><img src="https://blogpic-1305209282.cos.ap-chengdu.myqcloud.com/img/baicon.png"><a href="https://beian.mps.gov.cn/#/query/webSearch?code=51010602002127" rel="noreferrer" target="_blank">川公网安备51010602002127</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'KBFy1paWlEx87r2Jl3UoS67U-gzGzoHsz',
+      appKey: '8K8QgLxNaqgswNen2iUidj8W',
+      placeholder: '冲冲冲！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
